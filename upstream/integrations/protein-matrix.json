@@ -1,0 +1,231 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/util/tables/raw_scoremat.c",
+      "symbol": "NCBISM_GetIndex",
+      "line_start": 51,
+      "line_end": 64,
+      "source_sha256": "4ec3fd059a73a1f9d87d55188a79400b36b430bc6d3ee0646ac5eff5d3d05a9e",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "rust_symbol": "ncbism_get_index",
+      "reason": "Default tblastn BLOSUM62 matrix loading, gap statistics and effective-length alpha/beta dependencies",
+      "status": "translated",
+      "validation": "Focused standalone C/Rust complete-output comparison (115 lines): all 784 unpacked BLAST matrix cells, standard-matrix names and raw indexes, all 12 table rows, 14 gapped pairs and their alpha/beta values, preferred 11/1 gap costs and null/unsupported statuses. Original blast_stat.c/raw_scoremat.c run unchanged. Temporary harnesses/results under /tmp/btyper-protein-matrix-*; no broad fixture corpus added.",
+      "adaptations": "Retain NCBIstdaa-to-NCBIeaa conversion, including the source string terminator in sizeof(kNCBIstdaa), ASCII lowercase conversion and strchr-style symbol lookup. Logical Rust slices model the C symbol terminator; GetIndex can return the terminator index as in C. Passing that out-of-range index into GetScore remains outside the original valid scoring domain.",
+      "byte_start": 1809,
+      "byte_end": 2174
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/util/tables/raw_scoremat.c",
+      "symbol": "NCBISM_GetScore",
+      "line_start": 67,
+      "line_end": 78,
+      "source_sha256": "431a8b93f1157d47412c65a4d7aba087eaa0e8f00e21b552e7acc5c927ae2cdf",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "rust_symbol": "ncbism_get_score",
+      "reason": "Default tblastn BLOSUM62 matrix loading, gap statistics and effective-length alpha/beta dependencies",
+      "status": "translated",
+      "validation": "Focused standalone C/Rust complete-output comparison (115 lines): all 784 unpacked BLAST matrix cells, standard-matrix names and raw indexes, all 12 table rows, 14 gapped pairs and their alpha/beta values, preferred 11/1 gap costs and null/unsupported statuses. Original blast_stat.c/raw_scoremat.c run unchanged. Temporary harnesses/results under /tmp/btyper-protein-matrix-*; no broad fixture corpus added.",
+      "adaptations": "Retain both index lookups, row-major packed index using strlen(symbols), and the original unknown-residue default score. Rust slice bounds reject the source undefined out-of-bounds scoring domains.",
+      "byte_start": 2177,
+      "byte_end": 2525
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/util/tables/raw_scoremat.c",
+      "symbol": "s_NCBISM_StartsWith",
+      "line_start": 120,
+      "line_end": 129,
+      "source_sha256": "3680ac8297d302ce2ce0579765b89c4c056bc4284b8e3886d7352ffad9b73bff",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "rust_symbol": "s_ncbism_starts_with",
+      "reason": "Default tblastn BLOSUM62 matrix loading, gap statistics and effective-length alpha/beta dependencies",
+      "status": "translated",
+      "validation": "Focused standalone C/Rust complete-output comparison (115 lines): all 784 unpacked BLAST matrix cells, standard-matrix names and raw indexes, all 12 table rows, 14 gapped pairs and their alpha/beta values, preferred 11/1 gap costs and null/unsupported statuses. Original blast_stat.c/raw_scoremat.c run unchanged. Temporary harnesses/results under /tmp/btyper-protein-matrix-*; no broad fixture corpus added.",
+      "adaptations": "Byte slices model C NUL termination; ASCII lowercase matches the source C-locale table-name comparisons. Prefix comparison order and early mismatch return retained.",
+      "byte_start": 3811,
+      "byte_end": 4030
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/util/tables/raw_scoremat.c",
+      "symbol": "NCBISM_GetStandardMatrix",
+      "line_start": 131,
+      "line_end": 166,
+      "source_sha256": "cc92ad5961387eaf5bc266f3723c08924861cf0a79876d6bd8baabb9fb98356a",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "rust_symbol": "ncbism_get_standard_matrix",
+      "reason": "Default tblastn BLOSUM62 matrix loading, gap statistics and effective-length alpha/beta dependencies",
+      "status": "translated",
+      "validation": "Focused standalone C/Rust complete-output comparison (115 lines): all 784 unpacked BLAST matrix cells, standard-matrix names and raw indexes, all 12 table rows, 14 gapped pairs and their alpha/beta values, preferred 11/1 gap costs and null/unsupported statuses. Original blast_stat.c/raw_scoremat.c run unchanged. Temporary harnesses/results under /tmp/btyper-protein-matrix-*; no broad fixture corpus added.",
+      "adaptations": "Scoped to the default BLOSUM62 matrix: unrelated packed matrices, matrix-registry allocation and non-default scoring data are not translated. Preserve original BLOSUM62 data values, lookup/comparison order and default status/output mutations. Rust owned vectors and optional mutable outputs replace allocated C arrays/output pointers; normal Rust allocation failure behavior applies. Byte slices model C strings through their first NUL.",
+      "byte_start": 4032,
+      "byte_end": 5245
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_stat.c",
+      "symbol": "BlastScoreBlkProteinMatrixLoad",
+      "line_start": 1538,
+      "line_end": 1596,
+      "source_sha256": "f3f039bc183df47a68751d8c916f6a174dbc2bac4f8d1dba65af6f7d13fdbfda",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "rust_symbol": "blast_score_blk_protein_matrix_load",
+      "reason": "Default tblastn BLOSUM62 matrix loading, gap statistics and effective-length alpha/beta dependencies",
+      "status": "translated",
+      "validation": "Focused standalone C/Rust complete-output comparison (115 lines): all 784 unpacked BLAST matrix cells, standard-matrix names and raw indexes, all 12 table rows, 14 gapped pairs and their alpha/beta values, preferred 11/1 gap costs and null/unsupported statuses. Original blast_stat.c/raw_scoremat.c run unchanged. Temporary harnesses/results under /tmp/btyper-protein-matrix-*; no broad fixture corpus added.",
+      "adaptations": "Scoped to the default BLOSUM62 matrix: unrelated packed matrices, matrix-registry allocation and non-default scoring data are not translated. Preserve original BLOSUM62 data values, lookup/comparison order and default status/output mutations. Rust owned vectors and optional mutable outputs replace allocated C arrays/output pointers; normal Rust allocation failure behavior applies. Byte slices model C strings through their first NUL. Missing sbp.name is an explicit matrix_name argument. Existing ScoreBlk matrix row Vecs replace row pointers. Preserve the entire 28x28 initialization, excluded U/O/gap rows and columns, original packed scores including J/B/Z/X/stop, and ordered U<-C/O<-X copying.",
+      "byte_start": 57331,
+      "byte_end": 59292
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_stat.c",
+      "symbol": "Blast_GetMatrixValues",
+      "line_start": 3012,
+      "line_end": 3090,
+      "source_sha256": "f7e990acec931b18f2e88de1b84e6163f74bf6da95003edd2ea9b52459c45f76",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "rust_symbol": "blast_get_matrix_values",
+      "reason": "Default tblastn BLOSUM62 matrix loading, gap statistics and effective-length alpha/beta dependencies",
+      "status": "translated",
+      "validation": "Focused standalone C/Rust complete-output comparison (115 lines): all 784 unpacked BLAST matrix cells, standard-matrix names and raw indexes, all 12 table rows, 14 gapped pairs and their alpha/beta values, preferred 11/1 gap costs and null/unsupported statuses. Original blast_stat.c/raw_scoremat.c run unchanged. Temporary harnesses/results under /tmp/btyper-protein-matrix-*; no broad fixture corpus added.",
+      "adaptations": "Scoped to the default BLOSUM62 matrix: unrelated packed matrices, matrix-registry allocation and non-default scoring data are not translated. Preserve original BLOSUM62 data values, lookup/comparison order and default status/output mutations. Rust owned vectors and optional mutable outputs replace allocated C arrays/output pointers; normal Rust allocation failure behavior applies. Byte slices model C strings through their first NUL.",
+      "byte_start": 103179,
+      "byte_end": 105748
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_stat.c",
+      "symbol": "BLAST_GetAlphaBeta",
+      "line_start": 3094,
+      "line_end": 3141,
+      "source_sha256": "ec8883125783fda5745dbee4e56d235be4e16dee6bef3077b1a6607bcab8ac10",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "rust_symbol": "blast_get_alpha_beta",
+      "reason": "Default tblastn BLOSUM62 matrix loading, gap statistics and effective-length alpha/beta dependencies",
+      "status": "translated",
+      "validation": "Focused standalone C/Rust complete-output comparison (115 lines): all 784 unpacked BLAST matrix cells, standard-matrix names and raw indexes, all 12 table rows, 14 gapped pairs and their alpha/beta values, preferred 11/1 gap costs and null/unsupported statuses. Original blast_stat.c/raw_scoremat.c run unchanged. Temporary harnesses/results under /tmp/btyper-protein-matrix-*; no broad fixture corpus added.",
+      "adaptations": "Scoped to the default BLOSUM62 matrix: unrelated packed matrices, matrix-registry allocation and non-default scoring data are not translated. Preserve original BLOSUM62 data values, lookup/comparison order and default status/output mutations. Rust owned vectors and optional mutable outputs replace allocated C arrays/output pointers; normal Rust allocation failure behavior applies. Byte slices model C strings through their first NUL. Preserve best-row default selection for zero gap costs, explicit-gap row matching, ungapped row-zero values and fallback Lambda/H. Unsupported non-BLOSUM62 names are outside the supported gapped-search domain; initialized Rust empty vectors remove the source invalid-free risk for that domain.",
+      "byte_start": 105856,
+      "byte_end": 107120
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_stat.c",
+      "symbol": "BLAST_GetProteinGapExistenceExtendParams",
+      "line_start": 3374,
+      "line_end": 3399,
+      "source_sha256": "d262459925ac43f2eb6ecda235d1fd56417f3a6007fd60ccb0c9d692b9f4319a",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "rust_symbol": "blast_get_protein_gap_existence_extend_params",
+      "reason": "Default tblastn BLOSUM62 matrix loading, gap statistics and effective-length alpha/beta dependencies",
+      "status": "translated",
+      "validation": "Focused standalone C/Rust complete-output comparison (115 lines): all 784 unpacked BLAST matrix cells, standard-matrix names and raw indexes, all 12 table rows, 14 gapped pairs and their alpha/beta values, preferred 11/1 gap costs and null/unsupported statuses. Original blast_stat.c/raw_scoremat.c run unchanged. Temporary harnesses/results under /tmp/btyper-protein-matrix-*; no broad fixture corpus added.",
+      "adaptations": "Scoped to the default BLOSUM62 matrix: unrelated packed matrices, matrix-registry allocation and non-default scoring data are not translated. Preserve original BLOSUM62 data values, lookup/comparison order and default status/output mutations. Rust owned vectors and optional mutable outputs replace allocated C arrays/output pointers; normal Rust allocation failure behavior applies. Byte slices model C strings through their first NUL.",
+      "byte_start": 115580,
+      "byte_end": 116357
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_stat.c",
+      "symbol": "Blast_KarlinBlkGappedLoadFromTables",
+      "line_start": 3576,
+      "line_end": 3646,
+      "source_sha256": "7e0fd9bd1b086e8bbc77af4915a2ce957140c5acd17f537cfe2b031ca834c045",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "rust_symbol": "blast_karlin_blk_gapped_load_from_tables",
+      "reason": "Default tblastn BLOSUM62 matrix loading, gap statistics and effective-length alpha/beta dependencies",
+      "status": "translated",
+      "validation": "Focused standalone C/Rust complete-output comparison (115 lines): all 784 unpacked BLAST matrix cells, standard-matrix names and raw indexes, all 12 table rows, 14 gapped pairs and their alpha/beta values, preferred 11/1 gap costs and null/unsupported statuses. Original blast_stat.c/raw_scoremat.c run unchanged. Temporary harnesses/results under /tmp/btyper-protein-matrix-*; no broad fixture corpus added.",
+      "adaptations": "Scoped to the default BLOSUM62 matrix: unrelated packed matrices, matrix-registry allocation and non-default scoring data are not translated. Preserve original BLOSUM62 data values, lookup/comparison order and default status/output mutations. Rust owned vectors and optional mutable outputs replace allocated C arrays/output pointers; normal Rust allocation failure behavior applies. Byte slices model C strings through their first NUL. Preserve null name -1, missing matrix 1, unsupported gap pair 2, validation-only null block and unchanged paramC. The standard_only switch does not affect BLOSUM62 membership. Use the already translated BLAST_Nint for gap comparison and original log(K) assignment.",
+      "byte_start": 122103,
+      "byte_end": 123681
+    }
+  ],
+  "data": [
+    {
+      "version": "2.17.0+",
+      "source": "src/util/tables/sm_blosum62.c",
+      "source_sha256": "b1fce0c942dec496148e53e85d0230c4130cba48a984842dbde193ddc59c9fa7",
+      "rust_path": "src/core/protein_matrix_tables.rs",
+      "symbols": {
+        "s_Blosum62PSM": "S_BLOSUM62_PSM"
+      },
+      "adaptations": "Copy all 625 literal packed BLOSUM62 scores exactly. This source table ships in the pinned toolkit; no runtime or build-time code generation is needed.",
+      "status": "translated",
+      "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/util/tables/sm_blosum62.c",
+      "source_sha256": "b1fce0c942dec496148e53e85d0230c4130cba48a984842dbde193ddc59c9fa7",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "symbols": {
+        "NCBISM_Blosum62": "NCBISM_BLOSUM62"
+      },
+      "adaptations": "Preserve symbols, row-major score pointer and default score -4 as a borrowed Rust constant.",
+      "status": "translated",
+      "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/util/tables/raw_scoremat.c",
+      "source_sha256": "2b06ee38642a6c50faff9509b61bb0f9f2d84fa031f420b5dc58e47564b200e9",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "symbols": {
+        "kNCBIstdaa": "K_NCBISTDAA"
+      },
+      "adaptations": "Preserve all 28 NCBIstdaa symbol bytes plus the terminating NUL, because the original conversion compares against sizeof(string).",
+      "status": "translated",
+      "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_stat.c",
+      "source_sha256": "618b4eaa6497146145875923c7e2669ffde2b96ce43a712f5e0844ab9a1fe07a",
+      "rust_path": "src/core/protein_matrix_tables.rs",
+      "symbols": {
+        "blosum62_values": "BLOSUM62_VALUES",
+        "blosum62_prefs": "BLOSUM62_PREFS"
+      },
+      "adaptations": "Copy all twelve eleven-column table rows and preference flags exactly; cast INT2_MAX to its exact f64 value 32767.0.",
+      "status": "translated",
+      "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "include/algo/blast/core/blast_stat.h",
+      "source_sha256": "08eb5e614abdd3f50e6f88765607b8bcceeb378e2f55554a87079d2bc4991614",
+      "rust_path": "src/core/blast_protein_matrix.rs",
+      "symbols": {
+        "BLAST_MATRIX_NOMINAL": "BLAST_MATRIX_NOMINAL",
+        "BLAST_MATRIX_BEST": "BLAST_MATRIX_BEST"
+      },
+      "adaptations": "Preserve the preference values used by BLOSUM62.",
+      "status": "translated",
+      "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+    }
+  ],
+  "integration": {
+    "module": "Add pub mod blast_protein_matrix; to src/core/mod.rs. protein_matrix_tables.rs is a private path submodule and should not separately be exposed.",
+    "score_block_fields": "No shared field additions required: BlastScoreBlkProteinMatrixLoad uses explicit matrix_name &[u8] in place of sbp.name. Caller initializes alphabet_size=28 and matrix=vec![vec![...;28];28].",
+    "alpha_beta_signature": "pub fn blast_get_alpha_beta(matrix_name: Option<&[u8]>, alpha: &mut f64, beta: &mut f64, gapped: bool, gap_open: i32, gap_extend: i32, kbp_ungapped: &BlastKarlinBlk)",
+    "remaining_dependencies": [],
+    "scope": "Only default BLOSUM62 raw and gapped-statistical data; unsupported non-default matrices are deliberately not loaded. BLAST_KarlinBlkGappedCalc diagnostic-message wrapper is not translated; its loader is available.",
+    "new_reference_sources": [
+      "src/util/tables/raw_scoremat.c",
+      "include/util/tables/raw_scoremat.h",
+      "src/util/tables/sm_blosum62.c"
+    ],
+    "validation_artifacts": [
+      "/tmp/btyper-protein-matrix-c-check.c",
+      "/tmp/btyper-protein-matrix-check.rs",
+      "/tmp/btyper-protein-matrix-c-check.txt",
+      "/tmp/btyper-protein-matrix-rust-check.txt"
+    ]
+  },
+  "integrated": true
+}

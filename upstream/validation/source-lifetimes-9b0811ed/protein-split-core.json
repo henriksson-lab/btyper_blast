@@ -1,0 +1,8 @@
+{
+  "status": "match",
+  "hsp_count": 4,
+  "original": "/tmp/btyper-query-split-check/protein-original.jsonl",
+  "native": "/tmp/btyper-query-split-check/protein-native.jsonl",
+  "precision": "exact IEEE754 bit patterns; all logical HSP fields and ordered lists",
+  "differences": []
+}

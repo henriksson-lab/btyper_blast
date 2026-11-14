@@ -1,0 +1,41 @@
+{
+  "version": "2.17.0+",
+  "translations": [],
+  "data": [],
+  "native_bindings": [
+    {
+      "rust_path": "src/protein_chunks.rs",
+      "rust_symbol": "preliminary_chunked_protein_subject",
+      "source_references": [
+        {
+          "source": "src/algo/blast/core/blast_engine.c",
+          "symbol": "s_BlastSearchEngineOneContext",
+          "byte_start": 16492,
+          "byte_end": 23957,
+          "line_start": 422,
+          "line_end": 602,
+          "source_sha256": "cc75ffef78826639bc933b5e2086b355f8b5d207c214a8b7ff3875e392b8209a"
+        },
+        {
+          "source": "src/algo/blast/core/blast_engine.c",
+          "symbol": "s_BlastSearchEngineCore",
+          "byte_start": 27448,
+          "byte_end": 36835,
+          "line_start": 701,
+          "line_end": 918,
+          "source_sha256": "e5a8e6a4580b5a7df0010d41f23e9a97bb510f831b2e54182ce980be52e5539d"
+        }
+      ],
+      "adaptations": "Native SeqSrc/sequence-block binding, not a new translated numerical/search kernel. Translate the original packed NCBI2na subject once using existing BLAST_GetAllTranslations. Retain entire six-frame allocation while looping source FRAME_ORDER+1,+2,+3,-1,-2,-3. Each complete amino-acid frame uses existing SubjectSplitStruct/GetNextSubjectChunk with is_nucleotide=false, original5M residue limit and100 residue overlap. Physical pointer origin is frame_offsets[context]+1+chunk.sequence_offset and logical length is chunk.length; preserve readable original frame tail and preceding data. Parent ProteinInitialSearch::preliminary_translated_chunk performs original reset/AAWordFinder/GetGappedScore using existing scratch owners. For every chunk reuse exact OneContext endpoint purge/sort/OID behavior, shift local HSP subject offsets into frame coordinates and reuse actual HSPListsMerge with subject-split flag/allow_gap=true and hsp_num_max. Completed per-frame lists enter engine core as PreliminaryContextResult::Finished, preventing another endpoint purge after merging. No per-chunk nucleotide retranslation, frame-phase approximation or unchunked oversized frame substitutes.",
+      "validation": "Focused release full-native-pipeline smoke on15000300nt with a40aa exact match across theAA5000000 chunk boundary. Native and pinned original tblastn2.17.0+ agree on score351, query1..40, nucleotide subject14999941..15000060, frame+1, length40, gaps0, mismatch0, identities40, displayed Evalue1.99e-41 and bit score139. Native full precision Evalue1.9928345933029634e-41 and bit score139.813283427035. Second5000100nt case exercises removal of incorrect raw5Mnt limit while retaining unchunked translated frames: original/native agree score247, query1..40, subject3000001..3000120, identities40, gaps/mismatch0, displayed Evalue7.86e-28 and bit score99.8. CLI statistics are compared only at its displayed precision; no exact-float whole-search parity or speed claim. Library compilation and release build pass; no tracked broad fixtures."
+    }
+  ],
+  "integration_notes": [
+    "Parent registered mod protein_chunks in lib.rs. Adapter is crate-private; no new public kernel symbols and no new source function ledger entries are claimed. Existing translated subject splitting/merge/wordfinder/gapped kernels supply all algorithms.",
+    "Worker edited protein_search.rs with parent explicit ownership handoff: remove artificial rawNT5000000 cap, select translated-frame chunk adapter only when subject.len()/3>MAX_DBSEQ_LEN, and use Finished callback for already merged frame results. Parent owns protein_setup.rs and added the physical-buffer chunk method. All shared-file ownership returned to parent after integration.",
+    "Source inspection found existing unchunked tblastn preliminary path used expanded4na while enginecore explicitly requests packed2na translation; parent corrected existing ProteinInitialSearch::preliminary_subject. Final composition/traceback ambiguity restoration remains separate source phase.",
+    "Integer allocation checks retain original native translation buffer domain ((i32MAX-4)/2 nucleotide length). Empty/short standard word3 subjects remain empty. Chunked frames use hit_parameters.options.hsp_num_max through original BlastHspNumMax.",
+    "Temporary validation files /tmp/btyper-protein-chunks-smoke.rs and /tmp/btyper-protein-unchunked-smoke.rs create temporary FASTAs; pinned reference tblastn used -subject and default standard settings. All library output remains in memory; only oracle artifacts use disk."
+  ],
+  "integrated": true
+}

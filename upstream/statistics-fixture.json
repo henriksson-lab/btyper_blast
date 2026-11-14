@@ -1,0 +1,16 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 6175,
+  "origin": "Unchanged complete blast_stat.c includes file-local numerical definitions. Original option constructor executes through blast_options.c. Harness supplies explicit score distributions and tests each statistical kernel directly, including full ungapped-block construction; sequence-derived score-frequency and complete search parameter setup remain unimplemented.",
+  "command": "python scripts/generate_statistics_reference.py --output tests/fixtures/statistics-2.17.0.txt",
+  "fixture": "tests/fixtures/statistics-2.17.0.txt",
+  "fixture_sha256": "28a9654f9a861ba4b84171a9a15c11efc18b2e98957c8d9a1e89dffcf46fc293",
+  "harness": "tests/reference/statistics.c",
+  "harness_sha256": "b210ad50af9cc134cf3f96a66e0af00edbaa5544c487dc50cc8d21eaa24b598f",
+  "generator": "scripts/generate_statistics_reference.py",
+  "generator_sha256": "2a3ad6a90f1b3374e7c1233a779da8ac2315d6898c2164bd7e299a5dabce6752",
+  "shim": "tests/reference/include/corelib/ncbitype.h",
+  "shim_sha256": "9d3e1fc2301697ffbd57eae53f557b10e4737ad6f1d672f11a03749405feb29c",
+  "compiler": "GCC 11.4.0; Clang and ASan/UBSan results have identical finite values/statuses/iterations, with only NaN-sign representation differences. Rust comparisons validate each output, including NaN classification. Leak detection disabled in sandbox."
+}

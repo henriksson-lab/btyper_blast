@@ -1,0 +1,2339 @@
+{
+  "schema_version": 1,
+  "started_utc": "2026-11-13T18:01:37.758605+00:00",
+  "scope": "end-to-end FASTA-to-captured-results user workflow; not engine-only speed",
+  "interpretation": "Results apply only to the supplied inputs, artifact, settings and host. No workload representativeness or engine-only speed is inferred from this workflow comparison.",
+  "workflow_difference": "reference uses two processes and fresh on-disk v5 storage; native uses one process and in-memory storage",
+  "timing_boundary": "workflow wall: immediately before build/native subprocess through complete search/native captured stdout+stderr; excludes temporary directory creation/deletion, pin verification, parity checks and reporting",
+  "cache_policy": "warm-cache workflow measurements; no filesystem/page-cache eviction or flushing",
+  "output_policy": "both sides capture all 19 fields into Python memory on every run; compare outside timed intervals",
+  "precision": "exact ordered non-floating fields; compare_search.py BLAST CLI precision rules for Evalue/bit score",
+  "reference_version": "2.17.0+",
+  "reference_archive_sha256": "3888112d8207831aa47371d93583c601f058f88b5db22dc782438b039a3a411b",
+  "translated_source_pin": {
+    "project": "NCBI BLAST+",
+    "version": "2.17.0+",
+    "archive": "ncbi-blast-2.17.0+-src.tar.gz",
+    "url": "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.17.0/ncbi-blast-2.17.0+-src.tar.gz",
+    "discovery_url": "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/",
+    "sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+    "root": "vendor/ncbi-blast-2.17.0+-src/c++",
+    "policy": "Immutable reference source. Do not update the release or change reference files implicitly. Translation candidates are not a complete dependency closure."
+  },
+  "threads_per_search": 1,
+  "warmups_per_program": 2,
+  "measured_pairs_per_program": 9,
+  "random_seed": 217,
+  "platform": "Linux-6.8.0-58-generic-x86_64-with-glibc2.35",
+  "python": "3.12.2 | packaged by conda-forge | (main, Feb 16 2024, 20:50:58) [GCC 12.3.0]",
+  "cpu": "Intel(R) Xeon(R) Gold 6138 CPU @ 2.00GHz",
+  "machine": "x86_64",
+  "logical_cpus": 40,
+  "load_average_at_start": [
+    6.6083984375,
+    6.83935546875,
+    6.54345703125
+  ],
+  "clock": {
+    "name": "perf_counter_ns",
+    "resolution_seconds": 1e-09
+  },
+  "harness": {
+    "benchmark_search.py": {
+      "path": "/data/henriksson/github/claude/btyper_blast/scripts/benchmark_search.py",
+      "bytes": 20759,
+      "sha256": "53dd4ed04e250ef1b10650e50e2ac874d21667dafac4534df40d7e3c7b2ad2b5"
+    },
+    "compare_search.py": {
+      "path": "/data/henriksson/github/claude/btyper_blast/scripts/compare_search.py",
+      "bytes": 3718,
+      "sha256": "feae0cab52a1c3d52af5f7077aa77260841af503bfa97d5d4a507a57c1d626e6"
+    },
+    "reference_search.py": {
+      "path": "/data/henriksson/github/claude/btyper_blast/scripts/reference_search.py",
+      "bytes": 4194,
+      "sha256": "87f209a04690145b9415c6a95ccb317da9d4849bece1f0ce70f4c3f9858605ae"
+    },
+    "blast_tools.py": {
+      "path": "/data/henriksson/github/claude/btyper_blast/scripts/blast_tools.py",
+      "bytes": 3454,
+      "sha256": "18b4bf4378ba97fe94b47a00e35e300360463d0f963c1a4fcc97c43b59effade"
+    }
+  },
+  "cpu_affinity": [
+    2
+  ],
+  "cpu_accounting": "POSIX RUSAGE_CHILDREN user/system deltas",
+  "temporary_parent": "/tmp",
+  "inputs": {
+    "database": {
+      "path": "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/subjects.fna",
+      "bytes": 2507722,
+      "sha256": "d03256740c1e6c197788913ab50a4755d8a19fb63bcb39bccf05b42971d23af1"
+    },
+    "megablast_queries": {
+      "path": "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/nucleotide-queries.fna",
+      "bytes": 7760,
+      "sha256": "00a3baeb5f679251480a6c01db81b938506594d776dfe8a3a06e76d9c98b7a33"
+    },
+    "blastn_queries": {
+      "path": "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/nucleotide-queries.fna",
+      "bytes": 7760,
+      "sha256": "00a3baeb5f679251480a6c01db81b938506594d776dfe8a3a06e76d9c98b7a33"
+    },
+    "tblastn_queries": {
+      "path": "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/protein-queries.faa",
+      "bytes": 2436,
+      "sha256": "ce18857bfb0ebedbf56e34094a7a185127141b5c2ca7d79c08768e09341e35e7"
+    }
+  },
+  "executables": {
+    "native": {
+      "path": "/tmp/btyper-completion-target/release/examples/native_search",
+      "bytes": 1582808,
+      "sha256": "c144e261b4c768d55f19c65442dbcb069e88be8e23ea26fd82463d1ec6d9ad8e"
+    },
+    "makeblastdb": {
+      "path": "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/makeblastdb",
+      "bytes": 26516464,
+      "sha256": "c1ffdcf6f15d1d8d75377cc9f37afa42bc9fa06678903bad77c2641e60778fce"
+    },
+    "blastn": {
+      "path": "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/blastn",
+      "bytes": 36057184,
+      "sha256": "33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5"
+    },
+    "tblastn": {
+      "path": "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/tblastn",
+      "bytes": 36085856,
+      "sha256": "fea14b77d4452a524a003196824f414812126bd3fb64d950feec8bacccf4976c"
+    },
+    "blastdbcmd": {
+      "path": "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/blastdbcmd",
+      "bytes": 31670200,
+      "sha256": "7b7985134ac696b2f28428baf8a210554c4e2d6c38cc1dfdd46d207dc4cc762f"
+    }
+  },
+  "source": {
+    "git_commit": null,
+    "git_status": "?? .gitattributes\n?? .github/\n?? .gitignore\n?? AGENTS.md\n?? Cargo.lock\n?? Cargo.toml\n?? LICENSE-NCBI\n?? README.md\n?? examples/\n?? scripts/\n?? src/\n?? tests/\n?? upstream/",
+    "rust_source_and_cargo_sha256": "9e5cb9480b7266975eb01b66e1851cd5c1bb1682b70e39f315705aaa10f78319",
+    "files": [
+      {
+        "path": "Cargo.toml",
+        "sha256": "4d69386c9885136d109d65de2c5d895d085812c6964bfeb7d919a1bd3d0b8bbc"
+      },
+      {
+        "path": "Cargo.lock",
+        "sha256": "2245863ca78f23fe26317014b16603a8244a18c4781b65eafad486fc25979a9c"
+      },
+      {
+        "path": "src/core/aa_ungapped.rs",
+        "sha256": "747184d1cf58bb2dd1e119fb3686be400301c1e42e020e387d93dfc22bc6a750"
+      },
+      {
+        "path": "src/core/blast_aalookup.rs",
+        "sha256": "e3db93e3609d35639a59890a5cee5d7a2628c0a228ac77021b95fc4bf5984aef"
+      },
+      {
+        "path": "src/core/blast_aascan.rs",
+        "sha256": "ce7883d718b5f3482f0337001dd7129821906aa4c06b5b29e32a3d7abc85fe7e"
+      },
+      {
+        "path": "src/core/blast_composition_adjustment.rs",
+        "sha256": "f40427cfffd4c9843bd5bf13587b5f06e2e561efb45ab0f94c78c9723efc32dc"
+      },
+      {
+        "path": "src/core/blast_composition_redo.rs",
+        "sha256": "e7a8a6d623168162fbf29b458cff4811b437b6f9bc56fcdda21ba3e2bdfbd4d5"
+      },
+      {
+        "path": "src/core/blast_diagnostics.rs",
+        "sha256": "e435264ed497338f1f9286b9458d34c85fed5f87bc3dac3d72d314345864fe66"
+      },
+      {
+        "path": "src/core/blast_dynamic_align.rs",
+        "sha256": "dc4e7ea48671b3ea804538cd4d109460930ba56dc809a7faca6c4f4c6413932a"
+      },
+      {
+        "path": "src/core/blast_effective_lengths.rs",
+        "sha256": "d6eee522db2d132ff8d779967e10d5764d9b2e84423f54c96f5ed2ffd583ef38"
+      },
+      {
+        "path": "src/core/blast_encoding.rs",
+        "sha256": "1637a809ee3aa0a67900d4ab0c0556c756a2d4bd6969a8e049608462deca3eef"
+      },
+      {
+        "path": "src/core/blast_extend.rs",
+        "sha256": "15c75f029a28e9edf912f29b8a9a9eababc5ee4e37077a3e32700a739a1c0451"
+      },
+      {
+        "path": "src/core/blast_filter.rs",
+        "sha256": "4b1de982a10b02b3dee545769e925582402452116b52749d4410af5637e2451d"
+      },
+      {
+        "path": "src/core/blast_gapalign.rs",
+        "sha256": "24941b263b8bd546745e5918597aa3e5d23ea65d8ae38c0ec25f810fcf39ac4f"
+      },
+      {
+        "path": "src/core/blast_hits.rs",
+        "sha256": "076ad5aab541ba00eb6d046820141c420956e9acc018b6326f57d84a988908db"
+      },
+      {
+        "path": "src/core/blast_hsp_evaluate.rs",
+        "sha256": "1e91ac806f0c5e67654469c3c426c95f39e8450377e26e5c2d543456155174d0"
+      },
+      {
+        "path": "src/core/blast_hsp_link.rs",
+        "sha256": "9c769470ee03af3953095dd3271f00c1447867649654b06bc7219b5d9ef2dc9a"
+      },
+      {
+        "path": "src/core/blast_kappa.rs",
+        "sha256": "725b70018cda131f42c4218c950719a4e66b83bcdf0e281731fec40c849ba3bb"
+      },
+      {
+        "path": "src/core/blast_lookup.rs",
+        "sha256": "7baa8662c25ca57e63ea07359027a4d48c4bf77ebdabc50b918a283756637629"
+      },
+      {
+        "path": "src/core/blast_nalookup.rs",
+        "sha256": "f3602c94e5c75923520a0fe8910df5f430cd0dd0359c77b9dfdf45381670e1f7"
+      },
+      {
+        "path": "src/core/blast_nascan.rs",
+        "sha256": "4b4b8f1d89b53b7fadcfd3445977ad40dda02e194a352ac9aab6809005893ada"
+      },
+      {
+        "path": "src/core/blast_options.rs",
+        "sha256": "c61c8c3eba0f47b317a3f5b4734902161a6dbdf67b6917abab9565306ddc3451"
+      },
+      {
+        "path": "src/core/blast_parameters.rs",
+        "sha256": "d7bb316b4fb943e1e4480e8032aa4f99b221268041eef98d2ef0797ecb143ab0"
+      },
+      {
+        "path": "src/core/blast_prelim.rs",
+        "sha256": "fbf45a718f17504dcb9aff1bb83ee0b1cfc2b3c9c99e9cca87b6ad96ebed70e3"
+      },
+      {
+        "path": "src/core/blast_prelim_evaluate.rs",
+        "sha256": "7cdfc4089d8d185c900c089266b7fa47b150b3a7413180298b92d76ed4167460"
+      },
+      {
+        "path": "src/core/blast_program.rs",
+        "sha256": "debab5aa3683acabacaac931f2f93d2b07e04069d011bac8aa9ed2299db9e451"
+      },
+      {
+        "path": "src/core/blast_protein_gapalign.rs",
+        "sha256": "67a76d37d08d4bedd8f65b5a95cedcd9b18470d6e4466667cbdb247935545c60"
+      },
+      {
+        "path": "src/core/blast_protein_matrix.rs",
+        "sha256": "a2f13233435ed570b94a2639075bf8793ea286ba0ca6097685cfc17fd9fda2ac"
+      },
+      {
+        "path": "src/core/blast_query_info.rs",
+        "sha256": "fe505db5602a8863c759577683015ff0d0e4896c90c947a7cf91e02741360fa1"
+      },
+      {
+        "path": "src/core/blast_query_split.rs",
+        "sha256": "28394b30e422b0fe0da154a903a5c5412a2de119895dfd3f240b0e54523ff8ca"
+      },
+      {
+        "path": "src/core/blast_result_pipeline.rs",
+        "sha256": "fb5475fc046145b7277ad6665d76b295996e9486bd7349b3df0c21b0fc0f7294"
+      },
+      {
+        "path": "src/core/blast_seg.rs",
+        "sha256": "26a202f931009a55475d3264fc07ebbeacc439e62bd555684c34006fb4170233"
+      },
+      {
+        "path": "src/core/blast_setup.rs",
+        "sha256": "a45c175be108617c014c42d57e7345f71b0f2125dd6884574ed5ba73095256d7"
+      },
+      {
+        "path": "src/core/blast_stat.rs",
+        "sha256": "50edbfcd11ad22eb289894940d339d0c20a1e23e18b8481664fd57e2662ba984"
+      },
+      {
+        "path": "src/core/blast_stat_gapped.rs",
+        "sha256": "b6e40bc5b75b6d64cf61b80f3f729b9a425fbe0a9d78348c1c424d94b21498cf"
+      },
+      {
+        "path": "src/core/blast_stat_spouge.rs",
+        "sha256": "b59010606563186b12a1b7026564b9d099dc9848b8994826c194f0c269d8e60a"
+      },
+      {
+        "path": "src/core/blast_subject_chunk.rs",
+        "sha256": "4d3bcf492707ce6e9c674891347c7f05c0f42127a7e6f4c2b78847c2de836eec"
+      },
+      {
+        "path": "src/core/blast_target_translation.rs",
+        "sha256": "6c8c681ff0811b559d997dd5e86bd7a652229d833078832706641c5c75d28a87"
+      },
+      {
+        "path": "src/core/blast_traceback.rs",
+        "sha256": "86443111a4b5d3a9a2a80d8eba429802cf546c907c48e0cea0a1d6b2f0b95639"
+      },
+      {
+        "path": "src/core/blast_util.rs",
+        "sha256": "25694f9f5098a6198caf1eca4355b098e279aea41bd0e0065943863d92c69772"
+      },
+      {
+        "path": "src/core/boost_erf.rs",
+        "sha256": "9b498679335e292d55480ae6016b4e3af2614d76bbcd0fe8ab2378d16c18512d"
+      },
+      {
+        "path": "src/core/compo_blosum62_data.rs",
+        "sha256": "f64f131a93fac303d0b32b9cbc47172a21e2eba8f715ee4b02d5f4c80db86a2f"
+      },
+      {
+        "path": "src/core/compo_frequency_data.rs",
+        "sha256": "88c3627e85b5a873f736a80046e21f67a5f0687668a8f43071ef7441c81553f6"
+      },
+      {
+        "path": "src/core/compo_heap.rs",
+        "sha256": "fc39704abe57728ab83632b17be2911d66f0453443c30667a5b08ccf291cf10c"
+      },
+      {
+        "path": "src/core/compo_linear_algebra.rs",
+        "sha256": "2cc0544ae4df7d992006ae1a19df9220385ed13a5914fb509b3d40e9807b8167"
+      },
+      {
+        "path": "src/core/compo_mode_condition.rs",
+        "sha256": "7f964a1d8e15c2eb5b639e059cebea40c7275c74a501994dfe0ce1fe09f45982"
+      },
+      {
+        "path": "src/core/compo_optimize_target_freq.rs",
+        "sha256": "ea476365562b78c2aaad3491e2aaf118760358fa20c3be4fd5d29e48602c3c53"
+      },
+      {
+        "path": "src/core/gapinfo.rs",
+        "sha256": "42e2b7962b7bead5f523a02ba597217602435f6b54485f8cebb4fd183df24c82"
+      },
+      {
+        "path": "src/core/genetic_code.rs",
+        "sha256": "1efc166e2ee41ad8e1cde14178cb9a934c3cebfd33cddebff9c7253e1be4a2df"
+      },
+      {
+        "path": "src/core/greedy_align.rs",
+        "sha256": "a501230bb7ebe26e9fb0d844357996e1062e6187f989ad50fae6d098acd89365"
+      },
+      {
+        "path": "src/core/hsp_sumstat.rs",
+        "sha256": "46ed6f600aaf6f7c6ff81509af7027f3a8e0a5d2c264307c0110331be0a86d1b"
+      },
+      {
+        "path": "src/core/hsp_sumstat_tables.rs",
+        "sha256": "d37ebc8e2e45f850c108897c854b875842eebc7996c448d999e47718a0e884ca"
+      },
+      {
+        "path": "src/core/hspfilter_collector.rs",
+        "sha256": "5e8a74276f9b088f24dc102261a04c4eca8c5fc126c0b33b120f9c58d2a88714"
+      },
+      {
+        "path": "src/core/interval_tree.rs",
+        "sha256": "c3f5cbe2f95751e04b2a50e00215f25a6c29b0f70bd2f47052c65064e6e3b49d"
+      },
+      {
+        "path": "src/core/lookup_util.rs",
+        "sha256": "5445a933480a5dbaba913c7c4376496ecd36b4bf3518702b89a8b26cdcd4e516"
+      },
+      {
+        "path": "src/core/masksubj.rs",
+        "sha256": "a3ead3d3b822b4e63a7582024f3e641f4febb1dd8c5f45a223a1173c33039470"
+      },
+      {
+        "path": "src/core/mod.rs",
+        "sha256": "0614feb05aeebe6b526a0969d0448d425a85cc64c151dfa0d0e6981a570e1fb4"
+      },
+      {
+        "path": "src/core/na_ungapped.rs",
+        "sha256": "a122cbae01b2d5eb2edab114079e3401da9fc1830487158cf4ce861577a6028b"
+      },
+      {
+        "path": "src/core/ncbi_math.rs",
+        "sha256": "21662672737c804c5defc777d1d4adfaef485926548e074ec7f4dbb3468075c1"
+      },
+      {
+        "path": "src/core/protein_matrix_tables.rs",
+        "sha256": "915c57e52222560658dec9888b4b6cf3cdb177a1afe331066968d283b9adf7d7"
+      },
+      {
+        "path": "src/core/seg_tables.rs",
+        "sha256": "433d2f9443aca939e8962770e4945e52e51f0ad991db07081d67ae66b6f61d9c"
+      },
+      {
+        "path": "src/database.rs",
+        "sha256": "a9169e1fb1d96aa22467804c122eb62e3f6e34fb816b95ed1460e0b5c5210a8c"
+      },
+      {
+        "path": "src/dustmask/mod.rs",
+        "sha256": "063fe6e0c292990cecb01fc5aab07810f5b62da0a63520820c294637e91a2b84"
+      },
+      {
+        "path": "src/dustmask/symdust.rs",
+        "sha256": "e3031434004bc6699a8e3a23b8080c057948a9c36d606069d4c4b5a5cb978b4a"
+      },
+      {
+        "path": "src/lib.rs",
+        "sha256": "b3209d46015dd0f7fc186ddcae8a2626d801ff86409ff90bc6eb535d13ed56a4"
+      },
+      {
+        "path": "src/nucleotide_search.rs",
+        "sha256": "28c448d3dca6af033947e66c1e5b8e7cbbc28ab5665d402f4a6a69a2c77edc38"
+      },
+      {
+        "path": "src/nucleotide_setup.rs",
+        "sha256": "ef90b34fd908780d9c1f941a956373c863e7310d7f4ee29dca05890f70fb33bd"
+      },
+      {
+        "path": "src/protein_chunks.rs",
+        "sha256": "3fece7deb3e15e2b4a9e01031515571abf314f37bec19227b632ae4329b287f5"
+      },
+      {
+        "path": "src/protein_query.rs",
+        "sha256": "ea77173e6d4572561150aaf7d204a46f90ebc5d81cc9347a78c730983006d532"
+      },
+      {
+        "path": "src/protein_redo.rs",
+        "sha256": "39d1b81a81a8eb55dcbf1764e06e8bed2b7b49107b10def2456a4e2057537a43"
+      },
+      {
+        "path": "src/protein_search.rs",
+        "sha256": "520c0b66662f89e57ed5ade8f53d3a10d34b5771742e05cfca5e7585dce3e60d"
+      },
+      {
+        "path": "src/protein_setup.rs",
+        "sha256": "078a317d25e46d72aa605a4e5a3774242c6a2eeac4f74791a9d281afcad0242d"
+      },
+      {
+        "path": "src/query.rs",
+        "sha256": "dc61a362088711860bebf23e5157afb91ac257ffa2537f38b3f8ba206c3bb604"
+      },
+      {
+        "path": "src/query_batch.rs",
+        "sha256": "233b6a67477a9691931a56d756754c51142aa015a2232e042d7561e6896f3db1"
+      },
+      {
+        "path": "src/query_batch_size.rs",
+        "sha256": "188fc1a0e0cee6afe7591eb4450793249438007932a9a3e681700f1d1c545a6f"
+      },
+      {
+        "path": "src/query_split.rs",
+        "sha256": "36248cedc0947fd013bde612a35b497a44dff0d593ba971ae2d4d4e0cc423c71"
+      },
+      {
+        "path": "src/report.rs",
+        "sha256": "775d9380d1d22e3c5808e30107172ffd66fae8e99a66cf54eea8044bb3552b29"
+      },
+      {
+        "path": "src/seed.rs",
+        "sha256": "63f8eeb0f110e7835ac2ef6be713fb9e92bf8a38697084e33a7c023cf3c54634"
+      },
+      {
+        "path": "src/seqdb/mod.rs",
+        "sha256": "da1a53906afd82e6103c6a930f0ed79b514d8c7acc9369519273db9aa33c6620"
+      },
+      {
+        "path": "src/seqdb/writedb_convert.rs",
+        "sha256": "741e926f2a20000f9e451214930ed9bbd2a4e0f66fed93a00bb8003ae9e1de81"
+      },
+      {
+        "path": "src/seqdb/writedb_general.rs",
+        "sha256": "72d02906997cf902ae473b1d6e0eda647e9fb57063cb39acdda038280dcb3513"
+      },
+      {
+        "path": "src/util/mod.rs",
+        "sha256": "29f302d9a70a3c9c9b26dc2cd1a8d06a6c0b214e0550e539334e85cce28a28f6"
+      },
+      {
+        "path": "src/util/random_gen.rs",
+        "sha256": "3413da6f61ca7c7c9b3ce0c295531b3c8e80efe9e54a7c18954b5d6b27d18ded"
+      },
+      {
+        "path": "examples/native_search.rs",
+        "sha256": "4482b2ae40da29175bd21612bc0c462bd51b180d631f1bdd4ffcd619df122459"
+      }
+    ]
+  },
+  "observed_rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "observed_cargo": "cargo 1.98.1 (797e8a9bc 2026-08-05)",
+  "build_provenance_note": "observed toolchain/source describe this invocation, not necessarily the supplied native executable; exact build attribution requires --build-metadata",
+  "build_metadata": {
+    "file": {
+      "path": "/tmp/btyper-completion-build.json",
+      "bytes": 888,
+      "sha256": "83c384d9ebd13cf4ad1da208ff6e29ab5e2d8666a4cc28519c6e9b09a8323e39"
+    },
+    "content": {
+      "command": [
+        "cargo",
+        "build",
+        "--release",
+        "--locked",
+        "--example",
+        "native_search"
+      ],
+      "profile": {
+        "release": {
+          "lto": "thin",
+          "codegen-units": 1
+        }
+      },
+      "environment": {
+        "RUSTFLAGS": null,
+        "CARGO_BUILD_TARGET": null,
+        "CARGO_PROFILE_RELEASE_LTO": null,
+        "CARGO_PROFILE_RELEASE_CODEGEN_UNITS": null
+      },
+      "CARGO_TARGET_DIR": "/tmp/btyper-completion-target",
+      "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: x86_64-unknown-linux-gnu\nrelease: 1.98.1\nLLVM version: 22.1.8\n",
+      "cargo": "cargo 1.98.1 (797e8a9bc 2026-08-05)\n",
+      "native_sha256": "c144e261b4c768d55f19c65442dbcb069e88be8e23ea26fd82463d1ec6d9ad8e",
+      "rust_source_and_cargo_sha256": "9e5cb9480b7266975eb01b66e1851cd5c1bb1682b70e39f315705aaa10f78319"
+    }
+  },
+  "workload_manifest": {
+    "file": {
+      "path": "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/workload.json",
+      "bytes": 5998,
+      "sha256": "181ae6a5a0df7f55bc4ae0bdb0c975f0d19f72537a0973cf45317ae974321e95"
+    },
+    "content": {
+      "nucleotide_queries": [
+        {
+          "id": "n0_exact_plus",
+          "subject": "LGJG01000042",
+          "oid": 0,
+          "start_zero_based": 38407,
+          "source_length": 250,
+          "strand": 1,
+          "change": "exact"
+        },
+        {
+          "id": "n1_substitutions_minus",
+          "subject": "LGJG01000041",
+          "oid": 11,
+          "start_zero_based": 61563,
+          "source_length": 500,
+          "strand": -1,
+          "change": "substitutions"
+        },
+        {
+          "id": "n2_insertion_plus",
+          "subject": "LGJG01000040",
+          "oid": 22,
+          "start_zero_based": 88638,
+          "source_length": 1000,
+          "strand": 1,
+          "change": "insertion"
+        },
+        {
+          "id": "n3_exact_minus",
+          "subject": "LGJG01000039",
+          "oid": 33,
+          "start_zero_based": 72390,
+          "source_length": 2000,
+          "strand": -1,
+          "change": "exact"
+        },
+        {
+          "id": "n4_exact_plus",
+          "subject": "LGJG01000038",
+          "oid": 37,
+          "start_zero_based": 68513,
+          "source_length": 250,
+          "strand": 1,
+          "change": "exact"
+        },
+        {
+          "id": "n5_substitutions_minus",
+          "subject": "LGJG01000037",
+          "oid": 38,
+          "start_zero_based": 78946,
+          "source_length": 500,
+          "strand": -1,
+          "change": "substitutions"
+        },
+        {
+          "id": "n6_insertion_plus",
+          "subject": "LGJG01000036",
+          "oid": 39,
+          "start_zero_based": 73355,
+          "source_length": 1000,
+          "strand": 1,
+          "change": "insertion"
+        },
+        {
+          "id": "n7_exact_minus",
+          "subject": "LGJG01000035",
+          "oid": 40,
+          "start_zero_based": 81609,
+          "source_length": 2000,
+          "strand": -1,
+          "change": "exact"
+        }
+      ],
+      "protein_queries": [
+        {
+          "id": "p0_exact_frame1",
+          "subject": "LGJG01000042",
+          "oid": 0,
+          "frame": 1,
+          "oriented_nucleotide_start": 49938,
+          "source_aa_length": 150,
+          "change": "exact",
+          "genetic_code": 1,
+          "annotation": "derived stop-delimited ORF fragment"
+        },
+        {
+          "id": "p1_exact_frame2",
+          "subject": "LGJG01000041",
+          "oid": 11,
+          "frame": 2,
+          "oriented_nucleotide_start": 110251,
+          "source_aa_length": 220,
+          "change": "exact",
+          "genetic_code": 1,
+          "annotation": "derived stop-delimited ORF fragment"
+        },
+        {
+          "id": "p2_substitutions_frame3",
+          "subject": "LGJG01000040",
+          "oid": 22,
+          "frame": 3,
+          "oriented_nucleotide_start": 13208,
+          "source_aa_length": 350,
+          "change": "substitutions",
+          "genetic_code": 1,
+          "annotation": "derived stop-delimited ORF fragment"
+        },
+        {
+          "id": "p3_exact_frame-1",
+          "subject": "LGJG01000039",
+          "oid": 33,
+          "frame": -1,
+          "oriented_nucleotide_start": 16830,
+          "source_aa_length": 450,
+          "change": "exact",
+          "genetic_code": 1,
+          "annotation": "derived stop-delimited ORF fragment"
+        },
+        {
+          "id": "p4_exact_frame-2",
+          "subject": "LGJG01000038",
+          "oid": 37,
+          "frame": -2,
+          "oriented_nucleotide_start": 72415,
+          "source_aa_length": 150,
+          "change": "exact",
+          "genetic_code": 1,
+          "annotation": "derived stop-delimited ORF fragment"
+        },
+        {
+          "id": "p5_substitutions_frame-3",
+          "subject": "LGJG01000037",
+          "oid": 38,
+          "frame": -3,
+          "oriented_nucleotide_start": 37136,
+          "source_aa_length": 220,
+          "change": "substitutions",
+          "genetic_code": 1,
+          "annotation": "derived stop-delimited ORF fragment"
+        },
+        {
+          "id": "p6_exact_frame1",
+          "subject": "LGJG01000036",
+          "oid": 39,
+          "frame": 1,
+          "oriented_nucleotide_start": 4524,
+          "source_aa_length": 350,
+          "change": "exact",
+          "genetic_code": 1,
+          "annotation": "derived stop-delimited ORF fragment"
+        },
+        {
+          "id": "p7_exact_frame-1",
+          "subject": "LGJG01000035",
+          "oid": 40,
+          "frame": -1,
+          "oriented_nucleotide_start": 14349,
+          "source_aa_length": 359,
+          "change": "exact",
+          "genetic_code": 1,
+          "annotation": "derived stop-delimited ORF fragment"
+        }
+      ],
+      "dataset": "staph_st14",
+      "provenance": {
+        "url": "https://raw.githubusercontent.com/tseemann/abricate/9eb39a9435b7408c0a92259db2549760c6c08ce2/test/assembly.fa",
+        "organism": "Staphylococcus epidermidis ST14",
+        "accessions": "LGJG01000000.1",
+        "source_commit": "9eb39a9435b7408c0a92259db2549760c6c08ce2",
+        "canonical_sha256": "d03256740c1e6c197788913ab50a4755d8a19fb63bcb39bccf05b42971d23af1",
+        "records": 42,
+        "bases": 2476164,
+        "sequence_accessions": [
+          "LGJG01000042",
+          "LGJG01000033",
+          "LGJG01000032",
+          "LGJG01000031",
+          "LGJG01000030",
+          "LGJG01000029",
+          "LGJG01000028",
+          "LGJG01000027",
+          "LGJG01000026",
+          "LGJG01000025",
+          "LGJG01000024",
+          "LGJG01000041",
+          "LGJG01000023",
+          "LGJG01000022",
+          "LGJG01000021",
+          "LGJG01000020",
+          "LGJG01000019",
+          "LGJG01000018",
+          "LGJG01000017",
+          "LGJG01000016",
+          "LGJG01000015",
+          "LGJG01000014",
+          "LGJG01000040",
+          "LGJG01000013",
+          "LGJG01000012",
+          "LGJG01000011",
+          "LGJG01000010",
+          "LGJG01000009",
+          "LGJG01000008",
+          "LGJG01000007",
+          "LGJG01000006",
+          "LGJG01000005",
+          "LGJG01000004",
+          "LGJG01000039",
+          "LGJG01000003",
+          "LGJG01000002",
+          "LGJG01000001",
+          "LGJG01000038",
+          "LGJG01000037",
+          "LGJG01000036",
+          "LGJG01000035",
+          "LGJG01000034"
+        ]
+      },
+      "subject_count": 42,
+      "total_bases": 2476164,
+      "generator_version": 1,
+      "files": {
+        "subjects.fna": {
+          "sha256": "d03256740c1e6c197788913ab50a4755d8a19fb63bcb39bccf05b42971d23af1",
+          "bytes": 2507722
+        },
+        "nucleotide-queries.fna": {
+          "sha256": "00a3baeb5f679251480a6c01db81b938506594d776dfe8a3a06e76d9c98b7a33",
+          "bytes": 7760
+        },
+        "protein-queries.faa": {
+          "sha256": "ce18857bfb0ebedbf56e34094a7a185127141b5c2ca7d79c08768e09341e35e7",
+          "bytes": 2436
+        }
+      }
+    }
+  },
+  "environment": {
+    "BLAST_USAGE_REPORT": "false",
+    "NCBI_DONT_USE_NCBIRC": "1",
+    "NCBI_DONT_USE_LOCAL_CONFIG": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1",
+    "LC_ALL": "C",
+    "RUSTFLAGS": null,
+    "CARGO_BUILD_TARGET": null
+  },
+  "searches": {
+    "megablast": {
+      "parity": {
+        "passed": true,
+        "hits": 6,
+        "reference_output_bytes": 13592,
+        "native_output_bytes": 13798,
+        "reference_output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+        "native_output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2"
+      },
+      "reference_commands": {
+        "build": [
+          "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/makeblastdb",
+          "-in",
+          "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/subjects.fna",
+          "-dbtype",
+          "nucl",
+          "-blastdb_version",
+          "5",
+          "-out",
+          "<temporary-db>"
+        ],
+        "search": [
+          "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/blastn",
+          "-query",
+          "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/nucleotide-queries.fna",
+          "-db",
+          "<temporary-db>",
+          "-num_threads",
+          "1",
+          "-outfmt",
+          "6 qseqid sseqid qstart qend sstart send qframe sframe length nident mismatch gaps gapopen score bitscore evalue btop qseq sseq"
+        ]
+      },
+      "native_command": [
+        "/tmp/btyper-completion-target/release/examples/native_search",
+        "megablast",
+        "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/subjects.fna",
+        "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/nucleotide-queries.fna"
+      ],
+      "warmups": [
+        {
+          "index": 0,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": true,
+          "reference": {
+            "wall_seconds": 0.072500835,
+            "build": {
+              "wall_seconds": 0.046068943,
+              "cpu_user_seconds": 0.03467400000000076,
+              "cpu_system_seconds": 0.005944000000000005,
+              "stdout_bytes": 356,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.02640143,
+              "cpu_user_seconds": 0.011928999999998524,
+              "cpu_system_seconds": 0.013917999999999986,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.046602999999999284,
+            "cpu_system_seconds": 0.01986199999999999,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.045322419,
+            "cpu_user_seconds": 0.02588400000000135,
+            "cpu_system_seconds": 0.018915000000000015,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.045305334,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 1,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": true,
+          "native": {
+            "wall_seconds": 0.04395427,
+            "cpu_user_seconds": 0.029302999999998747,
+            "cpu_system_seconds": 0.014145999999999992,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.04394072,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.073190876,
+            "build": {
+              "wall_seconds": 0.045743802,
+              "cpu_user_seconds": 0.03547800000000123,
+              "cpu_system_seconds": 0.004927999999999988,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.027419253,
+              "cpu_user_seconds": 0.00894899999999943,
+              "cpu_system_seconds": 0.017898000000000025,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.04442700000000066,
+            "cpu_system_seconds": 0.022826000000000013,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "index": 0,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.045756209,
+            "cpu_user_seconds": 0.02814300000000003,
+            "cpu_system_seconds": 0.01708700000000002,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.045741513,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.074007442,
+            "build": {
+              "wall_seconds": 0.045882412,
+              "cpu_user_seconds": 0.03366899999999973,
+              "cpu_system_seconds": 0.006733999999999907,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.028099534,
+              "cpu_user_seconds": 0.013773999999999731,
+              "cpu_system_seconds": 0.013774000000000064,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.04744299999999946,
+            "cpu_system_seconds": 0.02050799999999997,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 1,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.071916356,
+            "build": {
+              "wall_seconds": 0.045377824,
+              "cpu_user_seconds": 0.03592900000000121,
+              "cpu_system_seconds": 0.0039919999999999956,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.026512586,
+              "cpu_user_seconds": 0.008994999999998754,
+              "cpu_system_seconds": 0.016992000000000007,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.044923999999999964,
+            "cpu_system_seconds": 0.020984000000000003,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.045791646,
+            "cpu_user_seconds": 0.026570000000001315,
+            "cpu_system_seconds": 0.018696999999999964,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.045776572,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 2,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.043910145,
+            "cpu_user_seconds": 0.026630999999998295,
+            "cpu_system_seconds": 0.016768000000000005,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.043896697,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.074541068,
+            "build": {
+              "wall_seconds": 0.046097098,
+              "cpu_user_seconds": 0.03489100000000178,
+              "cpu_system_seconds": 0.005815000000000015,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.028415964,
+              "cpu_user_seconds": 0.01342599999999905,
+              "cpu_system_seconds": 0.014459,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.04831700000000083,
+            "cpu_system_seconds": 0.020274000000000014,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 3,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.043767498,
+            "cpu_user_seconds": 0.02818300000000029,
+            "cpu_system_seconds": 0.015097999999999945,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.043753241,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.071494615,
+            "build": {
+              "wall_seconds": 0.045802583,
+              "cpu_user_seconds": 0.03169100000000036,
+              "cpu_system_seconds": 0.00891300000000006,
+              "stdout_bytes": 356,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.025665862,
+              "cpu_user_seconds": 0.011078999999998729,
+              "cpu_system_seconds": 0.014100000000000001,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.042769999999999087,
+            "cpu_system_seconds": 0.02301300000000006,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 4,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.072814725,
+            "build": {
+              "wall_seconds": 0.046575015,
+              "cpu_user_seconds": 0.03639599999999987,
+              "cpu_system_seconds": 0.005055000000000032,
+              "stdout_bytes": 356,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.026215775,
+              "cpu_user_seconds": 0.010875000000000412,
+              "cpu_system_seconds": 0.01483000000000001,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.047271000000000285,
+            "cpu_system_seconds": 0.01988500000000004,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.043799963,
+            "cpu_user_seconds": 0.026205000000000922,
+            "cpu_system_seconds": 0.017133999999999983,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.04378707,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 5,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.047307962,
+            "cpu_user_seconds": 0.02850100000000033,
+            "cpu_system_seconds": 0.01832199999999995,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.047294553,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.071761626,
+            "build": {
+              "wall_seconds": 0.045254261,
+              "cpu_user_seconds": 0.0321239999999996,
+              "cpu_system_seconds": 0.007788000000000017,
+              "stdout_bytes": 356,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.026481296,
+              "cpu_user_seconds": 0.014984000000000108,
+              "cpu_system_seconds": 0.010987999999999998,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.047107999999999706,
+            "cpu_system_seconds": 0.018776000000000015,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 6,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.072231888,
+            "build": {
+              "wall_seconds": 0.046653357,
+              "cpu_user_seconds": 0.033343999999999596,
+              "cpu_system_seconds": 0.008082999999999951,
+              "stdout_bytes": 356,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.025548889,
+              "cpu_user_seconds": 0.008017000000000607,
+              "cpu_system_seconds": 0.01703700000000008,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.0413610000000002,
+            "cpu_system_seconds": 0.02512000000000003,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.043793877,
+            "cpu_user_seconds": 0.0251929999999998,
+            "cpu_system_seconds": 0.018139000000000016,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.043779353,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 7,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.075172165,
+            "build": {
+              "wall_seconds": 0.047415197,
+              "cpu_user_seconds": 0.03697499999999998,
+              "cpu_system_seconds": 0.005135999999999918,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.027728997,
+              "cpu_user_seconds": 0.015093999999999497,
+              "cpu_system_seconds": 0.012075000000000058,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.05206899999999948,
+            "cpu_system_seconds": 0.017210999999999976,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.043950841,
+            "cpu_user_seconds": 0.021724000000000743,
+            "cpu_system_seconds": 0.021723999999999966,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.043937417,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 8,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.073387931,
+            "build": {
+              "wall_seconds": 0.046835882,
+              "cpu_user_seconds": 0.03443599999999947,
+              "cpu_system_seconds": 0.007089000000000012,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.026528061,
+              "cpu_user_seconds": 0.014001000000000374,
+              "cpu_system_seconds": 0.01200100000000004,
+              "stdout_bytes": 13592,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.04843699999999984,
+            "cpu_system_seconds": 0.01909000000000005,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 13592,
+            "output_sha256": "397d3c5735719016904aadcd238a80647a15a14e22fa617d4d987fcfcb59aa11",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.043248723,
+            "cpu_user_seconds": 0.025873999999999953,
+            "cpu_system_seconds": 0.01691799999999999,
+            "stdout_bytes": 13798,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.04323461,
+            "output_bytes": 13798,
+            "output_sha256": "d54142a5fa941f926ef94597e4fb534abaa2cccc616035d273f137435580bfe2",
+            "diagnostics": ""
+          }
+        }
+      ],
+      "summary": {
+        "reference_mean_seconds": 0.073036424,
+        "reference_median_seconds": 0.072814725,
+        "native_mean_seconds": 0.04459187377777778,
+        "native_median_seconds": 0.043910145,
+        "native_over_reference_ratio_of_means": 0.6105429501556343,
+        "reference_over_native_speedup_ratio_of_means": 1.637886408720449,
+        "paired_bootstrap_95pct_native_over_reference": [
+          0.5970467620447842,
+          0.6268521365372088
+        ],
+        "bootstrap_method": "percentile interval; resample whole repetition pairs with replacement; ratio of arithmetic mean wall times",
+        "bootstrap_samples": 10000,
+        "bootstrap_seed": 218,
+        "improvement_criterion": "at least 5 measured pairs and 95% CI upper bound of native/reference < 1",
+        "statistically_supported_workflow_improvement": true,
+        "reference_build_mean_seconds": 0.046210403222222224,
+        "reference_search_mean_seconds": 0.026799662666666668
+      }
+    },
+    "blastn": {
+      "parity": {
+        "passed": true,
+        "hits": 481,
+        "reference_output_bytes": 79782,
+        "native_output_bytes": 96547,
+        "reference_output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+        "native_output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050"
+      },
+      "reference_commands": {
+        "build": [
+          "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/makeblastdb",
+          "-in",
+          "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/subjects.fna",
+          "-dbtype",
+          "nucl",
+          "-blastdb_version",
+          "5",
+          "-out",
+          "<temporary-db>"
+        ],
+        "search": [
+          "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/blastn",
+          "-query",
+          "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/nucleotide-queries.fna",
+          "-db",
+          "<temporary-db>",
+          "-num_threads",
+          "1",
+          "-outfmt",
+          "6 qseqid sseqid qstart qend sstart send qframe sframe length nident mismatch gaps gapopen score bitscore evalue btop qseq sseq",
+          "-task",
+          "blastn"
+        ]
+      },
+      "native_command": [
+        "/tmp/btyper-completion-target/release/examples/native_search",
+        "blastn",
+        "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/subjects.fna",
+        "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/nucleotide-queries.fna"
+      ],
+      "warmups": [
+        {
+          "index": 0,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": true,
+          "native": {
+            "wall_seconds": 0.158911272,
+            "cpu_user_seconds": 0.14825200000000116,
+            "cpu_system_seconds": 0.009948999999999986,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.158894695,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.225459907,
+            "build": {
+              "wall_seconds": 0.048635741,
+              "cpu_user_seconds": 0.038853999999998834,
+              "cpu_system_seconds": 0.004090000000000038,
+              "stdout_bytes": 355,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.176794907,
+              "cpu_user_seconds": 0.16791800000000023,
+              "cpu_system_seconds": 0.007996000000000003,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.20677199999999907,
+            "cpu_system_seconds": 0.012086000000000041,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 1,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": true,
+          "native": {
+            "wall_seconds": 0.154618795,
+            "cpu_user_seconds": 0.14777499999999932,
+            "cpu_system_seconds": 0.006072999999999995,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.154601375,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.223968083,
+            "build": {
+              "wall_seconds": 0.046825524,
+              "cpu_user_seconds": 0.033682000000000656,
+              "cpu_system_seconds": 0.00792499999999996,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.177113115,
+              "cpu_user_seconds": 0.16828100000000035,
+              "cpu_system_seconds": 0.008013999999999966,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.201963000000001,
+            "cpu_system_seconds": 0.015938999999999925,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "index": 0,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.17041201,
+            "cpu_user_seconds": 0.16245699999999985,
+            "cpu_system_seconds": 0.0072429999999999994,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.170397368,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.228554865,
+            "build": {
+              "wall_seconds": 0.045774755,
+              "cpu_user_seconds": 0.0326550000000001,
+              "cpu_system_seconds": 0.007916000000000034,
+              "stdout_bytes": 356,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.18275186,
+              "cpu_user_seconds": 0.17390499999999953,
+              "cpu_system_seconds": 0.008041999999999994,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.20655999999999963,
+            "cpu_system_seconds": 0.015958000000000028,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 1,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.226449857,
+            "build": {
+              "wall_seconds": 0.046450647,
+              "cpu_user_seconds": 0.03295500000000118,
+              "cpu_system_seconds": 0.007989000000000024,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.179970151,
+              "cpu_user_seconds": 0.17013299999999987,
+              "cpu_system_seconds": 0.009006999999999987,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.20308800000000105,
+            "cpu_system_seconds": 0.01699600000000001,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.160679125,
+            "cpu_user_seconds": 0.15291899999999892,
+            "cpu_system_seconds": 0.006997000000000031,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.160662361,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 2,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.154713452,
+            "cpu_user_seconds": 0.14700999999999986,
+            "cpu_system_seconds": 0.007000000000000006,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.154697698,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.229979934,
+            "build": {
+              "wall_seconds": 0.048334631,
+              "cpu_user_seconds": 0.036330000000001306,
+              "cpu_system_seconds": 0.006872999999999907,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.181613119,
+              "cpu_user_seconds": 0.17275499999999866,
+              "cpu_system_seconds": 0.007943000000000033,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.20908499999999997,
+            "cpu_system_seconds": 0.01481599999999994,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 3,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.159105895,
+            "cpu_user_seconds": 0.14911400000000086,
+            "cpu_system_seconds": 0.009255000000000013,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.159091189,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.227978362,
+            "build": {
+              "wall_seconds": 0.048250178,
+              "cpu_user_seconds": 0.04205400000000026,
+              "cpu_system_seconds": 0.001052000000000053,
+              "stdout_bytes": 356,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.179697257,
+              "cpu_user_seconds": 0.17477699999999885,
+              "cpu_system_seconds": 0.004040999999999961,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.2168309999999991,
+            "cpu_system_seconds": 0.005093000000000014,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 4,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.22841953,
+            "build": {
+              "wall_seconds": 0.04971878,
+              "cpu_user_seconds": 0.03949200000000097,
+              "cpu_system_seconds": 0.0049359999999999404,
+              "stdout_bytes": 356,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.178671794,
+              "cpu_user_seconds": 0.16974100000000014,
+              "cpu_system_seconds": 0.008035000000000125,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.2092330000000011,
+            "cpu_system_seconds": 0.012971000000000066,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.157151841,
+            "cpu_user_seconds": 0.15031600000000012,
+            "cpu_system_seconds": 0.006094000000000044,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.157134553,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 5,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.162362706,
+            "cpu_user_seconds": 0.1565329999999996,
+            "cpu_system_seconds": 0.005148999999999848,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.162347333,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.226916113,
+            "build": {
+              "wall_seconds": 0.047088787,
+              "cpu_user_seconds": 0.03475800000000007,
+              "cpu_system_seconds": 0.006952000000000069,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.179799166,
+              "cpu_user_seconds": 0.16606699999999996,
+              "cpu_system_seconds": 0.01292699999999991,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.20082500000000003,
+            "cpu_system_seconds": 0.01987899999999998,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 6,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.225459299,
+            "build": {
+              "wall_seconds": 0.047161248,
+              "cpu_user_seconds": 0.035954000000000264,
+              "cpu_system_seconds": 0.005993000000000137,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.178269845,
+              "cpu_user_seconds": 0.16837199999999974,
+              "cpu_system_seconds": 0.009074000000000026,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.204326,
+            "cpu_system_seconds": 0.015067000000000164,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.156345048,
+            "cpu_user_seconds": 0.14761000000000024,
+            "cpu_system_seconds": 0.007978999999999958,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.156327577,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 7,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.227225767,
+            "build": {
+              "wall_seconds": 0.048272214,
+              "cpu_user_seconds": 0.03694600000000037,
+              "cpu_system_seconds": 0.0059909999999998576,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.178921346,
+              "cpu_user_seconds": 0.16990899999999876,
+              "cpu_system_seconds": 0.007996000000000114,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.20685499999999912,
+            "cpu_system_seconds": 0.013986999999999972,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.157995248,
+            "cpu_user_seconds": 0.15127200000000052,
+            "cpu_system_seconds": 0.006010000000000071,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.157978259,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 8,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.230586825,
+            "build": {
+              "wall_seconds": 0.052887905,
+              "cpu_user_seconds": 0.041045999999999694,
+              "cpu_system_seconds": 0.006655999999999995,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.177670241,
+              "cpu_user_seconds": 0.1667949999999987,
+              "cpu_system_seconds": 0.010047999999999835,
+              "stdout_bytes": 79782,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.2078409999999984,
+            "cpu_system_seconds": 0.01670399999999983,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 79782,
+            "output_sha256": "06dc2787fa8bf191ec9b15b65da86db75160478141aa2d16cbdcf23b36c402f0",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.156694752,
+            "cpu_user_seconds": 0.14991600000000105,
+            "cpu_system_seconds": 0.00603700000000007,
+            "stdout_bytes": 96547,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.156665848,
+            "output_bytes": 96547,
+            "output_sha256": "549f9bc71db795b89be0f25a2acd99d3050ad29f2833c1e0d462e48a82bd8050",
+            "diagnostics": ""
+          }
+        }
+      ],
+      "summary": {
+        "reference_mean_seconds": 0.22795228355555555,
+        "reference_median_seconds": 0.227978362,
+        "native_mean_seconds": 0.1594955641111111,
+        "native_median_seconds": 0.157995248,
+        "native_over_reference_ratio_of_means": 0.6996883804949448,
+        "reference_over_native_speedup_ratio_of_means": 1.429207669981058,
+        "paired_bootstrap_95pct_native_over_reference": [
+          0.687468875587861,
+          0.7140033531324254
+        ],
+        "bootstrap_method": "percentile interval; resample whole repetition pairs with replacement; ratio of arithmetic mean wall times",
+        "bootstrap_samples": 10000,
+        "bootstrap_seed": 219,
+        "improvement_criterion": "at least 5 measured pairs and 95% CI upper bound of native/reference < 1",
+        "statistically_supported_workflow_improvement": true,
+        "reference_build_mean_seconds": 0.048215460555555555,
+        "reference_search_mean_seconds": 0.17970719766666668
+      }
+    },
+    "tblastn": {
+      "parity": {
+        "passed": true,
+        "hits": 52,
+        "reference_output_bytes": 19854,
+        "native_output_bytes": 21654,
+        "reference_output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+        "native_output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7"
+      },
+      "reference_commands": {
+        "build": [
+          "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/makeblastdb",
+          "-in",
+          "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/subjects.fna",
+          "-dbtype",
+          "nucl",
+          "-blastdb_version",
+          "5",
+          "-out",
+          "<temporary-db>"
+        ],
+        "search": [
+          "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/tblastn",
+          "-query",
+          "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/protein-queries.faa",
+          "-db",
+          "<temporary-db>",
+          "-num_threads",
+          "1",
+          "-outfmt",
+          "6 qseqid sseqid qstart qend sstart send qframe sframe length nident mismatch gaps gapopen score bitscore evalue btop qseq sseq"
+        ]
+      },
+      "native_command": [
+        "/tmp/btyper-completion-target/release/examples/native_search",
+        "tblastn",
+        "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/subjects.fna",
+        "/data/henriksson/github/claude/btyper_blast/vendor/benchmark-inputs/staph_st14/protein-queries.faa"
+      ],
+      "warmups": [
+        {
+          "index": 0,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": true,
+          "reference": {
+            "wall_seconds": 0.298197179,
+            "build": {
+              "wall_seconds": 0.046277458,
+              "cpu_user_seconds": 0.03306399999999954,
+              "cpu_system_seconds": 0.008016000000000023,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.251890505,
+              "cpu_user_seconds": 0.2402070000000016,
+              "cpu_system_seconds": 0.011008999999999824,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.27327100000000115,
+            "cpu_system_seconds": 0.019024999999999848,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.286141574,
+            "cpu_user_seconds": 0.2794789999999985,
+            "cpu_system_seconds": 0.006011000000000211,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.286126146,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 1,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": true,
+          "native": {
+            "wall_seconds": 0.284625502,
+            "cpu_user_seconds": 0.27898799999999824,
+            "cpu_system_seconds": 0.005034999999999901,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.284611423,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.299719289,
+            "build": {
+              "wall_seconds": 0.046344327,
+              "cpu_user_seconds": 0.03700900000000118,
+              "cpu_system_seconds": 0.004000999999999921,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.253346213,
+              "cpu_user_seconds": 0.24356399999999923,
+              "cpu_system_seconds": 0.009095999999999993,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.2805730000000004,
+            "cpu_system_seconds": 0.013096999999999914,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "index": 0,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.299182711,
+            "build": {
+              "wall_seconds": 0.049326579,
+              "cpu_user_seconds": 0.03243400000000207,
+              "cpu_system_seconds": 0.010136000000000145,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.249827662,
+              "cpu_user_seconds": 0.24313499999999877,
+              "cpu_system_seconds": 0.006027999999999922,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.27556900000000084,
+            "cpu_system_seconds": 0.016164000000000067,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.311162377,
+            "cpu_user_seconds": 0.30748200000000026,
+            "cpu_system_seconds": 0.0030040000000000067,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.311146165,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 1,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.30353724,
+            "build": {
+              "wall_seconds": 0.04908541,
+              "cpu_user_seconds": 0.03883400000000137,
+              "cpu_system_seconds": 0.004979000000000067,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.254421168,
+              "cpu_user_seconds": 0.24455000000000027,
+              "cpu_system_seconds": 0.00917100000000004,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.28338400000000163,
+            "cpu_system_seconds": 0.014150000000000107,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.288954944,
+            "cpu_user_seconds": 0.2796449999999986,
+            "cpu_system_seconds": 0.007989999999999942,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.288939029,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 2,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.295754028,
+            "build": {
+              "wall_seconds": 0.047291273,
+              "cpu_user_seconds": 0.03631700000000038,
+              "cpu_system_seconds": 0.006051999999999946,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.248431968,
+              "cpu_user_seconds": 0.2415869999999991,
+              "cpu_system_seconds": 0.006040000000000045,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.2779039999999995,
+            "cpu_system_seconds": 0.012091999999999992,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.284507277,
+            "cpu_user_seconds": 0.2788080000000015,
+            "cpu_system_seconds": 0.005050999999999917,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.284492587,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 3,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.357100011,
+            "cpu_user_seconds": 0.345444999999998,
+            "cpu_system_seconds": 0.01101400000000008,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.357085553,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.355333271,
+            "build": {
+              "wall_seconds": 0.047438034,
+              "cpu_user_seconds": 0.03509000000000029,
+              "cpu_system_seconds": 0.007017999999999969,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.307867301,
+              "cpu_user_seconds": 0.30078200000000166,
+              "cpu_system_seconds": 0.00599599999999989,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.33587200000000195,
+            "cpu_system_seconds": 0.013013999999999859,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 4,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.310305511,
+            "build": {
+              "wall_seconds": 0.047398159,
+              "cpu_user_seconds": 0.0364559999999976,
+              "cpu_system_seconds": 0.005912000000000139,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.262876041,
+              "cpu_user_seconds": 0.25319,
+              "cpu_system_seconds": 0.008971000000000062,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.2896459999999976,
+            "cpu_system_seconds": 0.014883000000000202,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.29897442,
+            "cpu_user_seconds": 0.29231100000000154,
+            "cpu_system_seconds": 0.006089999999999929,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.298959067,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 5,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.309221115,
+            "build": {
+              "wall_seconds": 0.047125714,
+              "cpu_user_seconds": 0.0370980000000003,
+              "cpu_system_seconds": 0.005012999999999934,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.262065586,
+              "cpu_user_seconds": 0.2512520000000009,
+              "cpu_system_seconds": 0.010050000000000114,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.2883500000000012,
+            "cpu_system_seconds": 0.015063000000000049,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.288945303,
+            "cpu_user_seconds": 0.2873419999999989,
+            "cpu_system_seconds": 0.0010079999999998979,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.288930886,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 6,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.308241871,
+            "build": {
+              "wall_seconds": 0.047122976,
+              "cpu_user_seconds": 0.04010399999999947,
+              "cpu_system_seconds": 0.0020569999999999755,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.261091233,
+              "cpu_user_seconds": 0.25328700000000026,
+              "cpu_system_seconds": 0.007092000000000098,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.29339099999999974,
+            "cpu_system_seconds": 0.009149000000000074,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.290754835,
+            "cpu_user_seconds": 0.2851619999999997,
+            "cpu_system_seconds": 0.005002999999999869,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.290739657,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 7,
+          "order": [
+            "native",
+            "reference"
+          ],
+          "warmup": false,
+          "native": {
+            "wall_seconds": 0.291514921,
+            "cpu_user_seconds": 0.2859039999999986,
+            "cpu_system_seconds": 0.0050160000000001315,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.29149105,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          },
+          "reference": {
+            "wall_seconds": 0.315958059,
+            "build": {
+              "wall_seconds": 0.051331219,
+              "cpu_user_seconds": 0.039775000000002336,
+              "cpu_system_seconds": 0.0061189999999999856,
+              "stdout_bytes": 357,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.264595459,
+              "cpu_user_seconds": 0.25779199999999847,
+              "cpu_system_seconds": 0.006041999999999881,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.2975670000000008,
+            "cpu_system_seconds": 0.012160999999999866,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          }
+        },
+        {
+          "index": 8,
+          "order": [
+            "reference",
+            "native"
+          ],
+          "warmup": false,
+          "reference": {
+            "wall_seconds": 0.303559996,
+            "build": {
+              "wall_seconds": 0.04681075,
+              "cpu_user_seconds": 0.037396000000001095,
+              "cpu_system_seconds": 0.004043000000000019,
+              "stdout_bytes": 356,
+              "stderr_bytes": 0
+            },
+            "search": {
+              "wall_seconds": 0.256719986,
+              "cpu_user_seconds": 0.24683800000000033,
+              "cpu_system_seconds": 0.009180000000000188,
+              "stdout_bytes": 19854,
+              "stderr_bytes": 0
+            },
+            "cpu_user_seconds": 0.28423400000000143,
+            "cpu_system_seconds": 0.013223000000000207,
+            "database_bytes_on_disk": 660991,
+            "output_bytes": 19854,
+            "output_sha256": "fb966bca97e0672319e8d200bda86f4e3955c75f9d8a1f2552d774e9dd614e8c",
+            "diagnostics": ""
+          },
+          "native": {
+            "wall_seconds": 0.286397122,
+            "cpu_user_seconds": 0.2807639999999978,
+            "cpu_system_seconds": 0.004994999999999861,
+            "stdout_bytes": 21654,
+            "stderr_bytes": 0,
+            "process_wall_seconds": 0.286382459,
+            "output_bytes": 21654,
+            "output_sha256": "01ce05637f4b28d184ea91b3ace1b77b21a0e6dbd00b12c1486aa0ee1f3a82f7",
+            "diagnostics": ""
+          }
+        }
+      ],
+      "summary": {
+        "reference_mean_seconds": 0.31123264466666667,
+        "reference_median_seconds": 0.308241871,
+        "native_mean_seconds": 0.29981235666666667,
+        "native_median_seconds": 0.290754835,
+        "native_over_reference_ratio_of_means": 0.9633062656000265,
+        "reference_over_native_speedup_ratio_of_means": 1.0380914520234306,
+        "paired_bootstrap_95pct_native_over_reference": [
+          0.9421530597797635,
+          0.9873178750541981
+        ],
+        "bootstrap_method": "percentile interval; resample whole repetition pairs with replacement; ratio of arithmetic mean wall times",
+        "bootstrap_samples": 10000,
+        "bootstrap_seed": 220,
+        "improvement_criterion": "at least 5 measured pairs and 95% CI upper bound of native/reference < 1",
+        "statistically_supported_workflow_improvement": true,
+        "reference_build_mean_seconds": 0.048103346,
+        "reference_search_mean_seconds": 0.2630996004444444
+      }
+    }
+  },
+  "status": "complete",
+  "finished_utc": "2026-11-13T18:01:51.840772+00:00",
+  "rust_source_changed_during_run": false,
+  "native_executable_changed_during_run": false,
+  "inputs_changed_during_run": false,
+  "provided_build_artifact_matches": true,
+  "measurement_integrity_passed": true
+}

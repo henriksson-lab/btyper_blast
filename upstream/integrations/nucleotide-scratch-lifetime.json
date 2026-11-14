@@ -1,0 +1,80 @@
+{
+  "version": "2.17.0+",
+  "translations": [],
+  "data": [],
+  "native_bindings": [
+    {
+      "rust_path": "src/nucleotide_setup.rs",
+      "owners": [
+        "NucleotideInitialSearch::new",
+        "NucleotideInitialSearch::preliminary_subject_chunk",
+        "NucleotideInitialSearch::traceback_preliminary_subject",
+        "bind_gap_align"
+      ],
+      "source_references": [
+        {
+          "source": "src/algo/blast/core/blast_setup.c",
+          "symbol": "BLAST_GapAlignSetUp",
+          "line_start": 887,
+          "line_end": 999,
+          "byte_start": 32902,
+          "byte_end": 36954,
+          "source_sha256": "4a67dc84abad1128bab4a597b47cbb11e52ce9d05b6d6e2e5c9b51419afdc107"
+        },
+        {
+          "source": "src/algo/blast/core/blast_engine.c",
+          "symbol": "Blast_RunFullSearch",
+          "line_start": 1726,
+          "line_end": 1796,
+          "byte_start": 67723,
+          "byte_end": 70732,
+          "source_sha256": "b9caa520e534ea057e6ffc2dfefd8863e90ccfa54c8abcddb967eee197beb095"
+        },
+        {
+          "source": "src/algo/blast/core/blast_engine.c",
+          "symbol": "BLAST_PreliminarySearchEngine",
+          "line_start": 1334,
+          "line_end": 1607,
+          "byte_start": 51134,
+          "byte_end": 62595,
+          "source_sha256": "d2111e32ced73ff576496b64bc0c31ad1e889cf52c0ba988be7aa704e678d597"
+        },
+        {
+          "source": "src/algo/blast/core/blast_traceback.c",
+          "symbol": "s_SThreadLocalDataArraySetGapXDropoffFinal",
+          "line_start": 1423,
+          "line_end": 1433,
+          "byte_start": 55296,
+          "byte_end": 55601,
+          "source_sha256": "0bc21600e4d8be8ebcff94b46d2e2127d4bb2d0e333b8a7cea1a6e75b03ef01f"
+        }
+      ],
+      "adaptations": "Restore source search-scoped gapped scratch ownership rather than allocating a million-entry greedy offset pool for each subject/chunk/traceback call. Call existing unchanged BLAST_GapAlignStructNew once with database.max_length(), as BLAST_GapAlignSetUp obtains the sequence-source maximum. Store owned DP arrays/state blocks/greedy pools/edit blocks in BlastGapAlignStruct<static> whose matrix view is the empty static slice. A private safe lifetime reconstruction helper moves every owned field into a temporary struct borrowing the current scoring matrix, and rebinds to the empty static view before returning to storage; no self-reference, unsafe cast, uninitialized storage or altered allocator. Retain independently owned matrix clone during final statistical mutation, so mutable ScoreBlk never aliases an alignment matrix borrow. Set original preliminary/final X-drop at each phase entry; retain all existing kernel initialization/reset/retry/tie/score operations. Restore scratch owner before returning any kernel status error. No new no-hit shortcut: existing BLAST_GetGappedScore early return is still called. Expanded buffers stay cached until the reusable search owner is dropped, matching source lifecycle.",
+      "validation": "Source-stable combined ThinLTO build passed25 pinned smoke CLI hits and all6 real dataset/program CLI comparisons against pre-change artifact. Nucleotide4 raw JSONL outputs remain byte-identical to pre-change output and exactly match originalELF logical core snapshots including full IEEE754 bits, seed coordinates, edit scripts, counts/order. All6 new logical raw results match originalELF captures; TBLN14/186 num_ident/num_positives corrections are an independently owned parent masked-query fix, while all other raw fields stay identical. CLI realHSP counts6/481/52(staph) and16/573/131(yeast). Temporary interleaving driver compares12 alternating preliminary/final calls per nucleotide task against fresh owners, matching complete returned HSP/list state. cargo check and release build pass. Combined build also contains independently owned safe AA scanner span changes; no isolated speed improvement is claimed."
+    }
+  ],
+  "profiling_evidence": {
+    "binary": "/tmp/btyper-blast-thinlto-target/release/examples/native_search",
+    "native_sha256": "5060915728d7d55203fe7535d468e66592aab2db7952d5e3f7e8812396ab2183",
+    "perf_data": "/tmp/btyper-current-staph-mega.perf.data",
+    "callgraph_report": "/tmp/btyper-current-staph-mega-callgraph.txt",
+    "scope": "Diagnostic cycles:u sampling of10 native megablast child invocations on staph; no paired timing claim",
+    "samples": 834,
+    "lost_samples": 0,
+    "memset_self_percent": 46.05,
+    "whole_process_percent_attributed_to_mb_space_new": 17.88,
+    "whole_process_percent_mb_space_new_from_preliminary_subject_chunk": 16.11,
+    "observation": "Original source constructor is outside subject iteration; old native facade constructed it repeatedly and zero-initialized the12MB pool even when later GetGappedScore immediately returned for no hits."
+  },
+  "build_metadata": "/tmp/btyper-blast-scratch-reuse-build.json",
+  "candidate_native_sha256": "6085f15dbdd2716c591aca821fe0df41b97d65879c3076ab4da83db317ae857d",
+  "validation_report": "/tmp/btyper-scratch-reuse-validation/report.json",
+  "integration_notes": [
+    "Only src/nucleotide_setup.rs was edited by this worker. No translated kernel, typed ABI, production Cargo profile, public API or allocation initialization changed. The new private helper is native ownership glue, not an extra upstream function translation.",
+    "One source-correct owner can carry reusable buffers across both stages because each translated kernel already initializes consumed state and phase X-drop is rebound explicitly. Cached largest buffer capacity persists until search teardown; this trades repeated allocation for the same source search-lifetime storage policy.",
+    "First combined build observed concurrent blast_aascan.rs edit; it was superseded by a clean source-stable rebuild after AA worker freeze. Build metadata retains this history and does not attribute combined codegen results solely to scratch reuse.",
+    "Root owns separate masked identity correction in protein_redo.rs/report.rs. Before/after TBLNraw metrics intentionally change toward captured source results; this is recorded explicitly rather than accepting arbitrary differences.",
+    "No timed benchmark was launched by this worker for the new candidate. Parent coordinates subsequent performance measurement. Temporary scratch-lifetime regression driver: /tmp/btyper-scratch-interleaved.rs."
+  ],
+  "integrated": true
+}

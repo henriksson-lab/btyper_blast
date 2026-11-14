@@ -1,0 +1,8 @@
+{
+  "status": "match",
+  "hsp_count": 5,
+  "original": "/tmp/btyper-nucleotide-querysplit-validation/original-large-core.jsonl",
+  "native": "/tmp/btyper-nucleotide-querysplit-validation/combined-native-large-core.jsonl",
+  "precision": "exact IEEE754 bit patterns; all logical HSP fields and ordered lists",
+  "differences": []
+}

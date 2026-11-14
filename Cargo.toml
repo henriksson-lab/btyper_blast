@@ -1,0 +1,18 @@
+[package]
+name = "btyper-blast"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "A scoped Rust translation of NCBI BLAST+ for blastn and tblastn"
+
+[lib]
+path = "src/lib.rs"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+
+[package.metadata.upstream]
+name = "NCBI BLAST+"
+version = "2.17.0+"
+source-pin = "upstream/blast-source.json"

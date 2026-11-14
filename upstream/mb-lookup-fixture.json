@@ -1,0 +1,16 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 29887,
+  "compiler": "cc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "origin": "Unchanged original BlastMBLookupTableNew, contiguous filling and megablast scanners. Full table heads, links, PV arrays, dimensions and mask intervals are compared to Rust constructors, then complete scanner batches/restart offsets to Rust kernels. Covers standard defaults, multiple intervals, empty location error, PV cutoff boundaries and signed-positive integer-log inputs. Discontiguous, mapping and database-count-filtering constructors and width-16 scanner branches are outside supported scope.",
+  "command": "python scripts/generate_lookup_reference.py --kind mb_lookup --output tests/fixtures/mb-lookup-2.17.0.txt",
+  "fixture": "tests/fixtures/mb-lookup-2.17.0.txt",
+  "fixture_sha256": "29d6a65aa89d5050141d2ffbd5a1f241734da54d13f1b7ba6deb61967775abe5",
+  "harness": "tests/reference/mb_lookup.c",
+  "harness_sha256": "35c2cf045f243d6221ef5604a30249adecc706e843313d5d744eb6b772d8bc5c",
+  "generator": "scripts/generate_lookup_reference.py",
+  "generator_sha256": "d1346e8af17abb25669b03cfd8b69809136b021f20aa168fbea4d25937eefc63",
+  "shim": "tests/reference/include/corelib/ncbitype.h",
+  "shim_sha256": "9d3e1fc2301697ffbd57eae53f557b10e4737ad6f1d672f11a03749405feb29c"
+}

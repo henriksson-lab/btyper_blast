@@ -1,0 +1,16 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 1135,
+  "origin": "Unchanged original blast_extend.c, including private diagonal initialization/reset and hit comparator. Driver supplies only parameter fields and state-transition inputs. C qsort equal-key order is unspecified; Rust fixture comparison checks sorted keys and the full hit multiset.",
+  "command": "python scripts/generate_extend_reference.py --output tests/fixtures/extend-2.17.0.txt",
+  "fixture": "tests/fixtures/extend-2.17.0.txt",
+  "fixture_sha256": "e6d46bb71babf08c7a4ff22dffb058bbca7470ceaaec1d9b7edf6c9e3c726e44",
+  "harness": "tests/reference/extend.c",
+  "harness_sha256": "c40e6f653e6a1f58227944f771f0b0a68ea2a436fc5a029d7a3c63493daab2fa",
+  "generator": "scripts/generate_extend_reference.py",
+  "generator_sha256": "1ba11ef283e5c4a7a81a2301148dc663debdbcb6281a362621bf9e4bc0e4c3a1",
+  "shim": "tests/reference/include/corelib/ncbitype.h",
+  "shim_sha256": "9d3e1fc2301697ffbd57eae53f557b10e4737ad6f1d672f11a03749405feb29c",
+  "compiler": "GCC 11.4.0; identical Clang and ASan/UBSan output (leak detection disabled in sandbox)"
+}

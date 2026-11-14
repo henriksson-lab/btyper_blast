@@ -1,0 +1,10 @@
+{
+  "project": "NCBI BLAST+",
+  "version": "2.17.0+",
+  "archive": "ncbi-blast-2.17.0+-src.tar.gz",
+  "url": "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.17.0/ncbi-blast-2.17.0+-src.tar.gz",
+  "discovery_url": "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/",
+  "sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "root": "vendor/ncbi-blast-2.17.0+-src/c++",
+  "policy": "Immutable reference source. Do not update the release or change reference files implicitly. Translation candidates are not a complete dependency closure."
+}

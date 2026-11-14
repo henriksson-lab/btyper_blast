@@ -1,0 +1,53 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_kappa.c",
+      "symbol": "s_FillResultsFromCompoHeaps",
+      "line_start": 2492,
+      "line_end": 2514,
+      "source_sha256": "9b052ea9497a5356c1d56f0c195e3d5745a3d563288949f1a05c02f5baa0dc87",
+      "rust_path": "src/protein_search.rs",
+      "rust_symbol": "s_fill_results_from_compo_heaps",
+      "status": "translated",
+      "reason": "Final native tblastn composition significance heaps to original bounded result containers",
+      "validation": "Standalone compilation and existing forward protein smoke through real preliminary EngineCore/collector/CBS2/linking/heap pipeline: source score253, displayed bits102/E3.21e-36,60 identities/positives and matching coordinates. Additional two-query/two-subject forward/reverse smoke returns four expected lists in source subject tie order1 then0, each with doubled database E-value. Full parity and speed are not claimed.",
+      "adaptations": "Owned Box<BlastHSPList> values replace source void* contexts/pop pointers. Same per-query heap pop, original HitListNew/Update and result reverse order; no generic replacement top-k algorithm.",
+      "byte_start": 97952,
+      "byte_end": 98764
+    }
+  ],
+  "data": [
+    {
+      "version": "2.17.0+",
+      "source": "include/algo/blast/core/blast_options.h",
+      "source_sha256": "d9b59dc8e0bebb319bab6b2b86850791553b701915f17498427607d9e97efdba",
+      "line_start": 163,
+      "line_end": 163,
+      "byte_start": 8066,
+      "byte_end": 8143,
+      "rust_path": "src/protein_search.rs",
+      "symbols": {
+        "PSI_INCLUSION_ETHRESH": "PSI_INCLUSION_ETHRESH"
+      },
+      "status": "translated",
+      "adaptations": "Typed f64 constant retains original macro value0.002 used by ordinary tblastn source redo heap initialization when PSI options are null.",
+      "validation": "Value and use checked against blast_kappa.c default inclusion threshold initialization."
+    }
+  ],
+  "integration": [
+    "Expose protein_search and exports search_protein_database, ProteinSearchResults, ProteinSearchError. Signature search_protein_database(&PreparedProteinBatch,&NucleotideDatabase). Results shape matches nucleotide search: results/query_ids/subject_ids/query_info plus ungapped_stats/gapped_stats and preliminary/traceback/early-terminated subject-list counts.",
+    "Native DB orchestration calls source s_BlastSearchEngineCore over all six raw gapped-frame lists, source collector configured forCBS2, source ReverseSort and per-query reverse-array consumption (BlastHSPStream sort_on_read=true), source global BlastCompo_EarlyTermination, actual per-match CBS2 redo, source heap WouldInsert/Insert using pre-normalization best_scores, and exact s_FillResultsFromCompoHeaps. Native orchestration is not falsely mapped as a full port of multithreaded Blast_RedoAlignmentCore.",
+    "Heap threshold is original hitlist_size500 and inclusion Ecutoff0.002. Source does not use ordinary final expect_value10 as heap inclusion cutoff. List evaluation still reaps at its configured expect_value. Source E-value/score/subject-ordinal tie behavior remains in translated original heap and HitListUpdate helpers.",
+    "Low-score feedback to preliminary gapped extension is retained only if source low_score array is enabled; uses collector heap low_score and original low_score_perc scaling.",
+    "Current explicit5,000,000 nucleotide subject cap prevents silently bypassing original chunking. It is temporary and must be removed only when actual source translated chunk orchestration is available. Empty/short-subject setup limitations inherited from ProteinInitialSearch remain to be completed; no full parity claim.",
+    "HSP query coordinates remain local protein offsets and subject coordinates local translated frame offsets. OIDs index subject_ids, contexts index query_info. Parent report renderer must convert translated subject coordinates using actual nucleotide length/frame."
+  ],
+  "temporary_validation": [
+    "/tmp/btyper-protein-search-check.rs",
+    "/tmp/btyper-protein-search-smoke.rs",
+    "/tmp/btyper-protein-search-multi.rs"
+  ],
+  "integrated": true,
+  "superseded_limit_note": "The earlier temporary5M nucleotide limit has been removed: subject-chunk and protein-chunks integrations now bind original5M/100 geometry in nucleotide or translated-AA coordinates respectively. See those integration records."
+}

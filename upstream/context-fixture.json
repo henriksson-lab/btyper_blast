@@ -1,0 +1,160 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 10027,
+  "compiler": "GCC/G++ 11.4.0; identical output with Clang and with AddressSanitizer/UndefinedBehaviorSanitizer",
+  "origin": "Unchanged C query-context allocation, lookup and mask complement functions; unchanged selected C++ setup/strand/stitching functions and original symmetric DUST. Test adapters supply fixed-width types, preexpanded strand data, ownership wrappers and ASN.1 enum binding only. Batch orchestration follows SetupQueryInfo_OMF/SetupQueries without object-manager serialization. Compare complete metadata/buffers, interval lists and mutation, then default lookup selection; this is preparation/seed evidence, not complete search parity.",
+  "command": "python scripts/generate_context_reference.py --output tests/fixtures/context-2.17.0.txt",
+  "fixture": "tests/fixtures/context-2.17.0.txt",
+  "fixture_sha256": "b13efd880e84758c664311715c5fd47f50e301c6a92bd431bd701787c0bf650e",
+  "harness": "tests/reference/context.cpp",
+  "harness_sha256": "72f7dd3c1e8902421202126ffb250438bb2f63253b237cfb7c8f7f1699c66eda",
+  "generator": "scripts/generate_context_reference.py",
+  "generator_sha256": "d2f15d269dbc8e29e9b3dae3496c04e5edb8ebdfd5d9d571222bc8eeda86b323",
+  "shim": "tests/reference/context_shim.hpp",
+  "shim_sha256": "a97cba83cc9616c9f82eb136577e195720854c6ef285e82caf8f973843193f24",
+  "integer_shim": "tests/reference/include/corelib/ncbitype.h",
+  "integer_shim_sha256": "9d3e1fc2301697ffbd57eae53f557b10e4737ad6f1d672f11a03749405feb29c",
+  "rng_shim": "tests/reference/database_shim.hpp",
+  "rng_shim_sha256": "23463a14bcc8bf0619391ff8473ee431c1abf7fec6d145ca118bae71c39684c0",
+  "dust_shim": "tests/reference/symdust_shim.hpp",
+  "dust_shim_sha256": "64f5994018eae8e27350556c7414887788678179e2ff743ffaf32d480eef0a63",
+  "dust_generator": "scripts/generate_symdust_reference.py",
+  "dust_generator_sha256": "e22d0a2ea4cae4467f855b3f6324392ebee199e5ded829d6cc663eaa5e770454",
+  "range_parser": "scripts/source_ranges.py",
+  "range_parser_sha256": "68fcf0cb4afa205042cdfcbe94f3bf3df245a5618973efc7f70bc2d1036841c3",
+  "fragments": [
+    {
+      "source": "src/algo/blast/api/blast_setup.hpp",
+      "byte_start": 3305,
+      "byte_end": 3431,
+      "sha256": "bc9d3248f4d98906c4ce04be90f0c4a066c45ce8275914d275579f6fe52a33c6"
+    },
+    {
+      "source": "src/algo/blast/api/blast_setup_cxx.cpp",
+      "byte_start": 2344,
+      "byte_end": 3193,
+      "sha256": "565c98db94c33c25d6337224861d1edc1b7165dfbf2ab8bef59d5e991fc5c4f4"
+    },
+    {
+      "source": "src/algo/blast/api/blast_setup_cxx.cpp",
+      "byte_start": 44113,
+      "byte_end": 45685,
+      "sha256": "e6e5030a3e066bdcbbeb5a8af20d0179ff4107b4d39c88f545854ca1904c7543"
+    },
+    {
+      "source": "src/algo/blast/api/blast_setup_cxx.cpp",
+      "byte_start": 45687,
+      "byte_end": 46043,
+      "sha256": "cc5ed0154ddd8afca26ed913d61d7a9c1c2734ec6450bd9fcf212c878a9c24dd"
+    },
+    {
+      "source": "src/algo/blast/api/blast_setup_cxx.cpp",
+      "byte_start": 36459,
+      "byte_end": 38016,
+      "sha256": "d41506d64d5cc1bdb6c29e5a9b3aa2c766e70bb14a7155752de79af5df0d6b06"
+    },
+    {
+      "source": "src/algo/blast/api/blast_setup_cxx.cpp",
+      "byte_start": 38368,
+      "byte_end": 39947,
+      "sha256": "3d170481a2d1bbd814cc2e1bcd4cd836f8ae78a8e736238b1b9ad4a8fc975a9c"
+    },
+    {
+      "source": "src/objects/seqloc/seqloc.asn",
+      "byte_start": 4000,
+      "byte_end": 4255,
+      "sha256": "63ccb125e05743275599281cff4a367b4f34b57ed1733325a004664cfd044059"
+    },
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 7758,
+      "byte_end": 8064,
+      "sha256": "9cfec86b5d50b3f27f7bf89c056bcaeb291883053f6f991b4852523033712149"
+    },
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 8067,
+      "byte_end": 8152,
+      "sha256": "7a78bb398d6104f00e43508a3ecf57c8a74e7ee98cc61733fb164f5367c33939"
+    },
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 9646,
+      "byte_end": 10245,
+      "sha256": "d110180a4b20e0359b5662525546edb3dbc414bd172f9ab9cda79c8d65686fb0"
+    },
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 8155,
+      "byte_end": 9235,
+      "sha256": "448f3925a3ac49413f8e31cabf824ad6106dfd2f87d8aa867aa0d99794245546"
+    },
+    {
+      "source": "include/util/random_gen.hpp",
+      "byte_start": 7443,
+      "byte_end": 7796,
+      "sha256": "b5c7c3a4d37995ce28f07d09f87645d07591930d487bf636912b1a8cce902d06"
+    },
+    {
+      "source": "include/util/random_gen.hpp",
+      "byte_start": 7799,
+      "byte_end": 7915,
+      "sha256": "ecf1f5b8ed8e64dc977ca730b39110d0b8680c880aa80778c8698cc9a035a30a"
+    },
+    {
+      "source": "include/algo/dustmask/symdust.hpp",
+      "byte_start": 2004,
+      "byte_end": 14444,
+      "sha256": "632a8d7e969715ccc7177ddbc8cffacaa1bb64cde412f410616f494825daced8"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 1595,
+      "byte_end": 1983,
+      "sha256": "75cae1ace73e39ab183c08bf904dbbfccfabd41489c4a44493e081795d5692d5"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 2066,
+      "byte_end": 2551,
+      "sha256": "aa59d1e69b74c24159f54871cd38cef0e145d6f13b46935a9b77c43cceb9b3fd"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 2634,
+      "byte_end": 3749,
+      "sha256": "9a9fabbdd2cef3093ac5c2f130bcfb2aa6941af85fab81b9091c736bf277f384"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 3832,
+      "byte_end": 5706,
+      "sha256": "dc0534f35dc9a4b189c01efeace77ceef8e2e66c91ad37c344befa43fae1f0c6"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 5793,
+      "byte_end": 6292,
+      "sha256": "4b4df7bba719519f24c8ac7de12b360c3b9351aad021e2e96aae6456522b17df"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 6375,
+      "byte_end": 7146,
+      "sha256": "d5f1ecc76344f50ab6e0ae556611e2c107bbbb81d010e10c7086c4c7b65143be"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 7229,
+      "byte_end": 9155,
+      "sha256": "8f65ccdb63453420be2395d946fabffeb0bc849c10afdcfdc0904d81c26dc168"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 9238,
+      "byte_end": 9385,
+      "sha256": "9c9c39075d42214d049bfa78abc20e4735cff03115165014e9ddfeead33166f3"
+    }
+  ]
+}

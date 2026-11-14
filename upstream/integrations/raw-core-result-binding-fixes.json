@@ -1,0 +1,72 @@
+{
+  "version": "2.17.0+",
+  "translations": [],
+  "data": [],
+  "integrated": true,
+  "native_bindings": [
+    {
+      "rust_path": "src/nucleotide_setup.rs",
+      "field": "GapSubject.frame",
+      "source_references": [
+        {
+          "source": "src/algo/blast/core/blast_engine.c",
+          "line_start": 785,
+          "line_end": 788,
+          "byte_start": 31070,
+          "byte_end": 31163,
+          "source_sha256": "3598108576c3ae0274f3fb65290a25be53c19e8d70ec28aa65ba8424e8704477"
+        },
+        {
+          "source": "src/algo/blast/core/blast_engine.c",
+          "line_start": 830,
+          "line_end": 833,
+          "byte_start": 33210,
+          "byte_end": 33289,
+          "source_sha256": "31328af89109c35139fdb2e8dd557201df614f3b3bcbad6d3c4da5782703c780"
+        }
+      ],
+      "binding": "Standard nucleotide engine searches subject context1 and assigns subject.frame=context. Both preliminary and traceback native full-sequence descriptors now retain frame1 instead of0."
+    },
+    {
+      "rust_path": "src/protein_redo.rs",
+      "field": "BlastHSPList.query_index",
+      "source_references": [
+        {
+          "source": "src/algo/blast/core/blast_hits.c",
+          "symbol": "Blast_HSPListNew",
+          "line_start": 1558,
+          "line_end": 1575,
+          "byte_start": 52851,
+          "byte_end": 53383,
+          "source_sha256": "e5d148336166a977801a4aeb1ad9b3c9b4c2dc36edfc574c5e59d2038f79cd94"
+        },
+        {
+          "source": "src/algo/blast/core/blast_kappa.c",
+          "symbol": "s_HSPListFromDistinctAlignments",
+          "line_start": 304,
+          "line_end": 362,
+          "byte_start": 11908,
+          "byte_end": 14205,
+          "source_sha256": "337332c0236cef3fced8eeee81044520a8f84554db191e119723f757c3a1634b"
+        }
+      ],
+      "binding": "Remove native assignment of outer query index to CBS-created list. Source zero-initialized list retains query_index0; outer per-query heap/result arrays preserve actual grouping."
+    },
+    {
+      "rust_path": "src/protein_search.rs",
+      "field": "outer final result ordering and limits",
+      "source_references": [
+        {
+          "source": "src/algo/blast/core/blast_traceback.c",
+          "line_start": 1768,
+          "line_end": 1777,
+          "byte_start": 71111,
+          "byte_end": 71544,
+          "source_sha256": "bf28d67a313bba7b60513be5d4c6e2e3e45ba46b04c047f3fd6f0de85faf7fec"
+        }
+      ],
+      "binding": "After Kappa heap drain call existing Blast_HSPResultsSortByEvalue and original prune, exactly as outer database traceback tail. Underflow-equivalent E-values use source score/OID tie-breaking, rather than retaining raw-E heap order."
+    }
+  ],
+  "validation": "Header-derived ABI/GDB finish-breakpoint snapshots from unmodified pinned official BLAST2.17.0+ are compared against native_search --raw-json. Existing25smoke HSPs (6megablast/8blastn/11tblastn) match every logical HSP field and ordered result/list grouping, including exact IEEE754 E-value and bit-score bits, frames, contexts, seeds, linked num counts, composition method and edit scripts. Real yeast tblastn131 ordered CLI rows match after outer sort; no comparator or numerical tolerance changes."
+}

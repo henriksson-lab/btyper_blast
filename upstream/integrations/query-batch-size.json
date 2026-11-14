@@ -1,0 +1,113 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/app/blast/blast_app_util.hpp",
+      "symbol": "CBatchSizeMixer::CBatchSizeMixer",
+      "byte_start": 2943,
+      "byte_end": 3238,
+      "line_start": 69,
+      "line_end": 76,
+      "source_sha256": "a9f97e40624926aa5f8f1ee4a62abbfce290be726be43cbba2eb4c0f1719837b",
+      "rust_path": "src/query_batch_size.rs",
+      "rust_type": "CBatchSizeMixer",
+      "rust_symbol": "c_batch_size_mixer",
+      "status": "translated",
+      "reason": "Original adaptive query-file working-set controller for standard BLAST CLI batching",
+      "adaptations": "Private typed fields and inherent snake_case methods preserve source constants,int/f64 operation order,EMA and if/else clamp/reset history. Constructor maps to CBatchSizeMixer::c_batch_size_mixer; default C++ hits argument represented explicitly as-1. Define out-of-range/nonfinite quotient conversion as INT_MIN, matching actual pinned x86 cvttsd2si oracle before original lower clamp. Source C++ cast is undefined outside i32 range; this explicit safe portable policy does not claim matching every upstream compiler/architecture. Rust saturating cast would otherwise select maximum rather than minimum batch for hits0. No unsafe,new dependency,allocator,source algorithm replacement or CLI edit.",
+      "validation": "165 successive original-C++/Rust update comparisons over5maxbatch sizes99/500/19000/999000/4999000,3target values0/1m/4m and11feedback updates each (-1,nohits,lowhits,highhits,clamps,EMA). Target,batch and ratio f64 bits all match debug and optimized Rust. Original source class/getbatch method extracted unchanged into /tmp/btyper-batch-size-c.cpp, built c++(Ubuntu11.4.0-1ubuntu1~22.04.3)11.4.0 -O2; harnesssha0c272cb5660530076ffeaf9aa9d8be9d4e80dff1bf3dc2ad3ace7b65f981b413, executable sha1f717ca6dd943744a6ef41183b1dace3b3a3489784bb4dd392b65beaafec5d62. Actual pinned official blastn sha33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5 exports GetBatchSize at0xc13d20; objdump shows cvttsd2si at0xc13d7b then clamps (saved /tmp/btyper-batch-size-official-disassembly.txt). No tool-level batching parity/speed claim before integration."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/app/blast/blast_app_util.hpp",
+      "symbol": "CBatchSizeMixer::SetTargetHits",
+      "byte_start": 3240,
+      "byte_end": 3403,
+      "line_start": 78,
+      "line_end": 81,
+      "source_sha256": "2f302bf183734ceb8895ce4d67a9f09db35ffc819e7b63ee10aaab6a407f0772",
+      "rust_path": "src/query_batch_size.rs",
+      "rust_type": "CBatchSizeMixer",
+      "rust_symbol": "set_target_hits",
+      "status": "translated",
+      "reason": "Original adaptive query-file working-set controller for standard BLAST CLI batching",
+      "adaptations": "Private typed fields and inherent snake_case methods preserve source constants,int/f64 operation order,EMA and if/else clamp/reset history. Constructor maps to CBatchSizeMixer::c_batch_size_mixer; default C++ hits argument represented explicitly as-1. Define out-of-range/nonfinite quotient conversion as INT_MIN, matching actual pinned x86 cvttsd2si oracle before original lower clamp. Source C++ cast is undefined outside i32 range; this explicit safe portable policy does not claim matching every upstream compiler/architecture. Rust saturating cast would otherwise select maximum rather than minimum batch for hits0. No unsafe,new dependency,allocator,source algorithm replacement or CLI edit.",
+      "validation": "165 successive original-C++/Rust update comparisons over5maxbatch sizes99/500/19000/999000/4999000,3target values0/1m/4m and11feedback updates each (-1,nohits,lowhits,highhits,clamps,EMA). Target,batch and ratio f64 bits all match debug and optimized Rust. Original source class/getbatch method extracted unchanged into /tmp/btyper-batch-size-c.cpp, built c++(Ubuntu11.4.0-1ubuntu1~22.04.3)11.4.0 -O2; harnesssha0c272cb5660530076ffeaf9aa9d8be9d4e80dff1bf3dc2ad3ace7b65f981b413, executable sha1f717ca6dd943744a6ef41183b1dace3b3a3489784bb4dd392b65beaafec5d62. Actual pinned official blastn sha33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5 exports GetBatchSize at0xc13d20; objdump shows cvttsd2si at0xc13d7b then clamps (saved /tmp/btyper-batch-size-official-disassembly.txt). No tool-level batching parity/speed claim before integration."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/app/blast/blast_app_util.cpp",
+      "symbol": "CBatchSizeMixer::GetBatchSize",
+      "byte_start": 2511,
+      "byte_end": 3065,
+      "line_start": 65,
+      "line_end": 81,
+      "source_sha256": "390a62f69e1df81c17e2f86cf5d641ed1320afd3bb06a888236635a883583c66",
+      "rust_path": "src/query_batch_size.rs",
+      "rust_type": "CBatchSizeMixer",
+      "rust_symbol": "get_batch_size",
+      "status": "translated",
+      "reason": "Original adaptive query-file working-set controller for standard BLAST CLI batching",
+      "adaptations": "Private typed fields and inherent snake_case methods preserve source constants,int/f64 operation order,EMA and if/else clamp/reset history. Constructor maps to CBatchSizeMixer::c_batch_size_mixer; default C++ hits argument represented explicitly as-1. Define out-of-range/nonfinite quotient conversion as INT_MIN, matching actual pinned x86 cvttsd2si oracle before original lower clamp. Source C++ cast is undefined outside i32 range; this explicit safe portable policy does not claim matching every upstream compiler/architecture. Rust saturating cast would otherwise select maximum rather than minimum batch for hits0. No unsafe,new dependency,allocator,source algorithm replacement or CLI edit.",
+      "validation": "165 successive original-C++/Rust update comparisons over5maxbatch sizes99/500/19000/999000/4999000,3target values0/1m/4m and11feedback updates each (-1,nohits,lowhits,highhits,clamps,EMA). Target,batch and ratio f64 bits all match debug and optimized Rust. Original source class/getbatch method extracted unchanged into /tmp/btyper-batch-size-c.cpp, built c++(Ubuntu11.4.0-1ubuntu1~22.04.3)11.4.0 -O2; harnesssha0c272cb5660530076ffeaf9aa9d8be9d4e80dff1bf3dc2ad3ace7b65f981b413, executable sha1f717ca6dd943744a6ef41183b1dace3b3a3489784bb4dd392b65beaafec5d62. Actual pinned official blastn sha33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5 exports GetBatchSize at0xc13d20; objdump shows cvttsd2si at0xc13d7b then clamps (saved /tmp/btyper-batch-size-official-disassembly.txt). No tool-level batching parity/speed claim before integration."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/app/blast/blast_app_util.hpp",
+      "symbol": "CBatchSizeMixer::GetTargetHits",
+      "byte_start": 3480,
+      "byte_end": 3539,
+      "line_start": 86,
+      "line_end": 89,
+      "source_sha256": "46d69b2abec7366938b28e585478efb48c4f4f5414f9d14e649b66f79484af90",
+      "rust_path": "src/query_batch_size.rs",
+      "rust_type": "CBatchSizeMixer",
+      "rust_symbol": "get_target_hits",
+      "status": "translated",
+      "reason": "Original adaptive query-file working-set controller for standard BLAST CLI batching",
+      "adaptations": "Private typed fields and inherent snake_case methods preserve source constants,int/f64 operation order,EMA and if/else clamp/reset history. Constructor maps to CBatchSizeMixer::c_batch_size_mixer; default C++ hits argument represented explicitly as-1. Define out-of-range/nonfinite quotient conversion as INT_MIN, matching actual pinned x86 cvttsd2si oracle before original lower clamp. Source C++ cast is undefined outside i32 range; this explicit safe portable policy does not claim matching every upstream compiler/architecture. Rust saturating cast would otherwise select maximum rather than minimum batch for hits0. No unsafe,new dependency,allocator,source algorithm replacement or CLI edit.",
+      "validation": "165 successive original-C++/Rust update comparisons over5maxbatch sizes99/500/19000/999000/4999000,3target values0/1m/4m and11feedback updates each (-1,nohits,lowhits,highhits,clamps,EMA). Target,batch and ratio f64 bits all match debug and optimized Rust. Original source class/getbatch method extracted unchanged into /tmp/btyper-batch-size-c.cpp, built c++(Ubuntu11.4.0-1ubuntu1~22.04.3)11.4.0 -O2; harnesssha0c272cb5660530076ffeaf9aa9d8be9d4e80dff1bf3dc2ad3ace7b65f981b413, executable sha1f717ca6dd943744a6ef41183b1dace3b3a3489784bb4dd392b65beaafec5d62. Actual pinned official blastn sha33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5 exports GetBatchSize at0xc13d20; objdump shows cvttsd2si at0xc13d7b then clamps (saved /tmp/btyper-batch-size-official-disassembly.txt). No tool-level batching parity/speed claim before integration."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/app/blast/blast_app_util.hpp",
+      "symbol": "CBatchSizeMixer::GetRatio",
+      "byte_start": 3541,
+      "byte_end": 3592,
+      "line_start": 91,
+      "line_end": 94,
+      "source_sha256": "bf503a1840d39e917033341a72dbad9a0abb2d8bbc89dccfab09dc9cd74f2f5c",
+      "rust_path": "src/query_batch_size.rs",
+      "rust_type": "CBatchSizeMixer",
+      "rust_symbol": "get_ratio",
+      "status": "translated",
+      "reason": "Original adaptive query-file working-set controller for standard BLAST CLI batching",
+      "adaptations": "Private typed fields and inherent snake_case methods preserve source constants,int/f64 operation order,EMA and if/else clamp/reset history. Constructor maps to CBatchSizeMixer::c_batch_size_mixer; default C++ hits argument represented explicitly as-1. Define out-of-range/nonfinite quotient conversion as INT_MIN, matching actual pinned x86 cvttsd2si oracle before original lower clamp. Source C++ cast is undefined outside i32 range; this explicit safe portable policy does not claim matching every upstream compiler/architecture. Rust saturating cast would otherwise select maximum rather than minimum batch for hits0. No unsafe,new dependency,allocator,source algorithm replacement or CLI edit.",
+      "validation": "165 successive original-C++/Rust update comparisons over5maxbatch sizes99/500/19000/999000/4999000,3target values0/1m/4m and11feedback updates each (-1,nohits,lowhits,highhits,clamps,EMA). Target,batch and ratio f64 bits all match debug and optimized Rust. Original source class/getbatch method extracted unchanged into /tmp/btyper-batch-size-c.cpp, built c++(Ubuntu11.4.0-1ubuntu1~22.04.3)11.4.0 -O2; harnesssha0c272cb5660530076ffeaf9aa9d8be9d4e80dff1bf3dc2ad3ace7b65f981b413, executable sha1f717ca6dd943744a6ef41183b1dace3b3a3489784bb4dd392b65beaafec5d62. Actual pinned official blastn sha33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5 exports GetBatchSize at0xc13d20; objdump shows cvttsd2si at0xc13d7b then clamps (saved /tmp/btyper-batch-size-official-disassembly.txt). No tool-level batching parity/speed claim before integration."
+    }
+  ],
+  "data": [],
+  "type_mappings": [
+    {
+      "source": "src/app/blast/blast_app_util.hpp",
+      "symbol": "CBatchSizeMixer",
+      "byte_start": 2435,
+      "byte_end": 3595,
+      "line_start": 57,
+      "line_end": 95,
+      "source_sha256": "dc5c7e328ca27863785709ff487b1ca7900769a5dd89ad7416a77b3759798e80",
+      "rust_path": "src/query_batch_size.rs",
+      "rust_symbol": "CBatchSizeMixer",
+      "adaptations": "Private typed fields and inherent snake_case methods preserve source constants,int/f64 operation order,EMA and if/else clamp/reset history. Constructor maps to CBatchSizeMixer::c_batch_size_mixer; default C++ hits argument represented explicitly as-1. Define out-of-range/nonfinite quotient conversion as INT_MIN, matching actual pinned x86 cvttsd2si oracle before original lower clamp. Source C++ cast is undefined outside i32 range; this explicit safe portable policy does not claim matching every upstream compiler/architecture. Rust saturating cast would otherwise select maximum rather than minimum batch for hits0. No unsafe,new dependency,allocator,source algorithm replacement or CLI edit.",
+      "version": "2.17.0+",
+      "status": "translated"
+    }
+  ],
+  "integration_notes": [
+    "Expose mod query_batch_size when wiring CLI; public library explicit PreparedBatch need not acquire hidden batching. This worker changed only new src/query_batch_size.rs and pending metadata.",
+    "Source nucleotide CLI maximum batch is SplitQuery_GetChunkSize(program)-1000; initial target SetTargetHits(database_total_length/3000),with at least1m through source setter; use previous batch GetNumExtensions feedback, and input batches can exceed requested letters when last whole query crosses threshold. Wrapper/input reading and per-query result renumbering remain parent/adapter integration scope.",
+    "No changes to original source statistics or split thresholds; this is the missing source working-set controller, not a custom arena proposal.",
+    "Exposed as a library utility for explicit caller batching. The core PreparedBatch search API keeps its explicit batch semantics; the validation example currently uses one prepared batch, with source internal query splitting. No automatic CLI batching or performance claim is made."
+  ],
+  "integrated": true
+}

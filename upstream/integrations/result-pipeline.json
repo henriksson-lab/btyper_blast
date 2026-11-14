@@ -1,0 +1,47 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_traceback.c",
+      "symbol": "s_BlastPruneExtraHits",
+      "byte_start": 33877,
+      "byte_end": 34500,
+      "line_start": 877,
+      "line_end": 893,
+      "source_sha256": "ae8e1ce9c56bf7210b082c90419e03ed3d1f48d297516602a1100e38856b95a0",
+      "rust_path": "src/core/blast_result_pipeline.rs",
+      "rust_symbol": "s_blast_prune_extra_hits",
+      "status": "translated",
+      "reason": "Original candidate stream order and final subject-list pruning in native DB-wide nucleotide search",
+      "adaptations": "Typed mutable result references and owned Option drops replace C free-to-NULL; preserve original live count, capacity and sorted-result precondition. Comparator returns Ordering from decreasing OID instead of signed-int subtraction; valid nonnegative OID ordering is unchanged. Native sort preserves exact comparator keys; source qsort does not specify equal-OID query order.",
+      "validation": "Native standalone full-module compilation and focused temporary /tmp/btyper-nucleotide-search-smoke check: both blastn and megablast with2queries/3subjects produce separate correct query indexes, exact/changed ranking and no unrelated subject; one repeated-target boundary check551subjects selects550 preliminary candidates, traces exactly550 and retains500final hits using original source heaps. This validates pipeline assembly and limits, not full-search result parity or speed."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_hspstream.c",
+      "symbol": "s_SortHSPListByOid",
+      "byte_start": 2941,
+      "byte_end": 3152,
+      "line_start": 91,
+      "line_end": 96,
+      "source_sha256": "cac6fcb0d0269514c9609623d5b963c37f9baf233e456ff1df12b18dd1bfb21b",
+      "rust_path": "src/core/blast_result_pipeline.rs",
+      "rust_symbol": "s_sort_hsp_list_by_oid",
+      "status": "translated",
+      "reason": "Original candidate stream order and final subject-list pruning in native DB-wide nucleotide search",
+      "adaptations": "Typed mutable result references and owned Option drops replace C free-to-NULL; preserve original live count, capacity and sorted-result precondition. Comparator returns Ordering from decreasing OID instead of signed-int subtraction; valid nonnegative OID ordering is unchanged. Native sort preserves exact comparator keys; source qsort does not specify equal-OID query order.",
+      "validation": "Native standalone full-module compilation and focused temporary /tmp/btyper-nucleotide-search-smoke check: both blastn and megablast with2queries/3subjects produce separate correct query indexes, exact/changed ranking and no unrelated subject; one repeated-target boundary check551subjects selects550 preliminary candidates, traces exactly550 and retains500final hits using original source heaps. This validates pipeline assembly and limits, not full-search result parity or speed."
+    }
+  ],
+  "data": [],
+  "integration": [
+    "Expose pub mod blast_result_pipeline and worker-owned blast_prelim_evaluate in core/mod.rs. Expose pub mod nucleotide_search and optionally export search_nucleotide_database/NucleotideSearchResults/NucleotideSearchError in lib.rs.",
+    "Native search_nucleotide_database(batch:&PreparedNucleotideBatch,database:&NucleotideDatabase)->Result<NucleotideSearchResults,NucleotideSearchError> builds original setup, obtains raw preliminary HSPs, runs worker source evaluation/purge/sort/Evalue/prelim-reap, inserts through original preliminary collector and feeds enabled low_score thresholds back exactly at original engine boundary. Only retained collector candidates undergo traceback using parent split traceback_preliminary_subject; no preliminary rescan.",
+    "Candidate stream transfer assigns per-query list.query_index and sorts decreasing OID/read-from-end as original HSPStreamClose/BatchRead. Final retained candidates use original HSPResultsInsertHSPList, ResultsSortByEvalue and mapped prune. Native loop holds typed owners instead of stream/SeqSrc callbacks.",
+    "Returned HSPResults is in memory with query_ids, subject_ids, settled effective-length query_info, task, ungapped statistics and preliminary/traced candidate counts. HSP context and coordinates remain native per-context values; OIDs index subject_ids. Formatting/oriented endpoint/reporting adapters are separate work.",
+    "Default-only search options mean optional final max-HSP/query-coverage/best-hit/culling/mask-level filters are inactive upstream and do not add extra processing here. Both standard blastn and megablast task choices are inherited from PreparedNucleotideBatch.",
+    "Temporary assembly limitation: native per-subject preliminary setup lacks original >MAX_DBSEQ_LEN chunk split/merge, so native API returns a structured error for subjects over5M until chunking is implemented. This is outstanding goal work, not a final supported-scope restriction. Other database/query dimensions respect original integer bounds."
+  ],
+  "integrated": true,
+  "superseded_limit_note": "The earlier temporary5M nucleotide limit has been removed: subject-chunk and protein-chunks integrations now bind original5M/100 geometry in nucleotide or translated-AA coordinates respectively. See those integration records."
+}

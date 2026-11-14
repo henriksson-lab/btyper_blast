@@ -1,0 +1,72 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_kappa.c",
+      "symbol": "s_HitlistReapContained",
+      "line_start": 223,
+      "line_end": 278,
+      "source_sha256": "9fced836acc5530a86e750db401839ff3a604d2813bdfecfbc8f0cd85ddb5bb2",
+      "rust_path": "src/protein_redo.rs",
+      "rust_symbol": "s_hitlist_reap_contained",
+      "reason": "Final default tblastn CBS per-subject containment, linked/unlinked statistical evaluation and original-residue identity conversion",
+      "status": "translated",
+      "validation": "Standalone compilation against integrated library. Focused native preliminary->CBS2 real traceback->linked E-values->normalized-score/identity smoke matches pinned tblastn2.17.0+ default displayed output for a 60-residue encoded protein subject: score253, bits102, E3.21e-36, identities/positives60, q1..60 and subject4..183/+1. A two-query reverse-complement subject gives two corresponding -1-frame final HSPs. Prior core callbacks have direct unchanged-C checks; full search parity, exact formatted floating output and speed are not claimed.",
+      "adaptations": "Box/Option HSP slots replace C nullable pointers and free; same pairwise forward/back iteration, inclusive CONTAINED_IN_HSP macro conditions, query/subject-frame checks and score comparison, followed by identical ordered compaction. Source callers retain significance order.",
+      "byte_start": 8567,
+      "byte_end": 11004
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_kappa.c",
+      "symbol": "s_ComputeNumIdentities",
+      "line_start": 458,
+      "line_end": 542,
+      "source_sha256": "b02e787305c8f2363ec3744136838f59167285c93d49b2dd069dade685c49750",
+      "rust_path": "src/protein_redo.rs",
+      "rust_symbol": "s_compute_num_identities",
+      "reason": "Final default tblastn CBS per-subject containment, linked/unlinked statistical evaluation and original-residue identity conversion",
+      "status": "translated",
+      "validation": "Standalone compilation against integrated library. Focused native preliminary->CBS2 real traceback->linked E-values->normalized-score/identity smoke matches pinned tblastn2.17.0+ default displayed output for a 60-residue encoded protein subject: score253, bits102, E3.21e-36, identities/positives60, q1..60 and subject4..183/+1. A two-query reverse-complement subject gives two corresponding -1-frame final HSPs. Prior core callbacks have direct unchanged-C checks; full search parity, exact formatted floating output and speed are not claimed.",
+      "adaptations": "Specialized to default non-OOF tblastn. Borrowed original query/NCBI4na subject replace external BlastSeqSrc retrieval and release. Full selected-frame translations cached per six frames replace the legacy partial-target-translation cache without changing absolute frame-local HSP coordinates. Existing original identity/positives helper is reused; native caller supplies original unmasked residues. Typed Rust return reports translation status; source valid-path identity status assertion retained. Standard genetic code1 is explicit.",
+      "byte_start": 18318,
+      "byte_end": 21634
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_kappa.c",
+      "symbol": "s_HitlistEvaluateAndPurge",
+      "line_start": 394,
+      "line_end": 446,
+      "source_sha256": "e8a4cfe4da05ff2ffaf77607b2ac28c5262bdcf9ff414eaae200becdb134bbed",
+      "rust_path": "src/protein_redo.rs",
+      "rust_symbol": "s_hitlist_evaluate_and_purge",
+      "reason": "Final default tblastn CBS per-subject containment, linked/unlinked statistical evaluation and original-residue identity conversion",
+      "status": "translated",
+      "validation": "Standalone compilation against integrated library. Focused native preliminary->CBS2 real traceback->linked E-values->normalized-score/identity smoke matches pinned tblastn2.17.0+ default displayed output for a 60-residue encoded protein subject: score253, bits102, E3.21e-36, identities/positives60, q1..60 and subject4..183/+1. A two-query reverse-complement subject gives two corresponding -1-frame final HSPs. Prior core callbacks have direct unchanged-C checks; full search parity, exact formatted floating output and speed are not claimed.",
+      "adaptations": "Specialized to default tblastn. Original do_sum_stats branch calls translated BLAST_LinkHsps; alternative calls original HSPListGetEvalues with gapped=true, scaling1, decay0. Protein/blastx-only composition P-value adjustment is omitted because original source never executes it for tblastn. Typed references replace C pointer preconditions; missing required linked-stat/option state remains an assertion.",
+      "byte_start": 15507,
+      "byte_end": 17865
+    }
+  ],
+  "data": [],
+  "integration": [
+    "Expose protein_redo and export redo_protein_subject/ProteinRedoSubject/ProteinRedoError if desired. No shared edits were made.",
+    "redo_protein_subject(&ProteinInitialSearch, &NucleotideSequence, oid, ProteinPreliminarySubject) consumes preliminary owners and returns query_lists indexed by context plus best_scores, the original scaled score used as the composition-heap tie key before normalization. Native default tblastn has one context per query.",
+    "Native orchestration binds original Blast_RedoAlignmentCore per-query stages rather than claiming a complete one-to-one port of its multithreaded/external-source function. It merges six subject frame lists using original score comparator, initializes scoped scaled32 score/statistics copies, prepares query compositions and BLOSUM62 matrix/workspace, performs actual Blast_RedoOneMatch and HSP conversion, removes source-contained HSPs, calls original linked or unlinked E-values, reaps, normalizes and counts identities/positives.",
+    "CBS query data retain prepared masked contexts as in current source setup; final identities use original query and unmasked full-frame subject translations. On the focused pinned-tool smoke, masking CBS query gives source score253 while using original CBS query changes score257; source original residue reporting requires60 identities rather than masked51. This adapter behavior is recorded and needs broader end-to-end confirmation.",
+    "The source score block points at the last composition-adjusted matrix when counting positives; Native likewise binds the last adjusted matrix after redo and before final positives counting.",
+    "Only standard CBS2, NCBIstdaa protein queries, standard genetic code1 and ordinary non-OOF tblastn are supported. Existing original do_sum_stats/link parameters are used; no placeholder linking is substituted.",
+    "Database-level composition heap insertion/early termination, result collection/sorting, subject coordinate formatting and cross-platform/full-search parity/speed gates remain parent integration work. Parent should use result.best_scores[query] for the scaled tie key; normalized HSP score is not an equivalent tie key.",
+    "Scoped Clone of BlastScoreBlk and owned scoring parameters replace source save/rescale/restore mutation, retaining initial-search owner state. Matrix row binding and full frame identity translation are explicit ownership adapters, not new search algorithms."
+  ],
+  "temporary_validation": [
+    "/tmp/btyper-protein-redo-smoke.rs",
+    "/tmp/btyper-protein-redo-reverse.rs",
+    "/tmp/btyper-redo-query.fa",
+    "/tmp/btyper-redo-subject.fa"
+  ],
+  "integrated": true,
+  "native_context_reuse": "ProteinRedoContext borrows immutable search setup and owns per-search/thread scaled ScoreBlk/scoring, redo params/matrix info, masked query composition and words, workspace, flat adjusted matrix, alignment vectors and traceback DP arenas. redo_subject binds only current borrowed subject/genetic code to callbacks, returning scratch on success/error. No unsafe/self-reference or new upstream function mappings; existing single-subject wrapper creates one context. Actual database-wide six-subject reuse preserves all11 tblastn smoke hits and reported fields/order/statistics at CLI precision.",
+  "partial_translation_update": "The previous whole-frame identity shortcut is superseded: s_ComputeNumIdentities now uses original BlastTargetTranslationNew/GetTargetTranslation/Free cached windows. Native explicit slice-origin binding temporarily adjusts subject offsets only for the identity helper and restores them immediately. See target-translation.json."
+}

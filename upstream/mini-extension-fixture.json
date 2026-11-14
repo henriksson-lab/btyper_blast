@@ -1,0 +1,16 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 70907,
+  "origin": "Unchanged original na_ungapped.c, blast_extend.c, blast_nascan.c and lookup/scoring dependencies. Original scanner-generated seeds and selected/generic mini-extension callbacks execute. Harness callback type matches actual function signatures (Uint4 final range argument), avoiding the original TNaExtendFunction typedef Int4/Uint4 mismatch. Driver supplies statistical cutoff inputs; the complete word finder and default/statistical parameter construction are not executed.",
+  "command": "python scripts/generate_mini_extension_reference.py --output tests/fixtures/mini-extension-2.17.0.txt",
+  "fixture": "tests/fixtures/mini-extension-2.17.0.txt",
+  "fixture_sha256": "c7866c6d2bb44eded7f5f91df688c01a4925bb30b83713afc4f7f096ae157c33",
+  "harness": "tests/reference/mini_extension.c",
+  "harness_sha256": "1b6b41286c9e4a8722157f78a1dbd3ebeae142cba93292cae2a9950bd1d4690c",
+  "generator": "scripts/generate_mini_extension_reference.py",
+  "generator_sha256": "5af6259a78d72190d83e510ea3c699217bfa7af2fc7b957c89a76dc667db681c",
+  "shim": "tests/reference/include/corelib/ncbitype.h",
+  "shim_sha256": "9d3e1fc2301697ffbd57eae53f557b10e4737ad6f1d672f11a03749405feb29c",
+  "compiler": "GCC 11.4.0; identical Clang and ASan/UBSan output (leak detection disabled in sandbox)"
+}

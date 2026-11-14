@@ -1,0 +1,72 @@
+{
+  "translations": [],
+  "data": [
+    {
+      "version": "2.17.0+",
+      "source": "include/algo/blast/core/blast_seqsrc.h",
+      "source_sha256": "402cf0f8b2e209e0ba2b70b2d47b8fe1ba537e51592fb0dd2eb14095a92de37a",
+      "rust_path": "src/protein_setup.rs",
+      "symbols": {
+        "BLAST_SEQSRC_MINLENGTH": "BLAST_SEQSRC_MINLENGTH"
+      },
+      "line_start": 205,
+      "line_end": 205,
+      "byte_start": 8226,
+      "byte_end": 8303,
+      "status": "translated",
+      "adaptations": "Typed i32 retains source10nt metadata fallback. Native standard-database tblastn setup divides by3 exactly as BLAST_GapAlignSetUp; using actual shortest FASTA input changes source preliminary thresholds and loses weak CBS hits.",
+      "validation": "Real staph_st14 whole-search differential: beforefix50nativevs52reference, afterfix52/52exact ordered19fields with original CLI float formatting. Original source C wordfinder on exact native query/frame data independently matched all seed records beforefix, identifying metadata binding rather than kernel defect."
+    }
+  ],
+  "source_evidence": [
+    {
+      "source": "include/objtools/blast/seqdb_reader/impl/seqdbfile.hpp",
+      "line_start": 563,
+      "line_end": 566,
+      "byte_start": 18900,
+      "byte_end": 18965,
+      "source_sha256": "9015d9ca63e7905221d9c69f0cfd167f76c74b60b2f0ef4efe1dec28d84157ca"
+    },
+    {
+      "source": "src/objtools/blast/seqdb_reader/seqdbfile.cpp",
+      "line_start": 142,
+      "line_end": 142,
+      "byte_start": 5162,
+      "byte_end": 5194,
+      "source_sha256": "06384846a960a079c57b2b0d7ea3386903bf5c1f55d5d199b9594f5fc3b0ee47"
+    },
+    {
+      "source": "src/objtools/blast/seqdb_reader/seqdbimpl.cpp",
+      "line_start": 136,
+      "line_end": 136,
+      "byte_start": 4940,
+      "byte_end": 5013,
+      "source_sha256": "3b557dda5a79383c8310ae93555d3524d4911bb8d7ae9e9674a1e509beabb407"
+    },
+    {
+      "source": "src/algo/blast/core/blast_setup.c",
+      "line_start": 969,
+      "line_end": 974,
+      "byte_start": 35937,
+      "byte_end": 36121,
+      "source_sha256": "a7d988d7abd7abcf0f0cf4525237fa1048fc40b19d5be25db5d6f25f0bc9a91f"
+    }
+  ],
+  "integration": [
+    "Fix native ProteinInitialSearch to use original standard SeqDB minimum-length fallback10nt, then translated minimum3aa. This is a compatibility binding of source metadata behavior; it is intentionally not a mathematical replacement with actual min input length.",
+    "CSeqDBIdxFile.m_MinLen is initialized0 and never assigned in pinned source; accessor returns0. Default CSeqDBImpl initialization substitutes10 when minimum<=0. Explicit MIN_SEQ_LENGTH alias/filter modes are outside the standard fresh-db scope.",
+    "Staph original missing HSPs restored: p0_exact_frame1/LGJG01000037 q11..42,s82878..82976,+3,score55,E1.0; p1_exact_frame2/LGJG01000042 q59..155,s823..539,-1,score52,E5.6. Native raw preliminary word thresholds drop40\u219237 forp0 and40\u219238 forp1; previously neither seed survived to gapped scoring.",
+    "Removing the exact-minimum<=0 rejection also permits standard mixed-database short subjects to reach the existing source wordsize-based skip, rather than rejecting an entire database because one record has<3bases.",
+    "No shared core algorithm or comparator was changed. Source wordfinder C parity on affected real masked queries/full translated frames matched17and6seed records exactly before the metadata fix. Full staph52hits now agree; this remains a focused parity result, not a speed proof."
+  ],
+  "temporary_validation": [
+    "/tmp/btyper-staph-debug/original.tsv",
+    "/tmp/btyper-staph-debug/native.tsv",
+    "/tmp/btyper-staph-debug/native-fixed.tsv",
+    "/tmp/btyper-staph-word.rs",
+    "/tmp/btyper-staph-word.c",
+    "/tmp/btyper-staph-stage.rs",
+    "/tmp/btyper-staph-stat.rs"
+  ],
+  "integrated": true
+}

@@ -1,0 +1,215 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aalookup.c",
+      "symbol": "BlastAaLookupTableNew",
+      "line_start": 227,
+      "line_end": 254,
+      "source_sha256": "be935ca264f0cda6d63530d136a587f3f8c7ea54c0e6ef6aa26246d672c8091f",
+      "rust_path": "src/core/blast_aalookup.rs",
+      "rust_symbol": "blast_aa_lookup_table_new",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Pass only opt.word_size and opt.threshold as explicit constructor inputs because the shared scoped nucleotide LookupTableOptions currently lacks threshold. Preserve ilog2(28)+1 char width, OR-built non-power-of-two backbone size, mask and threshold truncation; other calloc-zero fields remain zero. Reject index widths above signed-32-bit capacity.",
+      "byte_start": 9641,
+      "byte_end": 10548
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aalookup.c",
+      "symbol": "BlastAaLookupFinalize",
+      "line_start": 267,
+      "line_end": 411,
+      "source_sha256": "0e17aba0c133df0a02bf9554a44172c65cee92407817a6a71cf7de2c64960079",
+      "rust_path": "src/core/blast_aalookup.rs",
+      "rust_symbol": "blast_aa_lookup_finalize",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Keep normal cells 16 bytes and small cells 12 bytes/alignment 4. Small union uses native-endian byte field bindings for u16 entries and i32 overflow cursor, avoiding unsafe alias reads while preserving cache geometry. Separate typed Vecs represent the original void* active normal/small storage. Preserve three inline hits, overflow allocation/count/cursor, PV bits, u16 truncation and freeing every thin chain.",
+      "byte_start": 10756,
+      "byte_end": 16509
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aalookup.c",
+      "symbol": "BlastAaLookupIndexQuery",
+      "line_start": 413,
+      "line_end": 426,
+      "source_sha256": "dc86dfd3629f28350a228a59940e7ecd0f44dad3048474757b72bd6336cd937a",
+      "rust_path": "src/core/blast_aalookup.rs",
+      "rust_symbol": "blast_aa_lookup_index_query",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded.",
+      "byte_start": 16511,
+      "byte_end": 17004
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aalookup.c",
+      "symbol": "s_AddNeighboringWords",
+      "line_start": 428,
+      "line_end": 470,
+      "source_sha256": "0bec2415406160fa9026c655292933acc68c67d4df87925aaaae1010d65dd4ab",
+      "rust_path": "src/core/blast_aalookup.rs",
+      "rust_symbol": "s_add_neighboring_words",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Reuse existing 1:1 generic exact indexing and add-hit functions. Preserve grouping of identical words before neighborhood enumeration, 32-byte stack subject word, row-max pruning, recursive alphabet traversal and explicit exact-word inclusion below threshold. LOOKUP_VERBOSE-only diagnostics remain disabled/zero as in the reference build.",
+      "byte_start": 17006,
+      "byte_end": 18593
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aalookup.c",
+      "symbol": "s_AddWordHits",
+      "line_start": 472,
+      "line_end": 544,
+      "source_sha256": "c6ee4528d83283c7a016178709de69fea2b7177585402c8d1a7d416fd7bac31e",
+      "rust_path": "src/core/blast_aalookup.rs",
+      "rust_symbol": "s_add_word_hits",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Reuse existing 1:1 generic exact indexing and add-hit functions. Preserve grouping of identical words before neighborhood enumeration, 32-byte stack subject word, row-max pruning, recursive alphabet traversal and explicit exact-word inclusion below threshold. LOOKUP_VERBOSE-only diagnostics remain disabled/zero as in the reference build.",
+      "byte_start": 18595,
+      "byte_end": 21027
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aalookup.c",
+      "symbol": "s_AddWordHitsCore",
+      "line_start": 546,
+      "line_end": 606,
+      "source_sha256": "2cfcb99157d288444e467f42e051205cd9d146ad90ccbcf2cf1b8a6e5052ec1e",
+      "rust_path": "src/core/blast_aalookup.rs",
+      "rust_symbol": "s_add_word_hits_core",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Reuse existing 1:1 generic exact indexing and add-hit functions. Preserve grouping of identical words before neighborhood enumeration, 32-byte stack subject word, row-max pruning, recursive alphabet traversal and explicit exact-word inclusion below threshold. LOOKUP_VERBOSE-only diagnostics remain disabled/zero as in the reference build.",
+      "byte_start": 21029,
+      "byte_end": 23342
+    },
+    {
+      "version": "2.17.0+",
+      "source": "include/algo/blast/core/blast_lookup.h",
+      "symbol": "ComputeTableIndexIncremental",
+      "line_start": 121,
+      "line_end": 128,
+      "source_sha256": "94c353a3da848aa570ea60106de69ae30c3dfeae3c5c3be9dfc54f6bedf613d2",
+      "rust_path": "src/core/blast_aascan.rs",
+      "rust_symbol": "compute_table_index_incremental",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Slice replaces pointer; preserve signed 32-bit shift/OR/mask operations. Located in the new scan module pending parent consolidation into shared blast_lookup.",
+      "byte_start": 4706,
+      "byte_end": 4969
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aascan.c",
+      "symbol": "s_BlastAaScanSubject",
+      "line_start": 48,
+      "line_end": 131,
+      "source_sha256": "271c40b9051d7d35428e9befb564ea3e9ef46d9b094753fefa186b8e79ac6083",
+      "rust_path": "src/core/blast_aascan.rs",
+      "rust_symbol": "s_blast_aa_scan_subject",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Typed AminoAcidSubject provides original sequence and half-open sequence ranges. Preserve full three-element scanning state, priming/incremental indexes, PV lookup, inline/overflow selection, all-or-nothing word-list copying and restart offset on insufficient capacity.",
+      "byte_start": 2020,
+      "byte_end": 5167
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aascan.c",
+      "symbol": "s_BlastSmallAaScanSubject",
+      "line_start": 134,
+      "line_end": 217,
+      "source_sha256": "ff3858862bccfa333b677411a5cc5064beeb9664fa359a128db16dca84917954",
+      "rust_path": "src/core/blast_aascan.rs",
+      "rust_symbol": "s_blast_small_aa_scan_subject",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Typed AminoAcidSubject provides original sequence and half-open sequence ranges. Preserve full three-element scanning state, priming/incremental indexes, PV lookup, inline/overflow selection, all-or-nothing word-list copying and restart offset on insufficient capacity.",
+      "byte_start": 5213,
+      "byte_end": 8374
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aascan.c",
+      "symbol": "BlastChooseProteinScanSubject",
+      "line_start": 553,
+      "line_end": 569,
+      "source_sha256": "53e8b14e30ddff3f52d0d18353450a55cef32d5708e84f58acb4c43e83fd8eaf",
+      "rust_path": "src/core/blast_aascan.rs",
+      "rust_symbol": "blast_choose_protein_scan_subject",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Store typed callback on the ordinary table, replacing the untyped wrapper/void* field. The unsupported compressed-table branch cannot be represented by this scoped table type.",
+      "byte_start": 21259,
+      "byte_end": 21967
+    }
+  ],
+  "data": [
+    {
+      "version": "2.17.0+",
+      "source": "include/algo/blast/core/blast_aalookup.h",
+      "source_sha256": "ee57a48626ad0a74cc3d516888111841433e1dcc880b400191b6c4917536cb43",
+      "rust_path": "src/core/blast_aalookup.rs",
+      "symbols": {
+        "AA_HITS_PER_CELL": "AA_HITS_PER_CELL",
+        "EBoneType": "EBoneType"
+      },
+      "adaptations": "Retain three inline hits and backbone discriminants 0/1. Preserve original normal/small cell physical sizes via explicit typed payload layouts.",
+      "status": "translated",
+      "validation": "Focused original-C construction/table/scan comparisons."
+    },
+    {
+      "version": "2.17.0+",
+      "source": "include/algo/blast/core/blast_options.h",
+      "source_sha256": "4d21486f1f5a18f88cefad64d8381fe824e864800cc76a7c1ec39f42311e08df",
+      "rust_path": "src/core/blast_aalookup.rs",
+      "symbols": {
+        "BLAST_WORDSIZE_PROT": "BLAST_WORDSIZE_PROT",
+        "BLAST_WORD_THRESHOLD_TBLASTN": "BLAST_WORD_THRESHOLD_TBLASTN"
+      },
+      "adaptations": "Default tblastn word size 3 and neighboring threshold 13 retained; the constructor accepts these fields explicitly.",
+      "status": "translated",
+      "validation": "Focused original-C construction/table/scan comparisons."
+    }
+  ],
+  "integration": {
+    "modules": [
+      "Add pub mod blast_aalookup;",
+      "Add pub mod blast_aascan;"
+    ],
+    "entry_points": "blast_aa_lookup_table_new(word_size, threshold), blast_aa_lookup_index_query(&mut lookup, &matrix, query_codes, included_inclusive_regions, query_bias=0), blast_aa_lookup_finalize(...bone...), blast_choose_protein_scan_subject(&mut lookup), then the stored scan callback.",
+    "bone_selection": "Original lookup_wrap.c chooses EBoneType::Backbone at query.length >= INT2_MAX*2 (65534); otherwise Smallbone. Normal and small paths are both implemented.",
+    "scan_input": "AminoAcidSubject { sequence, seq_ranges } uses half-open subject regions. Initial s_range is [0, first.left, first.right-word_length]. Each callback returns ordered offset pairs and updates all three scanning-state fields. For a full subject use one region [0, subject_length].",
+    "shared_dependencies": [
+      "Already translated generic BlastLookupAddWordHit, BlastLookupIndexQueryExactMatches, ComputeTableIndex, ilog2, s_DetermineScanningOffsets and BlastOffsetPair.",
+      "LookupTableOptions does not require editing: constructor takes only its word_size and threshold fields explicitly.",
+      "ComputeTableIndexIncremental is newly mapped in blast_aascan.rs; parent may relocate it to shared blast_lookup if desired."
+    ],
+    "remaining_dependencies": [],
+    "scope": "Default ordinary amino-acid lookup with BLOSUM62 supplied by existing score block; no PSSM/RPS/compressed lookup or multi-program wrapper port.",
+    "validation_artifacts": [
+      "/tmp/btyper-aa-lookup-c-check.c",
+      "/tmp/btyper-aa-lookup-check.rs",
+      "/tmp/btyper-aa-lookup-c-check.txt",
+      "/tmp/btyper-aa-lookup-rust-check.txt"
+    ]
+  },
+  "integrated": true
+}

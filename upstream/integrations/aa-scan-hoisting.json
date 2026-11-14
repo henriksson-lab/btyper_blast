@@ -1,0 +1,44 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aascan.c",
+      "symbol": "s_BlastAaScanSubject",
+      "line_start": 48,
+      "line_end": 131,
+      "source_sha256": "271c40b9051d7d35428e9befb564ea3e9ef46d9b094753fefa186b8e79ac6083",
+      "rust_path": "src/core/blast_aascan.rs",
+      "rust_symbol": "s_blast_aa_scan_subject",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added. Safe-hoist follow-up: unchanged pinned-C16-table comparison rerun in debug and optimized Rust; all2735 output lines (metadata/cells/PV/overflow and complete scan hit/restart streams, including capacity0/1/longest/roomy and one/two ranges) match exactly. Standalone equivalent compiler inspection reduces small-scanner bounds-panic sites8to4 and stack216to200bytes; this is code-generation evidence, not a speed claim. Broad whole-search raw parity and paired timing are coordinated by parent on the combined frozen artifact.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Typed AminoAcidSubject provides original sequence and half-open sequence ranges. Preserve full three-element scanning state, priming/incremental indexes, PV lookup, inline/overflow selection, all-or-nothing word-list copying and restart offset on insufficient capacity. Profile-guided safe representation hoist: borrow local PV/backbone/overflow slices; validate the complete declared output capacity and each scannable subject span once; iterate the incoming residue bytes directly with unchanged rolling-index arithmetic and source position progression. Validate each complete source/destination hit run once, then zip source entries with destination elements instead of indexing each output hit. Small inline u16 entries are decoded from native-endian two-byte chunks in the same union byte order. No unchecked/unsafe indexing, table/cell layout change, masking, hit-order change, capacity/restart change or algorithm replacement. Original ComputeTableIndexIncremental function remains available; scan loop expands its identical last-character arithmetic to avoid constructing a suffix slice per position.",
+      "byte_start": 2020,
+      "byte_end": 5167
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_aascan.c",
+      "symbol": "s_BlastSmallAaScanSubject",
+      "line_start": 134,
+      "line_end": 217,
+      "source_sha256": "ff3858862bccfa333b677411a5cc5064beeb9664fa359a128db16dca84917954",
+      "rust_path": "src/core/blast_aascan.rs",
+      "rust_symbol": "s_blast_small_aa_scan_subject",
+      "reason": "Standard tblastn protein neighborhood lookup construction and scanning",
+      "status": "translated",
+      "validation": "Focused standalone original-C/Rust complete-output comparison over 16 constructed tables (four protein query patterns, thresholds 0/13, normal/small bones): metadata, every occupied cell, PV and full overflow arrays; all scan hits and restart states with 0/1/minimum/roomy capacities and one/two subject ranges. Original constructors/neighbor enumeration/finalizers/scanners execute unchanged. Normal/small cell sizes checked as 16/12 bytes. Temporary /tmp/btyper-aa-lookup-* harnesses only; no broad fixture corpus added. Safe-hoist follow-up: unchanged pinned-C16-table comparison rerun in debug and optimized Rust; all2735 output lines (metadata/cells/PV/overflow and complete scan hit/restart streams, including capacity0/1/longest/roomy and one/two ranges) match exactly. Standalone equivalent compiler inspection reduces small-scanner bounds-panic sites8to4 and stack216to200bytes; this is code-generation evidence, not a speed claim. Broad whole-search raw parity and paired timing are coordinated by parent on the combined frozen artifact.",
+      "adaptations": "Scoped to ordinary non-PSSM amino-acid lookup used by standard tblastn. Preserve table geometry, query offset/hit ordering, threshold comparisons and original loop/branch order. Borrowed slices and owned Vecs replace C sequence blocks, pointer/count arrays and allocation/free; ordinary Rust allocation failure behavior applies. PSSM, RPS and compressed protein lookup paths are excluded. Typed AminoAcidSubject provides original sequence and half-open sequence ranges. Preserve full three-element scanning state, priming/incremental indexes, PV lookup, inline/overflow selection, all-or-nothing word-list copying and restart offset on insufficient capacity. Profile-guided safe representation hoist: borrow local PV/backbone/overflow slices; validate the complete declared output capacity and each scannable subject span once; iterate the incoming residue bytes directly with unchanged rolling-index arithmetic and source position progression. Validate each complete source/destination hit run once, then zip source entries with destination elements instead of indexing each output hit. Small inline u16 entries are decoded from native-endian two-byte chunks in the same union byte order. No unchecked/unsafe indexing, table/cell layout change, masking, hit-order change, capacity/restart change or algorithm replacement. Original ComputeTableIndexIncremental function remains available; scan loop expands its identical last-character arithmetic to avoid constructing a suffix slice per position.",
+      "byte_start": 5213,
+      "byte_end": 8374
+    }
+  ],
+  "data": [],
+  "integration": [
+    "Only src/core/blast_aascan.rs changes; no lookup/cell geometry or shared API changes. Source function mapping/ranges/hashes remain unchanged.",
+    "Frozen implementation is the simple safe span/hit-run view hoist only. Padded PV/const specialization trial stayed under /tmp and was not adopted; no extra copy or stackPV exists in production.",
+    "Source mask32767 exceeds 28-letter backbone maximum28539, so mask alone is not a valid proof for table bounds. Production retains safe PV/backbone guards. A further one-time-PV-coverage plus pre-PV index guard experiment stayed under /tmp; it retained per-position checks and increased stack, so it was not adopted.",
+    "Pending whole-search regression and benchmark coordination uses combined AA/NucScratch/masked-identity source freeze. No speed improvement claimed from compilation or isolated scanner equivalence."
+  ],
+  "integrated": true
+}

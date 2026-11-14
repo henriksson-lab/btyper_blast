@@ -1,0 +1,27 @@
+{
+  "command": [
+    "cargo",
+    "build",
+    "--release",
+    "--locked",
+    "--example",
+    "native_search"
+  ],
+  "profile": {
+    "release": {
+      "lto": "thin",
+      "codegen-units": 1
+    }
+  },
+  "environment": {
+    "RUSTFLAGS": null,
+    "CARGO_BUILD_TARGET": null,
+    "CARGO_PROFILE_RELEASE_LTO": null,
+    "CARGO_PROFILE_RELEASE_CODEGEN_UNITS": null
+  },
+  "CARGO_TARGET_DIR": "/tmp/btyper-completion-target",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: x86_64-unknown-linux-gnu\nrelease: 1.98.1\nLLVM version: 22.1.8\n",
+  "cargo": "cargo 1.98.1 (797e8a9bc 2026-08-05)\n",
+  "native_sha256": "c144e261b4c768d55f19c65442dbcb069e88be8e23ea26fd82463d1ec6d9ad8e",
+  "rust_source_and_cargo_sha256": "9e5cb9480b7266975eb01b66e1851cd5c1bb1682b70e39f315705aaa10f78319"
+}

@@ -1,0 +1,13 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "executable_archive_sha256": "3888112d8207831aa47371d93583c601f058f88b5db22dc782438b039a3a411b",
+  "records": 414,
+  "fixture": "tests/fixtures/query-2.17.0.txt",
+  "generator": "scripts/generate_query_reference.py",
+  "range_parser": "scripts/source_ranges.py",
+  "origin": "Official BLAST archive requests for default megablast and traditional blastn. Decode actual query encodings; retain whole-query DUST masks from LCaseMask options and deduplicate strand copies. Reported result masks can omit whole-query intervals. No standalone dustmasker SkipNs wrapper is used.",
+  "fixture_sha256": "09d7c3a669f81448ceabb416e179159c88680e6c536cab917de0d08771cf528f",
+  "generator_sha256": "1f6b3b3c5eca4ffd5facd6682db808a6a9ad0a1d3dce7560267aed19aa4bf92b",
+  "range_parser_sha256": "68fcf0cb4afa205042cdfcbe94f3bf3df245a5618973efc7f70bc2d1036841c3"
+}

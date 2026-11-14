@@ -1,0 +1,243 @@
+{
+  "version": "2.17.0+",
+  "audit_scope": "Supported default blastn/megablast/tblastn result limits, ranking, filtering and adversarial boundary evidence. No production Rust edits.",
+  "default_bindings": [
+    {
+      "item": "Subject caps",
+      "source": "src/algo/blast/core/blast_hits.c:GetPrelimHitlistSize and core/C++ HitSavingOptions defaults",
+      "rust": [
+        "src/core/blast_hits.rs:751",
+        "src/core/hspfilter_collector.rs:15",
+        "src/nucleotide_search.rs:105",
+        "src/protein_search.rs:126",
+        "src/core/blast_options.rs:231"
+      ],
+      "finding": "Default500 final; source gapped nucleotide collector550, CBS2 tblastn collector1050 with ADAPTIVE_CBS absent. Correct dispatch values0/2 are present."
+    },
+    {
+      "item": "Collector and final ranking",
+      "rust": [
+        "src/core/blast_hits.rs:602",
+        "src/core/blast_hits.rs:516",
+        "src/nucleotide_search.rs:254",
+        "src/nucleotide_search.rs:293",
+        "src/protein_search.rs:309",
+        "src/protein_search.rs:323",
+        "src/protein_search.rs:387",
+        "src/core/blast_result_pipeline.rs:10"
+      ],
+      "finding": "Source heap update, Evalue ordering including<1e-180 equivalence, score/OID ties, source candidate stream order, final sort and prune are bound. Protein additionally uses original CBS heap with original pre-normalization best-score tie key and inclusion0.002."
+    },
+    {
+      "item": "Standard filtering",
+      "rust": [
+        "src/core/blast_prelim_evaluate.rs:14",
+        "src/core/blast_traceback.rs:44",
+        "src/core/blast_traceback.rs:426",
+        "src/core/blast_hsp_evaluate.rs:442",
+        "src/protein_redo.rs:154",
+        "src/core/blast_hits.rs:413"
+      ],
+      "finding": "Source preliminary Evalue reaping, endpoint/containment suppression, final ambiguity/score/identity evaluation and final expect10 reaping exist. Inactive defaults percent_identity0,query_cov_hsp_perc0,max_hsps_per_subject0,hsp_num_max0 do not require introducing unsupported option branches to test standard behavior."
+    }
+  ],
+  "previous_limit_evidence": {
+    "path": "/tmp/btyper-nucleotide-search-smoke.rs",
+    "record": "upstream/integrations/result-pipeline.json",
+    "finding": "Native-only551 identical classicblastn subjects asserted550 selected,550 traced,500 final; not an authoritative original-vs-native selected-ID/order comparison."
+  },
+  "new_authoritative_whole_pipeline_limit_evidence": {
+    "reproducer": "scripts/differential_result_limits.py",
+    "script_sha256": "704540dca2a8c3834fe80bffdf371c9700ae2e131ca37088c8efa5b4aaa82203",
+    "command": "python3 scripts/differential_result_limits.py --native /tmp/btyper-completion-target/release/examples/native_search --work-dir /tmp/btyper-final-result-limit-validation",
+    "report": "/tmp/btyper-final-result-limit-validation/report.json",
+    "native_sha256": "c144e261b4c768d55f19c65442dbcb069e88be8e23ea26fd82463d1ec6d9ad8e",
+    "comparison": "All19 CLI fields and exact result order/selected subject IDs; fresh original pinnedv5reference DB,1thread/default settings. Six single-query cases return500HSPs/500distinctsubjects; one weak-multiquery case returns1000HSPs/500subjects per query. No native disk support implied.",
+    "cases": [
+      {
+        "program": "megablast",
+        "case": "equal",
+        "input_subjects": 551,
+        "input_queries": 1,
+        "preliminary_limit": 550,
+        "final_limit": 500,
+        "status": "match",
+        "hsps": 500,
+        "distinct_subjects": 500,
+        "subjects_by_query": {
+          "query": 500
+        },
+        "query_sha256": "c35c758529e284616d9e7c06c8b3f3a6d128037f12d802333c1e3e135503c3c9",
+        "subjects_sha256": "0cfaa39e28ef95bd20c2b75b7b8fd04b28c72fd65882015b49647d30040b841a",
+        "original_executable_sha256": "33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5",
+        "original_output_sha256": "8e5f009cab81c8388e834401fc822aba0d0759af7e0c2328843d8e75e3a18c18",
+        "native_output_sha256": "e6e7cfec433c79c2c3fbc5b1f3b6c44e2a9f969c4503c8a766165ebc85ae401a"
+      },
+      {
+        "program": "megablast",
+        "case": "rank_boundary",
+        "input_subjects": 551,
+        "input_queries": 1,
+        "preliminary_limit": 550,
+        "final_limit": 500,
+        "status": "match",
+        "hsps": 500,
+        "distinct_subjects": 500,
+        "subjects_by_query": {
+          "query": 500
+        },
+        "query_sha256": "c35c758529e284616d9e7c06c8b3f3a6d128037f12d802333c1e3e135503c3c9",
+        "subjects_sha256": "6c7cd48ca205a3cb0e62c241f7d16c3b85bc3d3ecea37239888684970f30ffb2",
+        "original_executable_sha256": "33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5",
+        "original_output_sha256": "a6c471040db9605f2a862a6ce6c46139984372a2af3d2922e229d9e705d41f79",
+        "native_output_sha256": "06f8d21596e5c831a42a99f44440a866e65d6d3929242c04eac66d980ea302e7"
+      },
+      {
+        "program": "blastn",
+        "case": "equal",
+        "input_subjects": 551,
+        "input_queries": 1,
+        "preliminary_limit": 550,
+        "final_limit": 500,
+        "status": "match",
+        "hsps": 500,
+        "distinct_subjects": 500,
+        "subjects_by_query": {
+          "query": 500
+        },
+        "query_sha256": "c35c758529e284616d9e7c06c8b3f3a6d128037f12d802333c1e3e135503c3c9",
+        "subjects_sha256": "0cfaa39e28ef95bd20c2b75b7b8fd04b28c72fd65882015b49647d30040b841a",
+        "original_executable_sha256": "33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5",
+        "original_output_sha256": "14e773bc3067ccd84989686928c46ed77eb8de372fcb186e158f4dedb7241c03",
+        "native_output_sha256": "f47b71700672c81dd9292a275998bb21d0addc6b2feb6aa187b42e1daf984925"
+      },
+      {
+        "program": "blastn",
+        "case": "rank_boundary",
+        "input_subjects": 551,
+        "input_queries": 1,
+        "preliminary_limit": 550,
+        "final_limit": 500,
+        "status": "match",
+        "hsps": 500,
+        "distinct_subjects": 500,
+        "subjects_by_query": {
+          "query": 500
+        },
+        "query_sha256": "c35c758529e284616d9e7c06c8b3f3a6d128037f12d802333c1e3e135503c3c9",
+        "subjects_sha256": "6c7cd48ca205a3cb0e62c241f7d16c3b85bc3d3ecea37239888684970f30ffb2",
+        "original_executable_sha256": "33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5",
+        "original_output_sha256": "ce6e81e376e31a1c66fd68c06c24798f73c25f1acce22c5b470125f1b723bcdb",
+        "native_output_sha256": "5e94d06f8ff292aec3c03701d8212e4a52597761c938afa92001de957c0917ec"
+      },
+      {
+        "program": "tblastn",
+        "case": "equal",
+        "input_subjects": 1101,
+        "input_queries": 1,
+        "preliminary_limit": 1050,
+        "final_limit": 500,
+        "status": "match",
+        "hsps": 500,
+        "distinct_subjects": 500,
+        "subjects_by_query": {
+          "query": 500
+        },
+        "query_sha256": "bdf7ff1b21e429b952397b1c3a2d447d1fc09417ecd0481beff3150bbf280ac5",
+        "subjects_sha256": "d07b8a5bd4a66647f382dab63abdcda220014bea0b0d1f3a7b8903413bf488cb",
+        "original_executable_sha256": "fea14b77d4452a524a003196824f414812126bd3fb64d950feec8bacccf4976c",
+        "original_output_sha256": "e4aa9592230d60c4ed1d11ec4f7537cbd3460b27227daf670652d5d72f4925e0",
+        "native_output_sha256": "d1349dd57f1d73f8f4cc1e31946e59d827e33e14bc910404c2e0d1dee7a59e5e"
+      },
+      {
+        "program": "tblastn",
+        "case": "rank_boundary",
+        "input_subjects": 1101,
+        "input_queries": 1,
+        "preliminary_limit": 1050,
+        "final_limit": 500,
+        "status": "match",
+        "hsps": 500,
+        "distinct_subjects": 500,
+        "subjects_by_query": {
+          "query": 500
+        },
+        "query_sha256": "bdf7ff1b21e429b952397b1c3a2d447d1fc09417ecd0481beff3150bbf280ac5",
+        "subjects_sha256": "8a070527f3903e54dc91abaa06877710c1da54cd3a65f61ee3f2e76e27147dd1",
+        "original_executable_sha256": "fea14b77d4452a524a003196824f414812126bd3fb64d950feec8bacccf4976c",
+        "original_output_sha256": "4cb0e3ce45ccb19c04529ca74e4ac9b975ecf23d8623b83fb9283bf73389567c",
+        "native_output_sha256": "93a63b906619fde7275078ffa6261a43231cc5f5f60359f432fdc9aeebe0fb4f"
+      },
+      {
+        "program": "tblastn",
+        "case": "weak_multi_heap",
+        "input_subjects": 1101,
+        "input_queries": 2,
+        "preliminary_limit": 1050,
+        "final_limit": 500,
+        "status": "match",
+        "hsps": 1000,
+        "distinct_subjects": 500,
+        "subjects_by_query": {
+          "qA": 500,
+          "qB": 500
+        },
+        "query_sha256": "d4b54bfa8e955119590009f577e54f2fcfddcacc893655d337471a5046b47a8f",
+        "subjects_sha256": "f311c5b3e2630a9e076795f52b04f4a2a42b6f82576c04f269f3d242c29974ac",
+        "original_executable_sha256": "fea14b77d4452a524a003196824f414812126bd3fb64d950feec8bacccf4976c",
+        "original_output_sha256": "ef004ed0565a57abb8463e643463f02013b4f9185b39c4c24f685d0d3b1fe1c9",
+        "native_output_sha256": "b0107a9667ff63a3e7615be615e15d357776d582963d033f37226f0694527fc7"
+      }
+    ],
+    "limits": "CLI bits/Evalues compared only at original displayed precision. Not a new rawfloat-bit/core-seed proof. Results refer to recorded artifact; subsequent semantic changes require rerun."
+  },
+  "remaining_material_unverified_cases": [
+    {
+      "item": "Adjacent default expectation boundaries",
+      "evidence": [
+        "src/core/blast_hits.rs:413",
+        "src/core/blast_prelim_evaluate.rs:14",
+        "scripts/differential_nucleotide.py:27",
+        "scripts/differential_protein.py:45"
+      ],
+      "finding": "No deliberately constructed complete search straddling final expect10 or translated preliminary stretch cutoff located. Existing C reaping/statistical helper checks and real-search parity do not specifically establish adjacent accepted/rejected complete-search behavior. Code/default binding present."
+    }
+  ],
+  "conclusion": "No additional missing default result-limit/ranking/filter mechanism identified. Authoritative7compactcase final500subject parity passes correctedartifact; coupled multiquery CBS earlytermination branch also matches original actualchild counts and weakpositive criteria. Remaining adjacent expectation boundary note is an evidence limit, not a request for broad fixture expansion.",
+  "weak_multi_query_early_termination_proof": {
+    "case": "tblastn weak_multi_heap;2distinct-IDidentical40AA queries,500sharedstrong/601sharedweak subjects each40AA; source collector retains1050/query",
+    "calibration": "One compact five-subject calibration tested source/native CLI; source exact7AA raw42 segment selected from BLOSUM62 scores with stop flanks preventing incidental extension. Native preliminary Evalue evaluated with original expected database dimension. No nondefault flags alter full1101subject search.",
+    "original_own_child_gdb": {
+      "executable_sha256": "fea14b77d4452a524a003196824f414812126bd3fb64d950feec8bacccf4976c",
+      "script": "/tmp/btyper-weak-gdb.py",
+      "script_sha256": "412aa330356764225eabb92519b60176ad1e04066d26d5f5035ef4b277b010fe",
+      "result": "/tmp/btyper-weak-limit/gdb-branches.json",
+      "result_sha256": "513ec5e153cf12b6b5fe627c4037f2dabdb81dde7931f957a1fa0bbccf0f161f",
+      "methods": [
+        "Breakpoint exported BlastCompo_EarlyTermination +finish return register",
+        "Breakpoint exported BlastCompo_HeapWouldInsert, capture weak subjectindex>=500 Evalue"
+      ],
+      "early_calls": 2100,
+      "early_true": 550,
+      "early_false": 1550,
+      "true_preliminary_evalue": 0.09402730535862554,
+      "weak_completed_alignment_final_evalue": 0.5370058963898124,
+      "weak_completed_count": 550,
+      "errors": [],
+      "inputs_identical_to_final_repro_case": true,
+      "safety": "Only newly launched own official child traced. Sandbox ptrace blocked; narrow escalation approved. No modified BLAST code or forced search options."
+    },
+    "corrected_native_diagnostics": {
+      "artifact_sha256": "c144e261b4c768d55f19c65442dbcb069e88be8e23ea26fd82463d1ec6d9ad8e",
+      "probe_source": "/tmp/btyper-weak-probe.rs",
+      "probe_source_sha256": "0b3b08678312934bee860588c21e6903ae8c90752cbd083a82e2a3c7ce4885d3",
+      "linked_rlib": "/tmp/btyper-completion-target/release/deps/libbtyper_blast-fe32b249630762ca.rlib",
+      "linked_rlib_sha256": "8e72ea2f246887916dd660fbe2c69dac21028236ee5390252a57136646ef82ae",
+      "diagnostics": "/tmp/btyper-final-result-limit-validation/native-weak-diagnostics.txt",
+      "preliminary_subject_lists": 2100,
+      "traceback_subject_lists": 1550,
+      "early_terminated_subject_lists": 550
+    },
+    "interpretation": "Bothoriginal/native execute1550redo calls and skip550weak tails; originalweak finals0.5370058963898124 lie between inclusion0.002 and final10, trueprelimE0.09402730535862554 exceeds5*0.002 gate. Firstqueryweak tail runs while secondqueryheapempty; finalqueryweak tail skips only after bothheapsfilled. All1000finalHSP19fields/order match."
+  }
+}

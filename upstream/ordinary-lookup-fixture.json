@@ -1,0 +1,16 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 82038,
+  "compiler": "cc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "origin": "Original unchanged C table builders, masking predicates and selected/forced generic scanners; unused toolkit code discarded by linker. Complete defined table payloads, overflow and PV arrays compared. Subject fixtures include two readable zero tail bytes for all generic kernel fetches.",
+  "command": "python scripts/generate_lookup_reference.py --kind ordinary_lookup --output tests/fixtures/ordinary-lookup-2.17.0.txt",
+  "fixture": "tests/fixtures/ordinary-lookup-2.17.0.txt",
+  "fixture_sha256": "ba7e6bbf8de3cd4ec03604005514798a02259158ffb92835f317e8011f7269c3",
+  "harness": "tests/reference/ordinary_lookup.c",
+  "harness_sha256": "5173119c52838d1607939d1a0679039945c17fd0417626a79ad6d81315f7ef40",
+  "generator": "scripts/generate_lookup_reference.py",
+  "generator_sha256": "d1346e8af17abb25669b03cfd8b69809136b021f20aa168fbea4d25937eefc63",
+  "shim": "tests/reference/include/corelib/ncbitype.h",
+  "shim_sha256": "9d3e1fc2301697ffbd57eae53f557b10e4737ad6f1d672f11a03749405feb29c"
+}

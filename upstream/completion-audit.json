@@ -1,0 +1,389 @@
+{
+  "version": "2.17.0+",
+  "audit_kind": "read-only standard task/default/native lifetime review",
+  "audited_utc": "2026-11-13T17:08:21.764005+00:00",
+  "rust_edits": false,
+  "heavy_test_runs": false,
+  "goal_complete": false,
+  "source_references": [
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetLookupTableDefaults",
+      "line_start": 137,
+      "line_end": 143,
+      "byte_start": 4261,
+      "byte_end": 4494,
+      "source_sha256": "398a4cdae87817153989311177d13782d17089316ad26a4db7c9632f6f2abba7"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetMBLookupTableDefaults",
+      "line_start": 146,
+      "line_end": 152,
+      "byte_start": 4502,
+      "byte_end": 4745,
+      "source_sha256": "cbfc86cf12abef85b6f1ae54b153c028c8afcf7f10df48b118db69d8919f6d59"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetQueryOptionDefaults",
+      "line_start": 155,
+      "line_end": 160,
+      "byte_start": 4752,
+      "byte_end": 4911,
+      "source_sha256": "cbdb6f38981d7de3b344879d03e7b04ab24560fb9f8b5c4b5f5bf66bcea21634"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetInitialWordOptionsDefaults",
+      "line_start": 163,
+      "line_end": 168,
+      "byte_start": 4918,
+      "byte_end": 5123,
+      "source_sha256": "851a0e960c6bae6eeb7bae5ebbbf02229e4aad875ae89217cd9638e3e2d9c111"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetMBInitialWordOptionsDefaults",
+      "line_start": 171,
+      "line_end": 174,
+      "byte_start": 5130,
+      "byte_end": 5241,
+      "source_sha256": "2028901fa9195e5c781cbd77675e34477a553680943784b8bb4a115d34f50020"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetGappedExtensionDefaults",
+      "line_start": 177,
+      "line_end": 184,
+      "byte_start": 5248,
+      "byte_end": 5545,
+      "source_sha256": "5caa155c7d869a17620eb8b39be4051782fc5419a4e662ed00fc616ee6b1bfd0"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetMBGappedExtensionDefaults",
+      "line_start": 187,
+      "line_end": 194,
+      "byte_start": 5552,
+      "byte_end": 5852,
+      "source_sha256": "96cc2d858004096487ebd61d543727d8f4f42e524ae82221bf7eebf98586a867"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetScoringOptionsDefaults",
+      "line_start": 198,
+      "line_end": 212,
+      "byte_start": 5860,
+      "byte_end": 6330,
+      "source_sha256": "20bf6fbbb799c9845008918aa0995e6b501580e90c75cd961c72a633d87d67fd"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetMBScoringOptionsDefaults",
+      "line_start": 215,
+      "line_end": 229,
+      "byte_start": 6337,
+      "byte_end": 6819,
+      "source_sha256": "770314b8189e7d189a7bad5176d4943ba7fa93dc8e5b31814c286a0d9e591bd7"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetHitSavingOptionsDefaults",
+      "line_start": 231,
+      "line_end": 249,
+      "byte_start": 6825,
+      "byte_end": 7463,
+      "source_sha256": "5511df57e72c5e5a37250d6b2a9ee2170992bbd49a38b3b2f001228590ad083b"
+    },
+    {
+      "source": "src/algo/blast/api/blast_nucl_options.cpp",
+      "symbol": "CBlastNucleotideOptionsHandle::SetMBHitSavingOptionsDefaults",
+      "line_start": 251,
+      "line_end": 270,
+      "byte_start": 7469,
+      "byte_end": 8109,
+      "source_sha256": "4693d00b78f9ae09a3012912f8e6a50aa0c1b991638d0c751db9bbcbec1c96ac"
+    },
+    {
+      "source": "src/algo/blast/api/tblastn_options.cpp",
+      "symbol": "CTBlastnOptionsHandle::SetLookupTableDefaults",
+      "line_start": 54,
+      "line_end": 58,
+      "byte_start": 1803,
+      "byte_end": 1964,
+      "source_sha256": "8b992a26007ec1d04a1c0a504401aae1ef31b644d23d5c121ef20bb67469708b"
+    },
+    {
+      "source": "src/algo/blast/api/tblastn_options.cpp",
+      "symbol": "CTBlastnOptionsHandle::SetHitSavingOptionsDefaults",
+      "line_start": 67,
+      "line_end": 71,
+      "byte_start": 2093,
+      "byte_end": 2248,
+      "source_sha256": "0efa13349bd8f5c244c34094d7e8e615b833a061c65483a364f1fd0bbc0ef330"
+    },
+    {
+      "source": "src/algo/blast/api/tblastn_options.cpp",
+      "symbol": "CTBlastnOptionsHandle::SetGappedExtensionDefaults",
+      "line_start": 74,
+      "line_end": 79,
+      "byte_start": 2255,
+      "byte_end": 2503,
+      "source_sha256": "171a29a5e31c502c292f19d7947c9f37353615c33580af8a9d7af31a0f1e3bfc"
+    },
+    {
+      "source": "src/algo/blast/api/tblastn_options.cpp",
+      "symbol": "CTBlastnOptionsHandle::SetSubjectSequenceOptionsDefaults",
+      "line_start": 82,
+      "line_end": 85,
+      "byte_start": 2510,
+      "byte_end": 2614,
+      "source_sha256": "5e797b9d822524f75ce1c67f5dd86a95d24458334f75e6f4fb225c4e929991cf"
+    },
+    {
+      "source": "src/algo/blast/api/blast_prot_options.cpp",
+      "symbol": "CBlastProteinOptionsHandle::SetLookupTableDefaults",
+      "line_start": 86,
+      "line_end": 91,
+      "byte_start": 2605,
+      "byte_end": 2798,
+      "source_sha256": "c4851b667482d855c81eccae58e6c6c74c7a7b1c0a069bf19fd8786ac55b8ef7"
+    },
+    {
+      "source": "src/algo/blast/api/blast_prot_options.cpp",
+      "symbol": "CBlastProteinOptionsHandle::SetQueryOptionDefaults",
+      "line_start": 94,
+      "line_end": 98,
+      "byte_start": 2805,
+      "byte_end": 2946,
+      "source_sha256": "0e894ff5f46231d64182d9b4c61605a8576676767ebf1cc7bd249c7470fc5da5"
+    },
+    {
+      "source": "src/algo/blast/api/blast_prot_options.cpp",
+      "symbol": "CBlastProteinOptionsHandle::SetInitialWordOptionsDefaults",
+      "line_start": 101,
+      "line_end": 105,
+      "byte_start": 2953,
+      "byte_end": 3107,
+      "source_sha256": "b177263d33ce9ac94149898679d753e20e01be04dcde0aa7bae3430b9a993886"
+    },
+    {
+      "source": "src/algo/blast/api/blast_prot_options.cpp",
+      "symbol": "CBlastProteinOptionsHandle::SetGappedExtensionDefaults",
+      "line_start": 108,
+      "line_end": 115,
+      "byte_start": 3114,
+      "byte_end": 3424,
+      "source_sha256": "f54d03e1541aad567f02c1b31e38e668cdc640b1c16f89441b35be29beea3da9"
+    },
+    {
+      "source": "src/algo/blast/api/blast_prot_options.cpp",
+      "symbol": "CBlastProteinOptionsHandle::SetScoringOptionsDefaults",
+      "line_start": 119,
+      "line_end": 131,
+      "byte_start": 3432,
+      "byte_end": 3870,
+      "source_sha256": "478039adf06e1d18de31f9dbdcf2fa4aba5843fad35bf8560c98decda211a9ff"
+    },
+    {
+      "source": "src/algo/blast/api/blast_prot_options.cpp",
+      "symbol": "CBlastProteinOptionsHandle::SetHitSavingOptionsDefaults",
+      "line_start": 134,
+      "line_end": 148,
+      "byte_start": 3877,
+      "byte_end": 4418,
+      "source_sha256": "df78f2e669cebe0e89b49d69a199f4b0cf05831ad10261236ea3d4936b3ed364"
+    },
+    {
+      "source": "src/algo/blast/api/local_blast.cpp",
+      "symbol": "SplitQuery_GetChunkSize",
+      "line_start": 54,
+      "line_end": 106,
+      "byte_start": 1943,
+      "byte_end": 3731,
+      "source_sha256": "8afe7693d3cd84ebc021a800546b389c4796dfdf5c993aed5e3bd78c9653faf0"
+    },
+    {
+      "source": "src/algo/blast/api/split_query_aux_priv.cpp",
+      "symbol": "SplitQuery_GetOverlapChunkSize",
+      "line_start": 51,
+      "line_end": 70,
+      "byte_start": 1727,
+      "byte_end": 2444,
+      "source_sha256": "e41f2ec0c9ed0cc15949a662e22eb06b3342982466bddf4b0cc6cbb4ea18da0d"
+    },
+    {
+      "source": "src/algo/blast/api/split_query_aux_priv.cpp",
+      "symbol": "SplitQuery_CalculateNumChunks",
+      "line_start": 100,
+      "line_end": 146,
+      "byte_start": 3346,
+      "byte_end": 5039,
+      "source_sha256": "c89b7150487857e09c96c138c966b9a660f819f6d002d2a0c5c897afc3cb5391"
+    }
+  ],
+  "preset_matches": {
+    "megablast": {
+      "core_program": "Blastn (task override chooses megablast algorithms)",
+      "query": "both strands; DUST20/64/1 soft/lookup masking",
+      "lookup": "word28, automatic table/width and stride0 selection",
+      "initial": "window0, off-diagonal0, Xdrop20bits, trigger27bits",
+      "gapped": "reward1/penalty-2/open0/extend0; greedy prelim+traceback; Xdrop25/final100bits; no OOF/complexity scoring",
+      "hits": "target500, E10, pctid0, no per-subject HSP cap, diagonal separation6, mask101, low_score/querycoverage0, gapped sum stats false"
+    },
+    "blastn": {
+      "query": "both strands; DUST20/64/1 soft/lookup masking",
+      "lookup": "word11, automatic table/width and stride0 selection",
+      "initial": "window0, off-diagonal0, Xdrop20bits, trigger27bits",
+      "gapped": "reward2/penalty-3/open5/extend2; DP prelim+traceback; Xdrop30/final100bits; no OOF/complexity scoring",
+      "hits": "target500, E10, pctid0, no per-subject HSP cap, diagonal separation50, mask101, low_score/querycoverage0, gapped sum stats false"
+    },
+    "tblastn": {
+      "query": "protein SEG12/2.2/2.5; masked contexts for source scoring/core identities, original contexts for display",
+      "lookup": "ordinary AA, word3, threshold13, source small/regular backbone switch",
+      "initial": "two-hit window40, Xdrop7bits, trigger22bits",
+      "gapped": "BLOSUM62/11/1, DP, Xdrop15/final25bits, CBS2, no Smith-Waterman/OOF",
+      "hits": "target500, E10, pctid0, diagonal separation0; sum stats enabled; gapped linking querygap40/overlap9/longest intron40AA/decay0.1; CBS preliminary Evalue stretch5",
+      "subject": "genetic code1; original packed2na six-frame preliminary translation; restored4na partial final translation; standard SeqDB minimum-length fallback10nt before divide3"
+    }
+  },
+  "native_binding_files": [
+    "src/query.rs",
+    "src/query_batch.rs",
+    "src/protein_query.rs",
+    "src/seed.rs",
+    "src/nucleotide_setup.rs",
+    "src/nucleotide_search.rs",
+    "src/protein_setup.rs",
+    "src/protein_chunks.rs",
+    "src/protein_redo.rs",
+    "src/protein_search.rs",
+    "src/report.rs"
+  ],
+  "lifetime_and_phase_review": [
+    {
+      "status": "reviewed",
+      "item": "Nucleotide scratch now initialized once with database maximum length through unchanged source constructor; owned Vec/pool/edit buffers are reconstructed around short matrix borrows, then stored with empty static matrix; no self reference or uninitialized allocation."
+    },
+    {
+      "status": "reviewed",
+      "item": "Preliminary/final Xdrop explicitly rebound; source no-initial-hit branch remains called; source kernels retain reset/growth/retry rules. Error statuses return reusable owner before error propagation."
+    },
+    {
+      "status": "reviewed",
+      "item": "Traceback matrix ownership is independent during mutable ScoreBlk statistical evaluation; Karlin Lambda divide/multiply source mutation remains explicit."
+    },
+    {
+      "status": "reviewed",
+      "item": "Interval tree stores stable Box<HSP> pointers; indexed boxes/coordinates stay live/stable until explicit reset/drop before clipping/purge. Current dropped HSPs have not been indexed."
+    },
+    {
+      "status": "reviewed",
+      "item": "Subject chunk geometry is preserved for both5M nucleotide chunks and5M translated-AA chunks; physical original allocations remain readable; frame translation occurs once before AA chunking; Finished callback avoids repeated endpoint purge."
+    },
+    {
+      "status": "reviewed",
+      "item": "Default gapped preliminary phase does not invent ambiguity/identity/coverage/bit-score processing reserved for traceback; endpoint purge/frame score combination/Evalue or sum linking/prelim reaping remain in source order."
+    },
+    {
+      "status": "reviewed",
+      "item": "Masked-query raw identity fields versus original-query displayed nident are now separated according to source; official raw comparison and CLI comparison cover both contracts."
+    }
+  ],
+  "concrete_scope_gaps": [
+    {
+      "item": "Automatic query splitting is not translated",
+      "source": "CQuerySplitter in split_query_cxx.cpp and SplitQuery_CalculateNumChunks; program chunk sizes in local_blast.cpp",
+      "observed_native_behavior": "Prepared batches accept up to i32 context-buffer bounds and run whole query contexts. Only subject chunking is implemented.",
+      "source_behavior": "Original C++ local search splits sufficiently large query input using program chunk sizes1000000(classic),5000000(mega),20000(tblastn) and nontranslated-query overlap100; floor(total_query_length/(chunk_size-overlap))<=1 stays one chunk; larger inputs are then balanced.",
+      "impact": "Potential parity domain gap for long genomic queries or very large explicit batches; e.g.3Mb traditionalblastn query or12Mb megablast query. No failing-result counterexample was run during frozen benchmark. Required to implement/test or explicitly scope before claiming parity for all accepted lengths.",
+      "status": "resolved",
+      "resolution": "Original internal query splitting, masks, statistics and preliminary merging implemented and default-boundary CLI/raw checks pass; see integrations/query-split-wrapper.json and validation/source-lifetimes-9b0811ed."
+    },
+    {
+      "item": "CLI adaptive query-file batching is not translated",
+      "source": "CBatchSizeMixer in src/app/blast/blast_app_util.hpp/.cpp and blastn_app.cpp",
+      "observed_native_behavior": "native_search processes the supplied FASTA as one explicit PreparedBatch.",
+      "source_behavior": "CLI starts target batch size5000 and adapts by extension counts; source real nucleotide oracle captures7+1 queries where native groups8.",
+      "impact": "Current1259-HSP raw comparison verifies the supplied real cases despite grouping differences, but not batch invariance for arbitrary files. The explicit library batch API can correspond to one core batch; tool-wide default file batching is a separate wrapper scope.",
+      "status": "separate_cli_wrapper",
+      "resolution": "Controller translated as explicit query_batch_size utility. Library accepts an explicit PreparedBatch; no hidden adaptive FASTA file batching is claimed for native_search example."
+    }
+  ],
+  "completion_evidence_boundaries": {
+    "search_correctness": "Parent reports final25 smoke raw HSPs and1259 real raw HSPs exactly matching pinned original core; six real CLI cases also passed. This audit did not rerun heavy checks or broaden that claim.",
+    "performance": "Final paired benchmark was active during audit; this file makes no final speed claim. Read the eventual integrity-gated report, preserving end-to-end workflow versus engine-only distinction and documented regressions.",
+    "database": "Native in-memory database creation and exact original packed payload/ambiguity conversion exist. The user subsequently excluded disk/v5 persistence from the required scope; the absent complete NCBI v5/LMDB writer is therefore not a completion blocker. Payload compatibility alone does not imply complete disk-format support.",
+    "cross_platform": "Linux/Windows/macOS CI workflow is configured. Actual remote green runs have not been confirmed; local Linux success cannot establish Windows/macOS build or numerical parity.",
+    "goal_status": "Remain active; no completion declaration from this audit."
+  },
+  "implementation_followup": {
+    "query_splitting": "Implemented original ordinaryquery geometry, local preparation/statistics/full-vectorprefix, stream overlap merge before oncefulltraceback/CBS; fullquery final-onlysetup avoidsunusedlookup. Default2,000,800ntclassic5HSP and40,200aa protein4HSP CLI match; rawsplitproof recorded separately.",
+    "memory_lifetimes": "Restored source OID-batch nucleotide expansion, source-scoped proteinprelim scratch andCBS matrixrows, no newallocator. Combined6realcases1259exactrawHSPs retained.",
+    "adaptive_cli_batching": "Controller translated and originalnumeric history checked; explicitPreparedBatch library semantics retained. Exampleinputwrapper remainsonebatch, not hidden CLIadaptivebatching.",
+    "benchmark": "Corrected artifactc144e261:54measured+12warmup pairs; fullworkflow ratio0.8497 [0.8420,0.8574],5wins/1inconclusive. Supplement excludingoriginalbuild butretainingRustfullworkflow ratio1.2108 [1.1980,1.2237],5regressions/1win. Bothviews retained underbenchmarks/seg-default-c144e261; neitherengine-only.",
+    "ci": "Fixedsource-fetch-before-verification ordering; addedLinuxquery-split/raw anddefaultcaps comparisons. ActualremoteCIstillunverified; noGitremote/HEAD; neithercheckedownerrepositoryexists.",
+    "query_seg": "Corrected sourceoverlaps=true callerbinding;originalC confirms8overlapmasks shouldmergeinto5; correctedartifactpassesexistingrawchecks."
+  },
+  "current_completion_requirements": [
+    {
+      "requirement": "Pinned source/minimal 1-to-1 systematic functions",
+      "status": "verified_local",
+      "evidence": [
+        "translations.json",
+        "translation-data.json",
+        "scripts/verify_translations.py:596 mappings"
+      ]
+    },
+    {
+      "requirement": "Memory database and result APIs; standard mega/classic/tblastn",
+      "status": "implemented",
+      "evidence": [
+        "src/lib.rs",
+        "src/database.rs",
+        "src/nucleotide_search.rs",
+        "src/protein_search.rs"
+      ]
+    },
+    {
+      "requirement": "Output parity including defaults and result limits",
+      "status": "verified_finite_cases_known_libm_limit",
+      "evidence": [
+        "validation/seg-default-c144e261",
+        "result-limit-audit.json",
+        "numerical-compatibility/README.md"
+      ],
+      "qualification": "Correctedsource passes1259realrawHSPs,9splitrawHSPs,25printedsmokeHSPs,12proteinworkloads,7capcases4000printedHSPs; branchcountersmatch1550traceback/550early. KnownisolatedErfC1ULP differencefromGNUlibm; numericalpolicyuserquestionpending. Universalnumericparityunproven."
+    },
+    {
+      "requirement": "Equivalent documented faster workflow with retained full observations",
+      "status": "verified_for_recorded_wholeworkflows_not_engine_speed",
+      "evidence": [
+        "benchmarks/seg-default-c144e261"
+      ],
+      "qualification": "Fullworkflow15.0%lesswalltime; excludingreferencebuild/retainingRustfullworkflow21.1%more. Alltrialsretained; singlethreadCPU2; originaldisk2processesvsRustRAM1process. Noengine-onlyclaim."
+    },
+    {
+      "requirement": "Actual Linux Windows macOS CI",
+      "status": "unverified_missing_destination",
+      "evidence": [
+        ".github/workflows/build.yml"
+      ],
+      "external_state": "NoGitremoteorHEAD. Authenticatedghreadsbothhenriksson-lab/btyper_blast andmahogny/btyper_blast returnedrepositorynotfound. Destinationpreviouslyrequestedstillneeded; nocreation/publicationauthorizedtoanunspecifiedrepo."
+    }
+  ],
+  "latest_audit_utc": "2026-11-13T18:05:04.931285+00:00",
+  "remaining_decisions": [
+    {
+      "item": "Repository destination for actual cross-platform CI",
+      "state": "user_input_pending",
+      "reason": "No configuredremote,commit,or existingrepositoryatcheckednames."
+    },
+    {
+      "item": "Portable numerical parity policy",
+      "state": "user_input_pending",
+      "reason": "OneisolatedErfCvalue differs1doubleULPfromGNUglibc; nativeextendedstagescorrectlyrounded. ExactGNUbitswouldrequiregeneralreference-libmcompatibility, notaninputpatch."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "native_sha256": "c144e261b4c768d55f19c65442dbcb069e88be8e23ea26fd82463d1ec6d9ad8e",
+  "cases": [
+    {
+      "case": "staph-megablast",
+      "raw": {
+        "status": "match",
+        "hsp_count": 6,
+        "original": "/tmp/btyper-core-staph-megablast.jsonl",
+        "native": "/tmp/btyper-query-split-check/staph-megablast.jsonl",
+        "precision": "exact IEEE754 bit patterns; all logical HSP fields and ordered lists",
+        "differences": []
+      }
+    },
+    {
+      "case": "staph-blastn",
+      "raw": {
+        "status": "match",
+        "hsp_count": 481,
+        "original": "/tmp/btyper-core-staph-blastn.jsonl",
+        "native": "/tmp/btyper-query-split-check/staph-blastn.jsonl",
+        "precision": "exact IEEE754 bit patterns; all logical HSP fields and ordered lists",
+        "differences": []
+      }
+    },
+    {
+      "case": "staph-tblastn",
+      "raw": {
+        "status": "match",
+        "hsp_count": 52,
+        "original": "/tmp/btyper-core-staph-tblastn.jsonl",
+        "native": "/tmp/btyper-query-split-check/staph-tblastn.jsonl",
+        "precision": "exact IEEE754 bit patterns; all logical HSP fields and ordered lists",
+        "differences": []
+      }
+    },
+    {
+      "case": "yeast-megablast",
+      "raw": {
+        "status": "match",
+        "hsp_count": 16,
+        "original": "/tmp/btyper-core-yeast-megablast.jsonl",
+        "native": "/tmp/btyper-query-split-check/yeast-megablast.jsonl",
+        "precision": "exact IEEE754 bit patterns; all logical HSP fields and ordered lists",
+        "differences": []
+      }
+    },
+    {
+      "case": "yeast-blastn",
+      "raw": {
+        "status": "match",
+        "hsp_count": 573,
+        "original": "/tmp/btyper-core-yeast-blastn.jsonl",
+        "native": "/tmp/btyper-query-split-check/yeast-blastn.jsonl",
+        "precision": "exact IEEE754 bit patterns; all logical HSP fields and ordered lists",
+        "differences": []
+      }
+    },
+    {
+      "case": "yeast-tblastn",
+      "raw": {
+        "status": "match",
+        "hsp_count": 131,
+        "original": "/tmp/btyper-core-yeast-tblastn.jsonl",
+        "native": "/tmp/btyper-query-split-check/yeast-tblastn.jsonl",
+        "precision": "exact IEEE754 bit patterns; all logical HSP fields and ordered lists",
+        "differences": []
+      }
+    },
+    {
+      "case": "blastn-default-split",
+      "status": "match",
+      "hits": 5
+    },
+    {
+      "case": "tblastn-default-split",
+      "status": "match",
+      "hits": 4
+    }
+  ],
+  "status": "match"
+}

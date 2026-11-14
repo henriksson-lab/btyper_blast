@@ -1,0 +1,2 @@
+# Provenance hashes and source byte ranges must survive Windows checkouts.
+* text=auto eol=lf

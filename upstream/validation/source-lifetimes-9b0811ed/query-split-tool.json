@@ -1,0 +1,118 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "3888112d8207831aa47371d93583c601f058f88b5db22dc782438b039a3a411b",
+  "seed": 21717,
+  "purpose": "two default query-split boundary cases; parity only",
+  "work_dir": "/tmp/btyper-differential-query-split-final",
+  "native": "/tmp/btyper-query-split-target/release/examples/native_search",
+  "native_sha256": "9b0811eddd778bad4f937df848ed1fa0a7aae66a8909a42d5bf5fc5988c7f4cc",
+  "geometry_overrides_removed": [
+    "CHUNK_SIZE",
+    "OVERLAP_CHUNK_SIZE"
+  ],
+  "runs": [
+    {
+      "program": "blastn",
+      "query_length": 2000800,
+      "subject_length": 1190,
+      "query": "/tmp/btyper-differential-query-split-final/blastn/nucleotide-query.fna",
+      "subject": "/tmp/btyper-differential-query-split-final/blastn/nucleotide-subject.fna",
+      "query_sha256": "da2f3c87ab2830190a3f935bf6e00f01607a3a9ed631f173ae819296d5fb029d",
+      "subject_sha256": "d7b4c42003410112a7e3f11aea36e518210af93eabd484d97e47dcedb29ef67f",
+      "reference_sha256": "33b64bc67d3149cee2459b2f7766b363323df632cf12c099546de00aea9698b5",
+      "reference_command": [
+        "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/blastn",
+        "-query",
+        "/tmp/btyper-differential-query-split-final/blastn/nucleotide-query.fna",
+        "-db",
+        "/tmp/btyper-differential-query-split-final/blastn/db",
+        "-num_threads",
+        "1",
+        "-outfmt",
+        "6 qseqid sseqid qstart qend sstart send qframe sframe length nident mismatch gaps gapopen score bitscore evalue btop qseq sseq",
+        "-task",
+        "blastn"
+      ],
+      "native_command": [
+        "/tmp/btyper-query-split-target/release/examples/native_search",
+        "blastn",
+        "/tmp/btyper-differential-query-split-final/blastn/nucleotide-subject.fna",
+        "/tmp/btyper-differential-query-split-final/blastn/nucleotide-query.fna"
+      ],
+      "status": "match",
+      "hits": 5,
+      "fields": [
+        "qseqid",
+        "sseqid",
+        "qstart",
+        "qend",
+        "sstart",
+        "send",
+        "qframe",
+        "sframe",
+        "length",
+        "nident",
+        "mismatch",
+        "gaps",
+        "gapopen",
+        "score",
+        "bitscore",
+        "evalue",
+        "btop",
+        "qseq",
+        "sseq"
+      ]
+    },
+    {
+      "program": "tblastn",
+      "query_length": 40200,
+      "subject_length": 1698,
+      "query": "/tmp/btyper-differential-query-split-final/tblastn/protein-query.faa",
+      "subject": "/tmp/btyper-differential-query-split-final/tblastn/protein-subject.fna",
+      "query_sha256": "88a516f423d9c567bbbca68f7a52468607ae6704205a78a55c3a1b8817d88bc2",
+      "subject_sha256": "d2c5246611627fec07a227ba177020235fcff4ef9433db0c5742ca465044c84e",
+      "reference_sha256": "fea14b77d4452a524a003196824f414812126bd3fb64d950feec8bacccf4976c",
+      "reference_command": [
+        "/data/henriksson/github/claude/btyper_blast/vendor/reference-tools/ncbi-blast-2.17.0+/bin/tblastn",
+        "-query",
+        "/tmp/btyper-differential-query-split-final/tblastn/protein-query.faa",
+        "-db",
+        "/tmp/btyper-differential-query-split-final/tblastn/db",
+        "-num_threads",
+        "1",
+        "-outfmt",
+        "6 qseqid sseqid qstart qend sstart send qframe sframe length nident mismatch gaps gapopen score bitscore evalue btop qseq sseq"
+      ],
+      "native_command": [
+        "/tmp/btyper-query-split-target/release/examples/native_search",
+        "tblastn",
+        "/tmp/btyper-differential-query-split-final/tblastn/protein-subject.fna",
+        "/tmp/btyper-differential-query-split-final/tblastn/protein-query.faa"
+      ],
+      "status": "match",
+      "hits": 4,
+      "fields": [
+        "qseqid",
+        "sseqid",
+        "qstart",
+        "qend",
+        "sstart",
+        "send",
+        "qframe",
+        "sframe",
+        "length",
+        "nident",
+        "mismatch",
+        "gaps",
+        "gapopen",
+        "score",
+        "bitscore",
+        "evalue",
+        "btop",
+        "qseq",
+        "sseq"
+      ]
+    }
+  ],
+  "status": "match"
+}

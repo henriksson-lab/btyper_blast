@@ -1,0 +1,85 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_util.c",
+      "symbol": "BlastTargetTranslationFree",
+      "line_start": 1247,
+      "line_end": 1265,
+      "source_sha256": "f69edccc82dcb344dbece3975ee4544b385d40531c847ef79945abb237b94923",
+      "rust_path": "src/core/blast_target_translation.rs",
+      "rust_symbol": "blast_target_translation_free",
+      "reason": "Original optimized partial-target translation cache required by default tblastn identity counting and display",
+      "status": "translated",
+      "validation": "126 focused unchanged-C cache transitions across all six frames and subject lengths1200/301/100 compare exact range starts/global-exclusive ends, every logical residue and both sentinel/FENCE bytes. Includes initial windows, contained/distant requests,99nt flanks,21nt tail extension, negative-offset whole translation and subsequent full-cache reuse. Actual identity counts are also guarded by existing parent end-to-end and raw-HSP checks; no speed or full-scope parity follows from these isolated checks.",
+      "adaptations": "Scope is default non-OOF tblastn, with fixed six frames; full/out-of-frame mixed translation branches are not claimed. Borrowed first-nucleotide NCBI4na slice and genetic-code table replace external BLAST_SequenceBlk pointers, with typed lifetimes. Option<Vec<u8>> buffers and fixed12-element range array retain source allocation/reuse/cache geometry; consuming an Option owner replaces C Free returningNULL. ",
+      "byte_start": 37470,
+      "byte_end": 38003
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_util.c",
+      "symbol": "BlastTargetTranslationNew",
+      "line_start": 1267,
+      "line_end": 1320,
+      "source_sha256": "ecf32a9f3c159e2ab14bf035216baae9c3c8e73137da6ab436334d143ae98528",
+      "rust_path": "src/core/blast_target_translation.rs",
+      "rust_symbol": "blast_target_translation_new",
+      "reason": "Original optimized partial-target translation cache required by default tblastn identity counting and display",
+      "status": "translated",
+      "validation": "126 focused unchanged-C cache transitions across all six frames and subject lengths1200/301/100 compare exact range starts/global-exclusive ends, every logical residue and both sentinel/FENCE bytes. Includes initial windows, contained/distant requests,99nt flanks,21nt tail extension, negative-offset whole translation and subsequent full-cache reuse. Actual identity counts are also guarded by existing parent end-to-end and raw-HSP checks; no speed or full-scope parity follows from these isolated checks.",
+      "adaptations": "Scope is default non-OOF tblastn, with fixed six frames; full/out-of-frame mixed translation branches are not claimed. Borrowed first-nucleotide NCBI4na slice and genetic-code table replace external BLAST_SequenceBlk pointers, with typed lifetimes. Option<Vec<u8>> buffers and fixed12-element range array retain source allocation/reuse/cache geometry; consuming an Option owner replaces C Free returningNULL. ",
+      "byte_start": 38005,
+      "byte_end": 40137
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_hits.c",
+      "symbol": "Blast_HSPGetTargetTranslation",
+      "line_start": 1146,
+      "line_end": 1236,
+      "source_sha256": "89cd50f8161d8ff1566b39ce11e954712c800d528dec782114bad6e5d95c8390",
+      "rust_path": "src/core/blast_target_translation.rs",
+      "rust_symbol": "blast_hsp_get_target_translation",
+      "reason": "Original optimized partial-target translation cache required by default tblastn identity counting and display",
+      "status": "translated",
+      "validation": "126 focused unchanged-C cache transitions across all six frames and subject lengths1200/301/100 compare exact range starts/global-exclusive ends, every logical residue and both sentinel/FENCE bytes. Includes initial windows, contained/distant requests,99nt flanks,21nt tail extension, negative-offset whole translation and subsequent full-cache reuse. Actual identity counts are also guarded by existing parent end-to-end and raw-HSP checks; no speed or full-scope parity follows from these isolated checks.",
+      "adaptations": "Scope is default non-OOF tblastn, with fixed six frames; full/out-of-frame mixed translation branches are not claimed. Borrowed first-nucleotide NCBI4na slice and genetic-code table replace external BLAST_SequenceBlk pointers, with typed lifetimes. Option<Vec<u8>> buffers and fixed12-element range array retain source allocation/reuse/cache geometry; consuming an Option owner replaces C Free returningNULL. Original99nt flanks,21nt near-tail extension, estimated-length cache invalidation, frame-specific reverse translation, exact actual-length range updates and FENCE writes are retained. Source returns a virtual pointer before its allocation; safe Rust returns borrowed residues plus explicit start_shift/global-exclusive end. Residues exclude both sentinel/FENCE bytes; callers use local index global-start_shift. An absent buffer for source undefined tiny-subject cases returnsNone rather than constructing an invalid pointer. None HSP preserves the source null return. The original source signed arithmetic is retained in its defined integer range.",
+      "byte_start": 39334,
+      "byte_end": 42778
+    }
+  ],
+  "data": [
+    {
+      "version": "2.17.0+",
+      "source": "include/algo/blast/core/blast_def.h",
+      "line_start": 311,
+      "line_end": 319,
+      "source_sha256": "82a2ab8ceb4dc9dda3541c7678d9979dbfc1902bc97e333508b7b582a8a6b354",
+      "byte_start": 12772,
+      "byte_end": 13367,
+      "rust_path": "src/core/blast_target_translation.rs",
+      "symbols": {
+        "SBlastTargetTranslation": "BlastTargetTranslation"
+      },
+      "status": "translated",
+      "validation": "126 focused unchanged-C cache transitions across all six frames and subject lengths1200/301/100 compare exact range starts/global-exclusive ends, every logical residue and both sentinel/FENCE bytes. Includes initial windows, contained/distant requests,99nt flanks,21nt tail extension, negative-offset whole translation and subsequent full-cache reuse. Actual identity counts are also guarded by existing parent end-to-end and raw-HSP checks; no speed or full-scope parity follows from these isolated checks.",
+      "adaptations": "Scoped typed owner: six optional owned buffers and twelve range integers; borrowed subject nucleotide/genetic-code slices replace external toolkit pointers. The additional BlastTargetTranslationView is a Rust-only pointer-origin binding, not another translated source datatype."
+    }
+  ],
+  "integration": [
+    "Expose core::blast_target_translation. Parent has agreed and exposed module; Native formatter uses cache per query/subject list with report::AlignmentReport::translated_subject_range.",
+    "API blast_target_translation_new(subject:&[u8],gen_code_string:&[u8;64],program,is_ooframe)->BlastTargetTranslation; Free consumes Option<owner>. Scope enforces Tblastn/non-OOF.",
+    "blast_hsp_get_target_translation(&mut cache,Option<&BlastHSP>)->Option<BlastTargetTranslationView>. View.residues is borrowed local-AA sequence, start_shift is its global-AA origin, end is global-exclusive translated end. Access global index i as residues[i-start_shift]; no pointer is formed before an allocation.",
+    "protein_redo::s_compute_num_identities now constructs original cache perHSP list and obtains one view perHSP. It subtracts origin from HSP subject.offset/end only for the original identity helper call, restores coordinates immediately before checking status, and retains original script, score and gapped-start fields. This replaces earlier full-six-frame shortcut with the requested upstream window algorithm.",
+    "Parent report renderer accepts explicit origin and leaves global HSP coordinates unchanged. The initial/preliminary full-six-frame translation is a different required stage and remains unchanged.",
+    "Update existing integrations/protein-redo.json adaptation for s_ComputeNumIdentities: full-frame-cache shortcut is superseded by original BlastTargetTranslationNew/HSPGetTargetTranslation and typed view binding. No additional translation-kernel optimization, unchecked indexing or dependency was introduced."
+  ],
+  "temporary_validation": [
+    "/tmp/btyper-target-translation-oracle.c",
+    "/tmp/btyper-target-translation-reference.txt",
+    "/tmp/btyper-target-translation-check.rs"
+  ],
+  "integrated": true,
+  "formatter_binding": "Native stdout display now requests the same cached target windows per HSP/list and uses AlignmentReport::translated_subject_range with explicit global-AA origin. This replaces repeated full-six-frame translations per query/subject list; original reported fields and score/statistical computations are unchanged."
+}

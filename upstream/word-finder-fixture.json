@@ -1,0 +1,16 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 41380,
+  "origin": "Unchanged original BlastNaWordFinder and scanner/mini-extension/diagonal/scoring dependencies execute directly, using the original stored C callbacks. Also directly executes masksubj.inl and Blast_UngappedStatsUpdate. Driver forces supported lookup variants to cover selected paths and supplies explicit score cutoffs; default parameter/statistical construction and final gapped search are not executed. Subject databases have no masking; query mask handling is retained.",
+  "command": "python scripts/generate_word_finder_reference.py --output tests/fixtures/word-finder-2.17.0.txt",
+  "compiler": "GCC 11.4.0; identical Clang and ASan/UBSan output (leak detection disabled in sandbox)",
+  "fixture": "tests/fixtures/word-finder-2.17.0.txt",
+  "fixture_sha256": "b0cb50ffe0efca9fc032265b2e6964d723e303cd67f22b96a767c850b88e7c87",
+  "harness": "tests/reference/word_finder.c",
+  "harness_sha256": "040797d32d038e2894293520937e2f08e062eece248984d00114118e2defac2e",
+  "generator": "scripts/generate_word_finder_reference.py",
+  "generator_sha256": "3b6ab6a9bcf8b05a43c8046afaa847b8196a53c338e769c7f9b4ad5fc69330ad",
+  "shim": "tests/reference/include/corelib/ncbitype.h",
+  "shim_sha256": "9d3e1fc2301697ffbd57eae53f557b10e4737ad6f1d672f11a03749405feb29c"
+}

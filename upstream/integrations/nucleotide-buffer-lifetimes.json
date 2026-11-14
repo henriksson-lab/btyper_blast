@@ -1,0 +1,137 @@
+{
+  "translations": [],
+  "data": [],
+  "native_bindings": [
+    "src/nucleotide_search.rs retains exactly one restored sentinel-padded BLASTna Vec while consuming the existing OID-ordered preliminary stream; changes OID refill the same capacity, all query lists for that OID borrow the same buffer. Capacity is O(largest visited subject), not an all-database decoded cache.",
+    "src/nucleotide_setup.rs expand_nucleotide_subject maps borrowed NCBI4na directly through the original NCBI4NA_TO_BLASTNA table into the padded buffer. It removes the earlier intermediate whole-subject blastna Vec and copy.",
+    "Public traceback_subject and traceback_preliminary_subject retain convenience behavior by creating one local expanded owner and delegating to crate-private traceback_preliminary_subject_expanded. Search-wide callers supply the OID-batch owner.",
+    "Standard16x16 traceback rows are cloned once into an independent Search-owned matrix, replacing16row allocations/copy per list while allowing statistics to borrow ScoreBlk mutably. Native standard scoring rows are constant for a Search owner; no general custom matrix-update API is claimed.",
+    "src/report.rs nucleotide_range(hsp,query,subject_range,subject_origin) reuses original display projection with explicit subject origin and preserves all global coordinates; nucleotide delegates with origin0. examples/native_search.rs converts only each HSP subject interval into a reusable range vector.",
+    "No translated core kernel, comparator, statistics formula, loop/tie order, ambiguity mapping or traceback script was changed. No MaybeUninit, unchecked access, bump allocator or all-database permanent cache was introduced."
+  ],
+  "source_lifetime_evidence": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_traceback.c",
+      "line_start": 1567,
+      "line_end": 1577,
+      "byte_start": 61571,
+      "byte_end": 62097,
+      "source_sha256": "bf9fef3a611b81e3db8b2bb336000760ef67002fdbe6fd4ac0423c8d013abe14",
+      "meaning": "Fetch one subject for an OID batch before looping query lists"
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_traceback.c",
+      "line_start": 1632,
+      "line_end": 1638,
+      "byte_start": 64844,
+      "byte_end": 65282,
+      "source_sha256": "3c56f0fefb3836661f70610531946f5af5709dc17d6c20a8f88b3b3127d27b53",
+      "meaning": "Process query HSP lists against the batch-owned subject"
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_traceback.c",
+      "line_start": 1708,
+      "line_end": 1712,
+      "byte_start": 68770,
+      "byte_end": 68987,
+      "source_sha256": "50427b70d803143ab6262976b9afa5203a88a0bb736825a3f95640175d73b7ab",
+      "meaning": "Release subject after the complete OID batch"
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/objtools/align_format/tabular.cpp",
+      "line_start": 977,
+      "line_end": 986,
+      "byte_start": 31597,
+      "byte_end": 32081,
+      "source_sha256": "52e45c3607a9a669e031fc043233277125ca99d7048a7bf3ba5a6757a531a49e",
+      "meaning": "Formatter requests alignment row strings"
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/objtools/alnmgr/alnvec.cpp",
+      "line_start": 224,
+      "line_end": 250,
+      "byte_start": 7240,
+      "byte_end": 8071,
+      "source_sha256": "62f7a7a8e3b3011c1535760cd3eafe6d35cc320fd6555e59c07c2f2845ec0fac",
+      "meaning": "Aligned sequence assembly iterates alignment segments and reserves row output"
+    }
+  ],
+  "validation": {
+    "old_sha256": "5ae87386bbbd1db8191c5a9ccb8880eff0b650f96193f0ea623da85b8c5b9366",
+    "new_sha256": "71c6d4b08e60f22ce3ba7b62567db7ba5d7e1c9add3817a4a4f84760f9d5a966",
+    "cases": [
+      {
+        "dataset": "staph_st14",
+        "program": "megablast",
+        "hits": 6,
+        "printed_old_new": "byte-identical",
+        "raw_old_new": "exact all logical fields/floatbits/scripts/order",
+        "raw_original": "exact all logical fields/floatbits/scripts/order",
+        "original": "/tmp/btyper-core-staph-megablast.jsonl",
+        "native": "/tmp/btyper-nucleotide-reuse-validation/staph-megablast-new.jsonl"
+      },
+      {
+        "dataset": "staph_st14",
+        "program": "blastn",
+        "hits": 481,
+        "printed_old_new": "byte-identical",
+        "raw_old_new": "exact all logical fields/floatbits/scripts/order",
+        "raw_original": "exact all logical fields/floatbits/scripts/order",
+        "original": "/tmp/btyper-core-staph-blastn.jsonl",
+        "native": "/tmp/btyper-nucleotide-reuse-validation/staph-blastn-new.jsonl"
+      },
+      {
+        "dataset": "staph_st14",
+        "program": "tblastn",
+        "hits": 52,
+        "printed_old_new": "byte-identical",
+        "raw_old_new": "exact all logical fields/floatbits/scripts/order",
+        "raw_original": "exact all logical fields/floatbits/scripts/order",
+        "original": "/tmp/btyper-core-staph-tblastn.jsonl",
+        "native": "/tmp/btyper-nucleotide-reuse-validation/staph-tblastn-new.jsonl"
+      },
+      {
+        "dataset": "yeast_s288c",
+        "program": "megablast",
+        "hits": 16,
+        "printed_old_new": "byte-identical",
+        "raw_old_new": "exact all logical fields/floatbits/scripts/order",
+        "raw_original": "exact all logical fields/floatbits/scripts/order",
+        "original": "/tmp/btyper-core-yeast-megablast.jsonl",
+        "native": "/tmp/btyper-nucleotide-reuse-validation/yeast-megablast-new.jsonl"
+      },
+      {
+        "dataset": "yeast_s288c",
+        "program": "blastn",
+        "hits": 573,
+        "printed_old_new": "byte-identical",
+        "raw_old_new": "exact all logical fields/floatbits/scripts/order",
+        "raw_original": "exact all logical fields/floatbits/scripts/order",
+        "original": "/tmp/btyper-core-yeast-blastn.jsonl",
+        "native": "/tmp/btyper-nucleotide-reuse-validation/yeast-blastn-new.jsonl"
+      },
+      {
+        "dataset": "yeast_s288c",
+        "program": "tblastn",
+        "hits": 131,
+        "printed_old_new": "byte-identical",
+        "raw_old_new": "exact all logical fields/floatbits/scripts/order",
+        "raw_original": "exact all logical fields/floatbits/scripts/order",
+        "original": "/tmp/btyper-core-yeast-tblastn.jsonl",
+        "native": "/tmp/btyper-nucleotide-reuse-validation/yeast-tblastn-new.jsonl"
+      }
+    ]
+  },
+  "focused_validation": [
+    "cargo check --all-targets",
+    "cargo test --test nucleotide_initial_search (existing public convenience/report test passed)",
+    "Isolated release example built in /tmp/btyper-nucleotide-reuse-target; original final artifact preserved.",
+    "All6realcases:1259HSPs have byte-identical old/new19field display and exact old/new/original GDB logical raw fields including fullprecisionfloatbits, coordinates, frame/seed/script/counts and ordered lists. No timed benchmark taken."
+  ],
+  "integrated": true
+}

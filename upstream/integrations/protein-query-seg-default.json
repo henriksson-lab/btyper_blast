@@ -1,0 +1,89 @@
+{
+  "version": "2.17.0+",
+  "kind": "native default caller binding correction, no new translated kernel",
+  "source_reference": {
+    "source": "src/algo/blast/core/blast_filter.c",
+    "symbol": "BlastSetUp_Filter",
+    "byte_start": 35888,
+    "byte_end": 37407,
+    "line_start": 1122,
+    "line_end": 1170,
+    "source_sha256": "c9e074a71a919fcddb22499fcc1bf347d8cae3cf8c17b637cbcb25a57d80a753"
+  },
+  "rust_path": "src/protein_query.rs",
+  "native_symbol": "PreparedProteinQuery::from_ncbistdaa",
+  "correction": "Set seg_parameters_new_aa().overlaps=true before query SEG exactly as BlastSetUp_Filter does. Standalone SeqBufferSeg/SegParametersNewAa defaults remain overlaps=false for other callers, including Kappa subject SEG. Existing source algorithms/constants are unchanged. Split chunks use this same constructor, so their query overlap merge is restored too.",
+  "before_after": {
+    "input": "fourth320aa sequence from fixed LCG seed21717,multiplier1664525,increment1013904223; low-complexity blocks length41 modulo73; alphabet3+case forcase0..3, otherpositions18 letters; encodedresidues3+draw",
+    "before_masks": [
+      [
+        3,
+        21
+      ],
+      [
+        12,
+        41
+      ],
+      [
+        73,
+        95
+      ],
+      [
+        86,
+        113
+      ],
+      [
+        146,
+        176
+      ],
+      [
+        167,
+        186
+      ],
+      [
+        225,
+        259
+      ],
+      [
+        295,
+        319
+      ]
+    ],
+    "after_and_original_masks": [
+      [
+        3,
+        41
+      ],
+      [
+        73,
+        113
+      ],
+      [
+        146,
+        186
+      ],
+      [
+        225,
+        259
+      ],
+      [
+        295,
+        319
+      ]
+    ],
+    "impact": "Residue mask union is the same; source overlap merge removes invalid reversed lookup-complement spans such as22..11 and96..85. Prior finite workflow parity does not prove every affected input invariant."
+  },
+  "validation": [
+    "Original unchanged blast_seg.c plus BlastSetUp_Filter/blast_filter.c/options/message/util default SEG path prints identical five after-mask intervals; standalone source false defaults print the eight before-overlaps. Test-only unused read-quality mapping branch aborts if entered, never called for SEG.",
+    "Focused Rust regression protein_query::tests::query_seg_merges_overlaps_like_blast_setup_filter checks exact original five intervals and nonempty ordered lookup spans.",
+    "Existing tests/protein_query.rs passes.",
+    "Combined release existing protein raw/CLI parity guards are parent-coordinated after source freeze.",
+    "Corrected artifactc144e261 passes all1259realrawHSPs;25CLI smoke;12proteinworkloads; bothdefaultquery-splitraw9HSPs;7defaultlimitcases4000CLI HSPs; complete local release suite. Evidence upstream/validation/seg-default-c144e261."
+  ],
+  "evidence": [
+    "/tmp/btyper-seg-overlap-c.c",
+    "/tmp/btyper-seg-overlap-c",
+    "/tmp/btyper-seg-overlap-audit.rs"
+  ],
+  "integrated": true
+}

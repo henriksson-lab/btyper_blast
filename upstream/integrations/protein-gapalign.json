@@ -1,0 +1,59 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "symbol": "AdjustSubjectRange",
+      "line_start": 4162,
+      "line_end": 4191,
+      "source_sha256": "92d64607a430efc942598e3d327eb9b35b25e2cc893507400f804a435315d263",
+      "rust_path": "src/core/blast_protein_gapalign.rs",
+      "rust_symbol": "adjust_subject_range",
+      "reason": "Default tblastn ordinary protein preliminary gapped score and large-subject range restriction",
+      "status": "translated",
+      "validation": "Temporary direct original-C/Rust comparison:96 cases across query lengths61/277, subject lengths95/90000/100321, seed positions at start/interior/end, insertions/deletions/mismatches and reused DP scratch; all statuses, starts/stops/scores and fence outputs agree exactly. Six additional AdjustSubjectRange cases cover the89999/90000 threshold and left-window equality/one-over boundary. Synthetic28x28 protein matrix5/-4 with sentinel row/column and gap costs11/1; actual BLOSUM62 loading/statistical adjustment is outside this component check. Debug and optimized Rust checks pass; no tracked broad corpus.",
+      "adaptations": "Preserve original subject range arithmetic, strict length threshold, output mutations and query-plus-gap window limits. Mutable integer references replace pointer outputs.",
+      "byte_start": 150254,
+      "byte_end": 151242
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "symbol": "s_BlastProtGappedAlignment",
+      "line_start": 4208,
+      "line_end": 4350,
+      "source_sha256": "d3cce24fda073175ac472320c96beb7d0f8a09571fb9f5a142506d7e50e6835e",
+      "rust_path": "src/core/blast_protein_gapalign.rs",
+      "rust_symbol": "s_blast_prot_gapped_alignment",
+      "reason": "Default tblastn ordinary protein preliminary gapped score and large-subject range restriction",
+      "status": "translated",
+      "validation": "Temporary direct original-C/Rust comparison:96 cases across query lengths61/277, subject lengths95/90000/100321, seed positions at start/interior/end, insertions/deletions/mismatches and reused DP scratch; all statuses, starts/stops/scores and fence outputs agree exactly. Six additional AdjustSubjectRange cases cover the89999/90000 threshold and left-window equality/one-over boundary. Synthetic28x28 protein matrix5/-4 with sentinel row/column and gap costs11/1; actual BLOSUM62 loading/statistical adjustment is outside this component check. Debug and optimized Rust checks pass; no tracked broad corpus.",
+      "adaptations": "Scoped non-out-of-frame, unrestricted ordinary-matrix/PSSM path used by default tblastn; explicitly reject is_ooframe and restricted_alignment=true instead of translating unrelated frame-shift or approximate restricted DP engines. Nonnull Rust gap owner replaces original nullable pointer branch; immutable initial HSP is sufficient because only excluded OOF code mutates it. DynamicSequence signed origins replace sequence-block pointer fields and explicit lengths replace block length fields. Preserve subject-range shift, left inclusion/right exclusion of seed, separate found_start/found_end behavior including end offsets at terminal seeds, original query_offset arguments, score summation and output coordinate assembly. Existing Blast_SemiGappedAlign score-only behavior is reused, including its original initialized-subject/no-sentry precondition; optional fence output is forwarded without inventing checks.",
+      "byte_start": 152130,
+      "byte_end": 158276
+    }
+  ],
+  "data": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "source_sha256": "d632aef47bf3d0c9f0561d97f70bef5bf17a75a58af9cb5101d47a27d9f3b159",
+      "rust_path": "src/core/blast_protein_gapalign.rs",
+      "symbols": {
+        "MAX_SUBJECT_OFFSET": "MAX_SUBJECT_OFFSET",
+        "MAX_TOTAL_GAPS": "MAX_TOTAL_GAPS"
+      },
+      "adaptations": "Retain original90000 residue subject threshold and3000 estimated-gap margin exactly.",
+      "status": "translated",
+      "validation": "Direct original-C subject-range boundary and long-subject preliminary alignment comparisons."
+    }
+  ],
+  "integration_notes": [
+    "Add pub mod blast_protein_gapalign. No prior/shared files were edited.",
+    "s_blast_prot_gapped_alignment follows the exact requested root dispatch signature: program,query view/query_length,subject view/subject_length,&mut BlastGapAlignStruct,&BlastScoringParameters,&BlastInitHSP,restricted_alignment,fence_hit ->i16. Common output fields remain in gap_align.dynamic.",
+    "Default tblastn must pass restricted_alignment=false and is_ooframe=false. The approximate restricted DP helper is not translated because it is outside the requested standard path.",
+    "Query/subject views preserve sentinel buffers and signed pointer origins. Large subject sequences are cropped logically by AdjustSubjectRange; no sequence copying/repacking is performed.",
+    "Temporary artifacts: /tmp/btyper-protein-gapalign-oracle.c, /tmp/btyper-protein-gapalign-reference.txt and /tmp/btyper-protein-gapalign-check.rs. Source C reuses the unchanged original constructor and protein helper."
+  ],
+  "integrated": true
+}

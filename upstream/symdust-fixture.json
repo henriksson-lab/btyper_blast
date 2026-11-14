@@ -1,0 +1,110 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 22473,
+  "fixture": "tests/fixtures/symdust-2.17.0.txt",
+  "harness": "tests/reference/symdust.cpp",
+  "shim": "tests/reference/symdust_shim.hpp",
+  "rng_shim": "tests/reference/database_shim.hpp",
+  "generator": "scripts/generate_symdust_reference.py",
+  "range_parser": "scripts/source_ranges.py",
+  "origin": "Execute original complete CSymDustMasker algorithm class and unchanged methods with only a byte-vector CSeqVector/cursor and toolkit declaration adapters. Default LFG definitions are original source. Object-manager serialization wrappers are not called.",
+  "fragments": [
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 7758,
+      "byte_end": 8064,
+      "sha256": "9cfec86b5d50b3f27f7bf89c056bcaeb291883053f6f991b4852523033712149"
+    },
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 8067,
+      "byte_end": 8152,
+      "sha256": "7a78bb398d6104f00e43508a3ecf57c8a74e7ee98cc61733fb164f5367c33939"
+    },
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 9646,
+      "byte_end": 10245,
+      "sha256": "d110180a4b20e0359b5662525546edb3dbc414bd172f9ab9cda79c8d65686fb0"
+    },
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 8155,
+      "byte_end": 9235,
+      "sha256": "448f3925a3ac49413f8e31cabf824ad6106dfd2f87d8aa867aa0d99794245546"
+    },
+    {
+      "source": "include/util/random_gen.hpp",
+      "byte_start": 7443,
+      "byte_end": 7796,
+      "sha256": "b5c7c3a4d37995ce28f07d09f87645d07591930d487bf636912b1a8cce902d06"
+    },
+    {
+      "source": "include/util/random_gen.hpp",
+      "byte_start": 7799,
+      "byte_end": 7915,
+      "sha256": "ecf1f5b8ed8e64dc977ca730b39110d0b8680c880aa80778c8698cc9a035a30a"
+    },
+    {
+      "source": "include/algo/dustmask/symdust.hpp",
+      "byte_start": 2004,
+      "byte_end": 14444,
+      "sha256": "632a8d7e969715ccc7177ddbc8cffacaa1bb64cde412f410616f494825daced8"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 1595,
+      "byte_end": 1983,
+      "sha256": "75cae1ace73e39ab183c08bf904dbbfccfabd41489c4a44493e081795d5692d5"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 2066,
+      "byte_end": 2551,
+      "sha256": "aa59d1e69b74c24159f54871cd38cef0e145d6f13b46935a9b77c43cceb9b3fd"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 2634,
+      "byte_end": 3749,
+      "sha256": "9a9fabbdd2cef3093ac5c2f130bcfb2aa6941af85fab81b9091c736bf277f384"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 3832,
+      "byte_end": 5706,
+      "sha256": "dc0534f35dc9a4b189c01efeace77ceef8e2e66c91ad37c344befa43fae1f0c6"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 5793,
+      "byte_end": 6292,
+      "sha256": "4b4df7bba719519f24c8ac7de12b360c3b9351aad021e2e96aae6456522b17df"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 6375,
+      "byte_end": 7146,
+      "sha256": "d5f1ecc76344f50ab6e0ae556611e2c107bbbb81d010e10c7086c4c7b65143be"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 7229,
+      "byte_end": 9155,
+      "sha256": "8f65ccdb63453420be2395d946fabffeb0bc849c10afdcfdc0904d81c26dc168"
+    },
+    {
+      "source": "src/algo/dustmask/symdust.cpp",
+      "byte_start": 9238,
+      "byte_end": 9385,
+      "sha256": "9c9c39075d42214d049bfa78abc20e4735cff03115165014e9ddfeead33166f3"
+    }
+  ],
+  "fixture_sha256": "2781d326f585faddf24ee2714e8b487ad040886e63409fb11a00e8ccd5da6a3d",
+  "harness_sha256": "0dc893c718acac971c3d71c86c8b2a41014102f2fe32eb4b2dd2f86ec524dfac",
+  "shim_sha256": "64f5994018eae8e27350556c7414887788678179e2ff743ffaf32d480eef0a63",
+  "rng_shim_sha256": "23463a14bcc8bf0619391ff8473ee431c1abf7fec6d145ca118bae71c39684c0",
+  "generator_sha256": "e22d0a2ea4cae4467f855b3f6324392ebee199e5ded829d6cc663eaa5e770454",
+  "range_parser_sha256": "68fcf0cb4afa205042cdfcbe94f3bf3df245a5618973efc7f70bc2d1036841c3"
+}

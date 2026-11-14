@@ -1,0 +1,47 @@
+{
+  "version": "2.17.0+",
+  "translations": [],
+  "data": [],
+  "native_bindings": [
+    {
+      "rust_path": "src/nucleotide_setup.rs",
+      "owner": "NucleotideInitialSearch::new",
+      "source_references": [
+        {
+          "source": "src/algo/blast/api/blast_nucl_options.cpp",
+          "symbol": "CBlastNucleotideOptionsHandle::SetHitSavingOptionsDefaults",
+          "line_start": 230,
+          "line_end": 249,
+          "byte_start": 6820,
+          "byte_end": 7463,
+          "source_sha256": "2597d0c0abf81c6da0082804f70dbcaf5bec4344af7baacf0d295d8c874bd064",
+          "task": "blastn",
+          "field": "min_diag_separation",
+          "value": 50
+        },
+        {
+          "source": "src/algo/blast/api/blast_nucl_options.cpp",
+          "symbol": "CBlastNucleotideOptionsHandle::SetMBHitSavingOptionsDefaults",
+          "line_start": 250,
+          "line_end": 270,
+          "byte_start": 7464,
+          "byte_end": 8109,
+          "source_sha256": "afc52f6fed2aa51322e0ea85f45b4e7ef08a574e0c9a3e605553040173d1450c",
+          "task": "megablast",
+          "field": "min_diag_separation",
+          "value": 6
+        }
+      ],
+      "adaptations": "Complete the standard CLI option-layer binding: traditional blastn min_diag_separation50, megablast6. Preserve BlastHitSavingOptionsNew lower-level core default0 and all translated interval/seed/DP algorithms unchanged. Per-task native hit options receive these C++ defaults before parameter construction. This is required for source containment pruning, preliminary seed provenance and final gap placement, not a cosmetic output normalization.",
+      "evidence": "YeastS288c real-workload traditionalblastn row229 (queryn2_insertion_plus,subjectNC_001148.4,query683..932,subject560813..561067) hadmatching136score/endpoints/identities butdifferent gapplacement. Full originalC WordFinder,GetGappedScore andTraceback kernels exactly matched native given native options, proving no kerneltranslation discrepancy. OfficialELF GDB oracle shows source preliminary gappedseed703/560833 andfinalscript firstSub42; native min_diag0 chose758/560886 andfirstSub45. Earlier score303 HSP q571..991/s560422..560856 geometrically contains initial q682..726/s560812..560856, causing the zero-separation rule todiscard initial700/560830 andchoose later755/560883. Source separation50 respects diagonal distance and retains the correct initial seed.",
+      "validation": "Focused override on the single real query using complete real database moves native preliminaryseed to703/560833, and finalGapEditScript matches every officialGDB operation/count exactly: opcodes[3,6,3,6,3,0,3,0,3,6,3,6,3,6,3,0,3,6,3,6,3,6,3,0,3], counts[42,1,26,1,35,8,5,2,5,3,5,1,6,3,17,1,9,2,13,2,23,1,6,8,44]. Parent applied both per-task defaults and owns full real-workload CLI/raw parity rerun. No tolerance/comparator changes or kernelgap-shifting heuristic introduced. The officialELF GetGappedScore entry snapshot additionally matches all87 native initial HSPs exactly in order, offsets and ungapped score/range, and all word/context/extension parameters match. The discrepancy is isolated to hit-saving containment policy after identical initial state."
+    }
+  ],
+  "integration_notes": [
+    "Parent owns/applied src/nucleotide_setup.rs change; worker owned diagnosis/provenance and did not modify kernels. No duplicate function ledger entries; these C++ option-layer source references are native binding provenance.",
+    "Originalcoreconstructor remains min_diag_separation0, exactly matching upstream. Changing that constructor instead would corrupt1:1functiontranslation for other programs.",
+    "Focused temporary evidence: /tmp/btyper-yeast-fixed-seed-probe.rs and /tmp/btyper-yeast-fixed-seed-probe-output.txt; complete unchanged-C comparison drivers /tmp/btyper-yeast-word-oracle.c, /tmp/btyper-yeast-prelim-oracle.c, /tmp/btyper-yeast-full-trace-oracle.c. Official GDB core/seeds JSONL oracle is independently owned by seg_translation.",
+    "The same singlequery CLI mismatch persisted withDUSTdisabled, and both singlequery and8-query batches showed it. Thus the fix addresses the actual standard option binding rather than changing batch strategy or query masks."
+  ],
+  "integrated": true
+}

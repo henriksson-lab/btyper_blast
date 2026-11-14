@@ -1,0 +1,16 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 3462,
+  "origin": "Unchanged complete blast_stat.c file directly executes private composition/frequency routines and ideal statistical setup. Original nucleotide matrices are created for standard 1/-2 and 2/-3 profiles. Protein composition/background paths use a synthetic 5/-4 matrix supplied by the driver, not a claimed tblastn/BLOSUM62 search setup. End-to-end per-context score-block orchestration and gapped statistics remain unimplemented.",
+  "command": "python scripts/generate_composition_reference.py --output tests/fixtures/composition-2.17.0.txt",
+  "fixture": "tests/fixtures/composition-2.17.0.txt",
+  "fixture_sha256": "f5f0bb27ce8ce25d131ec85861cea1c04f812d783d8c62699ce4b114dc69fe3e",
+  "harness": "tests/reference/composition.c",
+  "harness_sha256": "94e183e5bee0eccc234a1acc4ccbc0001aa41779b1e428b8055e423884058856",
+  "generator": "scripts/generate_composition_reference.py",
+  "generator_sha256": "f296e213174ef6e201e4cabdb990da52344155e5efa084ac42690c97ccb408af",
+  "shim": "tests/reference/include/corelib/ncbitype.h",
+  "shim_sha256": "9d3e1fc2301697ffbd57eae53f557b10e4737ad6f1d672f11a03749405feb29c",
+  "compiler": "GCC 11.4.0; fresh Clang and ASan/UBSan comparisons pass, allowing only NaN representation differences. Integer/count/probability/mean fields are exact; Karlin fields use 8 ULP. Leak detection disabled in sandbox."
+}

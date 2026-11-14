@@ -1,0 +1,21 @@
+Input f64: 0x1.b259870eb659cp+2
+Input decimal: 6.78671432911633232
+Pre-exponential coefficient (both): 0.558254390055244797963496239390
+Double argument (both): -46.059491385032949040123639861122
+
+Original C, GNU 64-bit-significand long double, glibc 2.35:
+exp: 0xb.b6dd156e5e32552p-70
+div: 0xd.cefb3c8136c2366p-73
+mul: 0xf.6ad6778c8677c01p-74
+f64: 0x1.ed5acef190cf0p-71
+
+Native high/low, normalized by 2^-66, represented as exact f64 pairs:
+exp: hi=0.7321444356110872 lo=-3.724234462487708e-17
+div: hi=0.1078790708001432 lo=5.888573049311896e-18
+mul: hi=0.06022396486926051 lo=3.466058820164597e-18
+f64: 0x1.ed5acef190cefp-71
+
+Independent correctly rounded 64-bit-significand exp:
+0xb.b6dd156e5e32551p-70
+Native deviations from independent stage-rounding: exp=0, div=0, mul=0 extended ULP.
+Original deviations from those stages: exp=+1, div=+1, mul=+2 extended ULP.

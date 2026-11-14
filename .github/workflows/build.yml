@@ -1,0 +1,182 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Rust on ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install stable Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - name: Install Python for provenance checks
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch pinned original BLAST sources
+        if: runner.os != 'Windows'
+        run: python scripts/blast_source.py fetch
+      - name: Verify translation correspondence and C fixture provenance
+        run: python scripts/verify_translations.py
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      - name: Check library and all targets
+        run: cargo check --all-targets --locked
+      - name: Run tests
+        run: cargo test --locked
+      - name: Run optimized tests
+        run: cargo test --release --locked
+      - name: Build native in-memory search driver
+        run: cargo build --release --locked --example native_search
+      - name: Compare native searches with pinned BLAST smoke output
+        run: python scripts/compare_search.py --native target/release/examples/native_search
+      - name: Install GDB for full-precision original-core comparison
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gdb
+      - name: Fetch pinned original BLAST executables
+        if: runner.os == 'Linux'
+        run: python scripts/blast_tools.py fetch
+      - name: Compare full-precision native and original core results
+        if: runner.os == 'Linux'
+        run: python scripts/verify_core_smoke.py --native target/release/examples/native_search --work-dir "${{ runner.temp }}/core-smoke"
+      - name: Compare original query splitting at default boundaries
+        if: runner.os == 'Linux'
+        run: python scripts/differential_query_split.py --native target/release/examples/native_search --core --work-dir "${{ runner.temp }}/query-split"
+      - name: Compare original default result caps and ties
+        if: runner.os == 'Linux'
+        run: python scripts/differential_result_limits.py --native target/release/examples/native_search --work-dir "${{ runner.temp }}/result-limits"
+      - name: Build and run original C kernels
+        if: runner.os != 'Windows'
+        run: python scripts/generate_kernel_reference.py --output reference-kernels.txt
+      - name: Compare Rust to freshly compiled original C
+        if: runner.os != 'Windows'
+        env:
+          BLAST_KERNEL_FIXTURE: reference-kernels.txt
+        run: cargo test --release --locked --test kernel_reference freshly_compiled_c_kernel_fixtures -- --ignored
+      - name: Build and run original C++ database kernels
+        if: runner.os != 'Windows'
+        run: python scripts/generate_database_reference.py --output reference-database.txt
+      - name: Compare Rust to freshly compiled original C++
+        if: runner.os != 'Windows'
+        env:
+          BLAST_DATABASE_FIXTURE: reference-database.txt
+        run: cargo test --release --locked --test database_reference freshly_compiled_cpp_database_fixtures -- --ignored
+      - name: Build and run original symmetric DUST
+        if: runner.os != 'Windows'
+        run: python scripts/generate_symdust_reference.py --output reference-symdust.txt
+      - name: Compare Rust to original symmetric DUST
+        if: runner.os != 'Windows'
+        env:
+          BLAST_SYMDUST_FIXTURE: reference-symdust.txt
+        run: cargo test --release --locked --test symdust_reference freshly_compiled_cpp_symmetric_dust -- --ignored
+      - name: Build and run original C lookup kernels
+        if: runner.os != 'Windows'
+        run: python scripts/generate_lookup_reference.py --output reference-lookup.txt
+      - name: Compare Rust to original C lookup kernels
+        if: runner.os != 'Windows'
+        env:
+          BLAST_LOOKUP_FIXTURE: reference-lookup.txt
+        run: cargo test --release --locked --test lookup_reference freshly_compiled_c_lookup_fixtures -- --ignored
+      - name: Build and run original C ordinary lookup kernels
+        if: runner.os != 'Windows'
+        run: python scripts/generate_lookup_reference.py --kind ordinary_lookup --output reference-ordinary-lookup.txt
+      - name: Compare Rust to original C ordinary lookup kernels
+        if: runner.os != 'Windows'
+        env:
+          BLAST_ORDINARY_LOOKUP_FIXTURE: reference-ordinary-lookup.txt
+        run: cargo test --release --locked --test ordinary_lookup_reference freshly_compiled_c_ordinary_lookup -- --ignored
+      - name: Build and run original C megablast scanners
+        if: runner.os != 'Windows'
+        run: python scripts/generate_lookup_reference.py --kind mb_lookup --output reference-mb-lookup.txt
+      - name: Compare Rust to original C megablast scanners
+        if: runner.os != 'Windows'
+        env:
+          BLAST_MB_LOOKUP_FIXTURE: reference-mb-lookup.txt
+        run: cargo test --release --locked --test mb_lookup_reference freshly_compiled_c_mb_lookup -- --ignored
+      - name: Build and run original C nucleotide seed orchestration
+        if: runner.os != 'Windows'
+        run: python scripts/generate_lookup_reference.py --kind seed_lookup --output reference-seed-lookup.txt
+      - name: Compare Rust seed adapter to original C
+        if: runner.os != 'Windows'
+        env:
+          BLAST_SEED_LOOKUP_FIXTURE: reference-seed-lookup.txt
+        run: cargo test --release --locked --test seed_lookup_reference freshly_compiled_nucleotide_seed_orchestration -- --ignored
+      - name: Build and run original C/C++ query context setup
+        if: runner.os != 'Windows'
+        run: python scripts/generate_context_reference.py --output reference-context.txt
+      - name: Compare Rust query batches to original setup
+        if: runner.os != 'Windows'
+        env:
+          BLAST_CONTEXT_FIXTURE: reference-context.txt
+        run: cargo test --release --locked --test context_reference freshly_compiled_query_context_setup -- --ignored
+      - name: Build and run original C nucleotide extension kernels
+        if: runner.os != 'Windows'
+        run: python scripts/generate_ungapped_reference.py --output reference-ungapped.txt
+      - name: Compare Rust to original nucleotide extension
+        if: runner.os != 'Windows'
+        env:
+          BLAST_UNGAPPED_FIXTURE: reference-ungapped.txt
+        run: cargo test --release --locked --test ungapped_reference freshly_compiled_nucleotide_ungapped_kernels -- --ignored
+      - name: Build and run original extension-state and hit storage
+        if: runner.os != 'Windows'
+        run: python scripts/generate_extend_reference.py --output reference-extend.txt
+      - name: Compare Rust extension-state and hit storage to original C
+        if: runner.os != 'Windows'
+        env:
+          BLAST_EXTEND_FIXTURE: reference-extend.txt
+        run: cargo test --release --locked --test extend_reference freshly_compiled_extension_state_and_hit_storage -- --ignored
+      - name: Build and run original diagonal initial-hit extension
+        if: runner.os != 'Windows'
+        run: python scripts/generate_initial_hit_reference.py --output reference-initial-hit.txt
+      - name: Compare Rust initial-hit extension to original C
+        if: runner.os != 'Windows'
+        env:
+          BLAST_INITIAL_HIT_FIXTURE: reference-initial-hit.txt
+        run: cargo test --release --locked --test ungapped_reference freshly_compiled_diagonal_initial_hit_extension -- --ignored
+      - name: Build and run original nucleotide mini-extension
+        if: runner.os != 'Windows'
+        run: python scripts/generate_mini_extension_reference.py --output reference-mini-extension.txt
+      - name: Compare Rust mini-extension to original C
+        if: runner.os != 'Windows'
+        env:
+          BLAST_MINI_EXTENSION_FIXTURE: reference-mini-extension.txt
+        run: cargo test --release --locked --test ungapped_reference freshly_compiled_nucleotide_mini_extension -- --ignored
+      - name: Build and run original nucleotide word finder
+        if: runner.os != 'Windows'
+        run: python scripts/generate_word_finder_reference.py --output reference-word-finder.txt
+      - name: Compare Rust word finder to original C
+        if: runner.os != 'Windows'
+        env:
+          BLAST_WORD_FINDER_FIXTURE: reference-word-finder.txt
+        run: cargo test --release --locked --test ungapped_reference freshly_compiled_nucleotide_word_finder -- --ignored
+      - name: Build and run original ungapped statistics
+        if: runner.os != 'Windows'
+        run: python scripts/generate_statistics_reference.py --output reference-statistics.txt
+      - name: Compare Rust statistics to original C
+        if: runner.os != 'Windows'
+        env:
+          BLAST_STATISTICS_FIXTURE: reference-statistics.txt
+        run: cargo test --release --locked --test statistics_reference freshly_compiled_ungapped_statistics -- --ignored
+      - name: Build and run original sequence composition
+        if: runner.os != 'Windows'
+        run: python scripts/generate_composition_reference.py --output reference-composition.txt
+      - name: Compare Rust composition to original C
+        if: runner.os != 'Windows'
+        env:
+          BLAST_COMPOSITION_FIXTURE: reference-composition.txt
+        run: cargo test --release --locked --test composition_reference freshly_compiled_sequence_composition -- --ignored

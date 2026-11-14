@@ -1,0 +1,9 @@
+# SEG query-default correction validation
+
+Artifact `c144e261` and its source fingerprints are recorded in [build.json](build.json). `PreparedProteinQuery` now enables upstream's query SEG overlap merging; the lower-level and Kappa SEG defaults are unchanged. This corrects overlapping mask lists that previously produced reversed lookup spans. The source evidence and focused original-C comparison are in [protein-query-seg-default.json](../../integrations/protein-query-seg-default.json).
+
+The corrected release passes all 1,259 real HSP comparisons in the six pinned public-genome workloads and both default query-split boundary comparisons (five traditional blastn and four tblastn HSPs). Raw comparisons preserve complete HSP fields, floating-point bits, seeds, edit scripts and order. Twelve protein differential workloads and the 25-HSP printed smoke also match. The complete local release test suite passes.
+
+Seven result-limit cases compare 4,000 ordered HSPs at all 19 CLI fields and the default 500 subjects per query. They cover equal-score ties, graded ties and a two-query case containing strong and weak CBS matches. These outputs use CLI numeric precision. The weak case gives identical original/Rust decisions: 2,100 preliminary lists, 1,550 tracebacks and 550 early terminations. Original GDB confirms preliminary E-values of 0.0940 for the skipped lists and final E-values of 0.5370 for completed weak matches. This exercises weak positives and the readiness of both query heaps.
+
+[scripts/differential_query_split.py](../../../scripts/differential_query_split.py) and [scripts/differential_result_limits.py](../../../scripts/differential_result_limits.py) provide compact deterministic generators. No large FASTA corpus is stored. Actual remote CI remains unverified. The known isolated libc compatibility limit is documented in [numerical-compatibility](../../numerical-compatibility/README.md).

@@ -1,0 +1,49 @@
+{
+  "version": "2.17.0+",
+  "integrated": true,
+  "translations": [],
+  "data": [],
+  "source_references": [
+    {
+      "source": "src/algo/blast/core/blast_kappa.c",
+      "line_start": 1898,
+      "line_end": 1957,
+      "byte_start": 76183,
+      "byte_end": 78710,
+      "source_sha256": "afdb135d81f5db9c18228fbbe6a657e44e53ac6d1d3b80dfc53012b7c5dbe524",
+      "meaning": "Redo callback borrows existing gapAlign/scoring matrix instead of allocating rows"
+    },
+    {
+      "source": "src/algo/blast/core/blast_kappa.c",
+      "line_start": 2764,
+      "line_end": 2797,
+      "byte_start": 106570,
+      "byte_end": 107564,
+      "source_sha256": "e0e5979b8fcc726b3b91cf2bc785892f4d24fcc7bc786df212dfb6df9e7cc53c",
+      "meaning": "Score block deep-copy owns reusable matrix rows"
+    },
+    {
+      "source": "src/algo/blast/core/blast_kappa.c",
+      "line_start": 3254,
+      "line_end": 3276,
+      "byte_start": 125019,
+      "byte_end": 125883,
+      "source_sha256": "a685894ce4c1d7a50debb189170a5c272a166248ab44596a1d57c611e9e5f865",
+      "meaning": "Per-thread score block and gap workspace created before subject loop"
+    },
+    {
+      "source": "src/algo/blast/core/blast_kappa.c",
+      "line_start": 3359,
+      "line_end": 3364,
+      "byte_start": 128807,
+      "byte_end": 129030,
+      "source_sha256": "2ba8541bbc6531e2dc9b327a89053195a08fa80b3776645e82ca7d9c0d6a3f6b",
+      "meaning": "Per-thread matrix points at retained score block rows"
+    }
+  ],
+  "native_bindings": [
+    "ProteinRedoContext now retains callback matrix rows for its full search lifetime, matching original per-thread ScoreBlk/matrix ownership. s_redo_one_alignment copies unchanged adjusted flat matrix values into reused rows, rather than constructing28row allocations for every alignment. Matrix dimensions are checked and retained capacity adapts to a changed low-level alphabet size.",
+    "Final retained-context identity/positive evaluation copies unchanged adjusted values into already allocated scaled.matrix rows, instead of replacing the matrix allocation. Original numeric values, order and trace algorithms remain unchanged. Safe matrix borrows are removed through existing gap binder before callbacks return; no allocator dependency or unsafe storage introduced."
+  ],
+  "validation": "cargo check all-targets passed; combined artifact all1259realHSPs exactly match original core across6cases (fields,floatbits,seeds,scripts,order); defaultlong-query split CLI matches5classic+4tblastn HSPs. Report /tmp/btyper-query-split-check/integrated-report.json. No newtimingclaim."
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "One reproduced ErfC input; no production modifications",
+  "input": 6.786714329116332,
+  "double_argument": -46.05949138503295,
+  "pre_exponential_result": 0.5582543900552448,
+  "reference_library": "Ubuntu GLIBC 2.35-0ubuntu3.18, dynamically linked expl@GLIBC_2.2.5",
+  "source_expression": "result *= expl(-z * z) / z;",
+  "reference_expl_hex": "0xb.b6dd156e5e32552p-70",
+  "correctly_rounded_64bit_expl_hex": "0xb.b6dd156e5e32551p-70",
+  "reference_expl_error_in_64bit_ulp": "0.6833093253656041500013348489705970999133706772782190299780256209354060708249651955853306046854661801354109062976094265137872792223659785025392200553724147029857",
+  "original_final_f64_hex": "0x1.ed5acef190cf0p-71",
+  "native_final_f64_hex": "0x1.ed5acef190cefp-71",
+  "native_vs_correct_rounded_stage_64bit_ulps": {
+    "exp": 0,
+    "division": 0,
+    "multiplication": 0
+  },
+  "verification": [
+    "mpmath 1.3.0,120 decimal digits, explicit nearest-even rounding after each 64-bit-significand stage",
+    "Python decimal,160 decimal digits, independent exp calculation confirms 64bit mantissa",
+    "C source expression instrumented stage-by-stage; original and Rust pre-exponential doubles match",
+    "nm -D confirms runtime expl@GLIBC_2.2.5 call",
+    "Reproduction script also verifies all three rounded stages using Python Decimal at 160 digits"
+  ],
+  "conclusion": "Reference libm-specific last-bit difference, not a HighLow rounding bug at this input. Emulating correctly rounded extended arithmetic does not guarantee bitwise parity with pinned glibc expl. Do not patch a single input or claim universal exact parity.",
+  "upstream_version": "2.17.0+",
+  "input_f64_hex": "0x1.b259870eb659cp+2",
+  "source": "src/algo/blast/core/boost_erf.c:229",
+  "native_implementation": "src/core/boost_erf.rs::extended_exp_product"
+}

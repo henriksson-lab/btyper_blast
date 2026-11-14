@@ -1,0 +1,78 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 77795,
+  "fixture": "tests/fixtures/database-2.17.0.txt",
+  "harness": "tests/reference/database.cpp",
+  "shim": "tests/reference/database_shim.hpp",
+  "generator": "scripts/generate_database_reference.py",
+  "range_parser": "scripts/source_ranges.py",
+  "origin": "Execute selected unchanged original C++ writer and seeded LFG definitions; only class declarations, integer typedefs, and unused system-RNG exception path are adapted in the test shim.",
+  "fragments": [
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 8067,
+      "byte_end": 8152,
+      "sha256": "7a78bb398d6104f00e43508a3ecf57c8a74e7ee98cc61733fb164f5367c33939"
+    },
+    {
+      "source": "src/util/random_gen.cpp",
+      "byte_start": 9646,
+      "byte_end": 10245,
+      "sha256": "d110180a4b20e0359b5662525546edb3dbc414bd172f9ab9cda79c8d65686fb0"
+    },
+    {
+      "source": "include/util/random_gen.hpp",
+      "byte_start": 7443,
+      "byte_end": 7796,
+      "sha256": "b5c7c3a4d37995ce28f07d09f87645d07591930d487bf636912b1a8cce902d06"
+    },
+    {
+      "source": "include/util/random_gen.hpp",
+      "byte_start": 7799,
+      "byte_end": 7915,
+      "sha256": "ecf1f5b8ed8e64dc977ca730b39110d0b8680c880aa80778c8698cc9a035a30a"
+    },
+    {
+      "source": "include/objtools/blast/seqdb_writer/writedb_general.hpp",
+      "byte_start": 1965,
+      "byte_end": 2073,
+      "sha256": "898012d653e8aec86ed90cf587cd4079055352b12a02da1e6c7d2c85c5ecdedb"
+    },
+    {
+      "source": "include/objtools/blast/seqdb_writer/writedb_convert.hpp",
+      "byte_start": 5821,
+      "byte_end": 6042,
+      "sha256": "725c44f896588a755761c239580d6b1040e3a89e8d7ac722ef5b8d6b1f95d17e"
+    },
+    {
+      "source": "src/objtools/blast/seqdb_writer/writedb_convert.cpp",
+      "byte_start": 2107,
+      "byte_end": 5223,
+      "sha256": "1330375ed00ebd619e4e5eeabe5436016b76241b801f7f5103dc9b5543ad57eb"
+    },
+    {
+      "source": "src/objtools/blast/seqdb_writer/writedb_convert.cpp",
+      "byte_start": 5407,
+      "byte_end": 14119,
+      "sha256": "057cf0e389b33d0f452f66c9a69665e7ed4f9446c2695ebc8ac09a8eb1ff7ae0"
+    },
+    {
+      "source": "src/objtools/blast/seqdb_writer/writedb_convert.cpp",
+      "byte_start": 14264,
+      "byte_end": 14605,
+      "sha256": "ecb048b8d4258ee5a0a55f90cef98beecf4f6b7adcf40e2ab41ae218386ecef5"
+    },
+    {
+      "source": "src/objtools/blast/seqdb_writer/writedb_convert.cpp",
+      "byte_start": 14607,
+      "byte_end": 16981,
+      "sha256": "3d72a6424a0060a3679c9988b1e989dca2b4346fd6d403ee9fe8c15055cce66b"
+    }
+  ],
+  "fixture_sha256": "41f22de6db2e7e805ead35dd8ff096ebdc452c6807e580d0d69ecef845376345",
+  "harness_sha256": "df39a23c9652f95ac9c443a4c5531ba126907c9401c8b6d34a6cea53b5b3ca93",
+  "shim_sha256": "23463a14bcc8bf0619391ff8473ee431c1abf7fec6d145ca118bae71c39684c0",
+  "generator_sha256": "f718e379f7db0532472767351a42d0fd71601739229e6932223ab217dc827538",
+  "range_parser_sha256": "68fcf0cb4afa205042cdfcbe94f3bf3df245a5618973efc7f70bc2d1036841c3"
+}

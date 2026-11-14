@@ -1,0 +1,57 @@
+{
+  "version": "2.17.0+",
+  "translations": [],
+  "data": [],
+  "native_bindings": [
+    {
+      "rust_path": "src/protein_setup.rs",
+      "owners": [
+        "ProteinInitialSearch::new_internal",
+        "ProteinInitialSearch::preliminary_subject",
+        "ProteinInitialSearch::preliminary_translated_chunk",
+        "bind_gap_align"
+      ],
+      "source_references": [
+        {
+          "source": "src/algo/blast/core/blast_setup.c",
+          "symbol": "BLAST_GapAlignSetUp",
+          "line_start": 887,
+          "line_end": 999,
+          "byte_start": 32902,
+          "byte_end": 36954,
+          "source_sha256": "4a67dc84abad1128bab4a597b47cbb11e52ce9d05b6d6e2e5c9b51419afdc107"
+        },
+        {
+          "source": "src/algo/blast/core/blast_engine.c",
+          "symbol": "Blast_RunFullSearch",
+          "line_start": 1726,
+          "line_end": 1796,
+          "byte_start": 67723,
+          "byte_end": 70732,
+          "source_sha256": "b9caa520e534ea057e6ffc2dfefd8863e90ccfa54c8abcddb967eee197beb095"
+        },
+        {
+          "source": "src/algo/blast/core/blast_engine.c",
+          "symbol": "BLAST_PreliminarySearchEngine",
+          "line_start": 1334,
+          "line_end": 1607,
+          "byte_start": 51134,
+          "byte_end": 62595,
+          "source_sha256": "d2111e32ced73ff576496b64bc0c31ad1e889cf52c0ba988be7aa704e678d597"
+        }
+      ],
+      "adaptations": "Restore original search-scoped BlastGapAlignStruct ownership initialized from database maximum sequence length through unchanged constructor. Standard protein DP1000cells,greedy/traceback/edit owned buffers retained across all subjects/chunks/frames instead of reconstructing scratch per call. Safe field-by-field matrix lifetime rebind moves allocations unchanged into borrowed scratch and back to static-empty matrix storage; no self reference,unsafe,uninitialized memory,new allocator or altered growth geometry. Rebind before each original GetGappedScore call and restore owner before status propagation. Reset preliminary Xdrop from extension parameters each call; leave all source no-hit/reset/tie/kernel decisions unchanged. Final-only new_for_traceback skips unused preliminary scratch; original CBS callbacks keep their separately owned scratch. Preserve new_with_effective_searchspaces/new_for_traceback setup hooks and signatures.",
+      "validation": "cargo check --all-targets passes after scratch change. Source-aware two real protein raw guards pending coordinated build; no speed claim."
+    }
+  ],
+  "integration_notes": [
+    "ProteinInitialSearch normal constructor now owns reusable gap_align; no new source function mapping or shared-module/ledger change. Parent can integrate after focused2realproteinrawguards.",
+    "SplitQueryBlk_Add* reserve error correction in src/core/blast_query_split.rs forwards original DynamicInt4/Uint4Array_Append BLASTERR_MEMORY=50; copied-array getters retain original kOutOfMemory=-2. Update existing query-split function adaptation; no duplicate mapping."
+  ],
+  "integrated": true,
+  "validation_combined": {
+    "artifact": "/tmp/btyper-query-split-target/release/examples/native_search",
+    "report": "/tmp/btyper-query-split-check/integrated-report.json",
+    "result": "All1259 real HSPs across6cases exactly match original core (alllogicalfields/fullfloatbits/scripts/order); defaultlong-query split CLI19fields match5classic and4tblastn hits. No newtimingclaim."
+  }
+}

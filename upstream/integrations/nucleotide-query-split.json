@@ -1,0 +1,147 @@
+{
+  "translations": [],
+  "data": [],
+  "native_bindings": [
+    "src/nucleotide_search.rs computes QuerySplitPlan from forward biological query lengths. Source defaults and environment overrides remain in mapped worker geometry, not independently substituted thresholds.",
+    "Unsplit batches call the original unchanged preliminary core/collector helper and existing final path; no full query reconstruction/copy occurs for unsplit searches.",
+    "Split batches retain a full-query traceback-only NucleotideInitialSearch owner (new_for_traceback), avoiding an unused full-query lookup/diagonal/pair allocation. Each chunk is prepared directly from the batch through prepare_nucleotide_batch_chunk, retaining source local filtering plus inherited full-query masks.",
+    "Each local chunk recalculates local query statistics/cutoffs via new_with_effective_searchspaces, receiving the ENTIRE original full-context eff_searchsp vector unchanged. Original CalcEffLengths indexes this vector by LOCAL context; it is intentionally not projected through global context mapping.",
+    "Each local search runs the original subject core plus bounded HSP collector. Local preliminary streams merge in ascending chunk order using mapped BlastHSPStreamMerge/HitListMerge, including original context/offset mapping, overlap/gap stitching, OID ordering and heap limits. Final stream Close/OID ordering occurs only after all chunk merges.",
+    "Only split chunks failing ungapped statistics with status1 (all-invalid/uncalculable KA contexts) are skipped, corresponding to the two source ignored exception messages. All other failures propagate; full unsplit setup keeps its original error behavior.",
+    "Five exposed ungapped diagnostic counters accumulate by source field additions. The final traceback runs once against the full original query batch over the merged preliminary lists, preserving source result ordering and the new OID-batched subject-buffer owner. No independent final-search-result merging is used.",
+    "No core numerical/alignment/comparator algorithm changed in this integration. No new allocator, dependency, MaybeUninit, unchecked access or all-database permanent cache was introduced."
+  ],
+  "source_lifetime_evidence": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/prelim_stage.cpp",
+      "line_start": 219,
+      "line_end": 221,
+      "byte_start": 8187,
+      "byte_end": 8367,
+      "source_sha256": "18df81bf4f2c24cb213e9ee7e7f9893a9ef4302aa6dc7f132cfb066220ab52dd",
+      "meaning": "Populate full-query effective searchspace overrides before chunk setup"
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/prelim_stage.cpp",
+      "line_start": 236,
+      "line_end": 275,
+      "byte_start": 9019,
+      "byte_end": 10975,
+      "source_sha256": "92f05b6724989a2465807207a2a0642bfca1184af81ffd2468655398eb86bd0d",
+      "meaning": "Prepare/run each local query chunk and merge its preliminary stream"
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/prelim_stage.cpp",
+      "line_start": 277,
+      "line_end": 290,
+      "byte_start": 11024,
+      "byte_end": 11778,
+      "source_sha256": "ef0bf4bbfaba893a63485072fc8fb3119943ed9358557f347264e1f5171990f0",
+      "meaning": "Ignore only chunks with all-invalid or uncalculable ungapped KA contexts"
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/prelim_stage.cpp",
+      "line_start": 292,
+      "line_end": 311,
+      "byte_start": 11779,
+      "byte_end": 12699,
+      "source_sha256": "5af02907f2592e567306d60cb90968190c3c3b53c3188e8f0cadec86db98acd5",
+      "meaning": "Restore full query for final traceback after preliminary stream merging"
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_diagnostics.c",
+      "line_start": 127,
+      "line_end": 137,
+      "byte_start": 4141,
+      "byte_end": 4631,
+      "source_sha256": "bdb9d59ef82cf7fb1016be7ada5b7eb3ca0a1f9f146c07be120672e4922f8741",
+      "meaning": "Accumulate five source ungapped diagnostic counters across local searches"
+    }
+  ],
+  "validation": {
+    "large_default_classic_query_bases": 2000800,
+    "large_default_cli_hits": 5,
+    "large_default_cli": "all19orderedfields and source tabular float formatting match pinned2.17.0+",
+    "large_default_raw": {
+      "status": "match",
+      "hsp_count": 5,
+      "original": "/tmp/btyper-nucleotide-querysplit-validation/original-large-core.jsonl",
+      "native": "/tmp/btyper-nucleotide-querysplit-validation/combined-native-large-core.jsonl",
+      "precision": "exact IEEE754 bit patterns; all logical HSP fields and ordered lists",
+      "differences": []
+    },
+    "forced_small_chunks": [
+      {
+        "program": "megablast",
+        "CHUNK_SIZE": 400,
+        "hits": 6,
+        "matched": true
+      },
+      {
+        "program": "blastn",
+        "CHUNK_SIZE": 400,
+        "hits": 8,
+        "matched": true
+      }
+    ],
+    "default_real_unsplit": [
+      {
+        "dataset": "staph_st14",
+        "program": "megablast",
+        "hsp_count": 6,
+        "raw_original_exact": true
+      },
+      {
+        "dataset": "staph_st14",
+        "program": "blastn",
+        "hsp_count": 481,
+        "raw_original_exact": true
+      },
+      {
+        "dataset": "staph_st14",
+        "program": "tblastn",
+        "hsp_count": 52,
+        "raw_original_exact": true
+      },
+      {
+        "dataset": "yeast_s288c",
+        "program": "megablast",
+        "hsp_count": 16,
+        "raw_original_exact": true
+      },
+      {
+        "dataset": "yeast_s288c",
+        "program": "blastn",
+        "hsp_count": 573,
+        "raw_original_exact": true
+      },
+      {
+        "dataset": "yeast_s288c",
+        "program": "tblastn",
+        "hsp_count": 131,
+        "raw_original_exact": true
+      }
+    ],
+    "checks": [
+      "cargo check --all-targets passed",
+      "Isolated release Native artifact built; original frozen benchmark artifact preserved",
+      "Existing public nucleotide_initial_search convenience/report test passed",
+      "Parent combined artifact used for final large raw core comparison; all5HSPfields/fullfloatbits/coords/seeds/scripts/counts/order match original GDB exactly",
+      "No timed speed measurements were performed by this worker"
+    ]
+  },
+  "temporary_validation": [
+    "/tmp/btyper-nucleotide-querysplit-validation/original-large-core.jsonl",
+    "/tmp/btyper-nucleotide-querysplit-validation/original-large-core.jsonl.metadata.json",
+    "/tmp/btyper-nucleotide-querysplit-validation/combined-native-large-core.jsonl",
+    "/tmp/btyper-nucleotide-querysplit-validation/large-core-compare.json",
+    "/tmp/btyper-nucleotide-querysplit-validation/forced-report.json",
+    "/tmp/btyper-nucleotide-querysplit-validation/unsplit-core-report.json"
+  ],
+  "integrated": true
+}

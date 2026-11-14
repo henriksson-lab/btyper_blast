@@ -1,0 +1,298 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_cxx.cpp",
+      "symbol": "s_SetSplitQuerySeqInterval",
+      "line_start": 189,
+      "line_end": 211,
+      "source_sha256": "50fba2d45684b98dbfcfa734c29d338adbed496d8f1ac79cd42469db8272c89a",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "s_set_split_query_seq_interval",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "CSeq_interval/Seq-loc pointers lower to a finite half-open native range; preserve interval intersection/arithmetic and inclusive-to-open conversion.",
+      "byte_start": 7441,
+      "byte_end": 8315
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_cxx.cpp",
+      "symbol": "CQuerySplitter::x_ComputeQueryIndicesForChunks",
+      "line_start": 214,
+      "line_end": 293,
+      "source_sha256": "f8e67c559b3fe3a674d8702cfbb945bd3b5eccbb268a29ea25249f1e2f9931e0",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "x_compute_query_indices_for_chunks",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Ordered ordinary-query intersections and global query indices retained. ObjectMgr scopes, IDs and locations are native QueryPiece indices/ranges. Separate preparation adapters retain clipped inherited full-query DUST plus locally computed DUST; SEG recomputed from local original protein letters. No translated-query, custom Seq-loc offset or single-strand API exposed.",
+      "byte_start": 8322,
+      "byte_end": 12156
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_cxx.cpp",
+      "symbol": "CQuerySplitter::x_ComputeQueryContextsForChunks",
+      "line_start": 339,
+      "line_end": 423,
+      "source_sha256": "afd261012aab52848ef0f9b2d6918be47ca32041aa9157bcaea5857155079f08",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "x_compute_query_contexts_for_chunks",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Scoped default both-strand blastn and ordinary protein-query tblastn branches, context order unchanged. QueryIsTranslated/PSSM/PHI and single-strand branches omitted; tblastn subject translation does not translate queries.",
+      "byte_start": 13238,
+      "byte_end": 17492
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_aux_priv.cpp",
+      "symbol": "CContextTranslator::GetAbsoluteContext",
+      "line_start": 242,
+      "line_end": 248,
+      "source_sha256": "6d0d672259a0d166ab433a9d9d1476430faf528aac85bdd75c5805d0503e45a1",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "get_absolute_context",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Borrowed SSplitQueryBlk context vectors replace CContextTranslator stored duplicate maps.",
+      "byte_start": 8651,
+      "byte_end": 8968
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_aux_priv.cpp",
+      "symbol": "CContextTranslator::GetContextInChunk",
+      "line_start": 251,
+      "line_end": 263,
+      "source_sha256": "d36d3607ced43248feded2fbd692e71cfecbd12c47484f65f81ad64289ebe089",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "get_context_in_chunk",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Ordered linear find and -1 sentinel retained; borrowed source map replaces stored duplicate.",
+      "byte_start": 8974,
+      "byte_end": 9567
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_aux_priv.cpp",
+      "symbol": "CContextTranslator::GetStartingChunk",
+      "line_start": 266,
+      "line_end": 284,
+      "source_sha256": "b92e212309766af74ef1baf04e02df0634b6e0605fa2675f238f4433e3a2a703",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "get_starting_chunk",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Equivalent signed reverse traversal avoids unsigned underflow/cast termination, same contiguous starting-chunk lookup and -1 sentinel.",
+      "byte_start": 9573,
+      "byte_end": 10165
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_cxx.cpp",
+      "symbol": "s_IsPlusStrand",
+      "line_start": 434,
+      "line_end": 437,
+      "source_sha256": "aed14880f5e08237881c06f3bf783cae989103192b8f84dd01433b53ada25012",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "s_is_plus_strand",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Borrowed QueryInfo retains frame>=0 comparison.",
+      "byte_start": 17803,
+      "byte_end": 17926
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_cxx.cpp",
+      "symbol": "s_GetAbsoluteContextLength",
+      "line_start": 452,
+      "line_end": 467,
+      "source_sha256": "1172d6f59779a5dad89cd9d6700524dbcb4a2fe4ce815d6857a83c6b605c208c",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "s_get_absolute_context_length",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Borrowed QueryInfo vector and context-map functions replace object translator; negative/missing returns0.",
+      "byte_start": 18421,
+      "byte_end": 18965
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_cxx.cpp",
+      "symbol": "CQuerySplitter::x_ComputeContextOffsets_NonTranslatedQueries",
+      "line_start": 580,
+      "line_end": 683,
+      "source_sha256": "0b2cd518d4f15a42ddeac06142a39dce5eadb104f606e1588fadc689a5718681",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "x_compute_context_offsets_non_translated_queries",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Source forward/backward accumulation order, overlap truncation, starting-context lookups and invalid INT4_MAX offsets retained; native info/map inputs replace factories. Ordinary blastn/tblastn only.",
+      "byte_start": 22793,
+      "byte_end": 27608
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/split_query_aux_priv.cpp",
+      "symbol": "SplitQuery_SetEffectiveSearchSpace",
+      "line_start": 150,
+      "line_end": 182,
+      "source_sha256": "69ec1ec67ff68e34efd1ee41a6409ffdbbaf8d765af1c09a4590cd64fc88fdf8",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "split_query_set_effective_search_space",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Full native InitialSearch statistical setup already performs original full-query effective-length calculator; adapter receives that QueryInfo instead of factory/data objects. Retain first-effective-space early return and all full-context values in original order. Chunk setups deliberately index unchanged full-vector PREFIX by local context as pinned source does; do not project by global query. Local length_adjustment still recomputed.",
+      "byte_start": 5047,
+      "byte_end": 6343
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_hspstream.c",
+      "symbol": "BlastHSPStreamMerge",
+      "line_start": 399,
+      "line_end": 566,
+      "source_sha256": "26e36ebaaa6b4300264af703f54cedf69879c717b5446c5772b73edcb82b4c6a",
+      "rust_path": "src/query_split.rs",
+      "rust_symbol": "blast_hsp_stream_merge",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Native caller passes finalized collector Results owners instead of stream structs; no writer/pipes are exposed. Original per-query/globalcontext/offset/frame/gappedseed mapping, split points, HitListMerge limits/ties and final score-sort retained. Native pipeline closes/sorts once AFTER merging every chunk and traces full query once. Source debug output/free-copy arrays omitted; borrowed maps replace allocated copies.",
+      "byte_start": 13275,
+      "byte_end": 19333
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/objects/seqloc/Seq_loc.cpp",
+      "symbol": "x_MergeRanges",
+      "line_start": 4334,
+      "line_end": 4389,
+      "source_sha256": "14238bb706e809a6bcc8814fd674b272570dfab14e84ea537b37762baa4e54cf",
+      "rust_path": "src/query.rs",
+      "rust_symbol": "x_merge_ranges",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Only finite nonfuzzy forward-strand one-ID fStrand_Ignore|fMerge_All path required by default DUST union; retained contained/overlapping/abutting comparisons and update order. Tuples replace ObjectMgr ranges/fuzz/strand metadata; no blanket BlastSeqLocCombine substitution because its strict overlap comparison differs.",
+      "byte_start": 119948,
+      "byte_end": 121678
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/objects/seqloc/Seq_loc.cpp",
+      "symbol": "x_RangesToSeq_loc",
+      "line_start": 4547,
+      "line_end": 4594,
+      "source_sha256": "8df2e38a608eb4cd7ab5a05c3e6d41728b03a5cbf88ee3145a3e9618daaa088e",
+      "rust_path": "src/query.rs",
+      "rust_symbol": "x_ranges_to_seq_loc",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "Selected single-ID, forward-strand, sorted finite nonfuzzy range branch. Tuple vectors replace ID map and Seq-loc nodes; same sort-by-start and linear x_MergeRanges traversal. Initial empty ObjectMgr range is an Option, preserving emitted finite intervals.",
+      "byte_start": 126423,
+      "byte_end": 128171
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/api/dust_filter.cpp",
+      "symbol": "s_CombineDustMasksWithUserProvidedMasks",
+      "line_start": 92,
+      "line_end": 144,
+      "source_sha256": "283c26c5b92bc43275cb802e671b286e6a27404bab02c5b84a381a9d80843fa4",
+      "rust_path": "src/query.rs",
+      "rust_symbol": "s_combine_dust_masks_with_user_provided_masks",
+      "reason": "Required ordinary standard query-splitting wrapper, masks and preliminary merge before full-query traceback",
+      "status": "translated",
+      "validation": "cargo check --lib; 1764 finite-range cases against unchanged original x_MergeRanges C++ body; 3 nucleotide/3 protein split chunks across four queries, 12 nucleotide contexts verify full forward/reverse sequence spans, exact correction offsets, inherited-full-mask/local-DUST and fresh-SEG direct-batch adapter equivalence. Parent owns full original CLI split-search guard. Combined release artifact default2,000,800nt classic and40,200aa protein split inputs match original CLI5/4HSPs; all1259realHSPs exactly match original core. Fullsplitraw guard follows separately.",
+      "adaptations": "DUST generation already performed by native standard constructor; inputs are local mapped intervals. Preserve empty-DUST early return and sorted full union with inherited masks using scoped original Seq_loc merge helpers. ObjectMgr coordinate mapping handled by QueryPiece intersection before call; one ID, forward finite nonfuzzy ranges only.",
+      "byte_start": 3112,
+      "byte_end": 5119
+    }
+  ],
+  "native_adapters": [
+    {
+      "path": "src/query_split.rs",
+      "symbols": [
+        "QuerySplitPlan",
+        "QueryPiece",
+        "QuerySplitError",
+        "query_info_for_lengths"
+      ],
+      "description": "Native ownership/error binding; invokes source core geometry and translated context/intersection functions. No allocation of full lookup on split path; local query pieces only. Uniform identity maps for an unsplit batch are native metadata, source Split itself leaves maps unused."
+    },
+    {
+      "path": "src/query.rs",
+      "symbols": [
+        "PreparedNucleotideQuery::from_ncbi4na_with_additional_masks"
+      ],
+      "description": "Native checked constructor runs original local DUST then unions inherited masks using mapped source helpers. Inclusive local bounds validated; original reverse-context masks rebuilt."
+    },
+    {
+      "path": "src/query_batch.rs",
+      "symbols": [
+        "PreparedNucleotideBatch::prepare_query_range"
+      ],
+      "description": "Only requested forward local BLASTNA span converted back to NCBI4na. Full inherited effective masks recovered from full lookup complement then intersected/shifted into requested span, before original local DUST union. No full-query residue copies or re-DUST pass."
+    },
+    {
+      "path": "src/protein_query.rs",
+      "symbols": [
+        "PreparedProteinBatch::prepare_query_range"
+      ],
+      "description": "Borrow local original unmasked letters, encode/pad and recompute original SEG through existing query constructor. Do not clip/reuse full SEG masks as if they were factory user masks."
+    },
+    {
+      "path": "src/nucleotide_setup.rs",
+      "symbols": [
+        "NucleotideInitialSearch::new_with_effective_searchspaces",
+        "NucleotideInitialSearch::new_for_traceback"
+      ],
+      "description": "Parent-owned Native constructor bindings: provide original entire full effective-space vector before chunk hit/word parameters; skip unused full lookup/diag/hitpair allocation for final-only fullquery owner."
+    },
+    {
+      "path": "src/protein_setup.rs",
+      "symbols": [
+        "ProteinInitialSearch::new_with_effective_searchspaces",
+        "ProteinInitialSearch::new_for_traceback"
+      ],
+      "description": "Parent-owned bindings equivalent to nucleotide: original fullspaces prefix/localindex semantics, chunk-specific lengthadjustment, final-only fullquery stats/gapped scratch without full lookup."
+    },
+    {
+      "path": "src/protein_search.rs",
+      "symbols": [
+        "collect_protein_preliminary",
+        "add_preliminary_stats",
+        "search_protein_database"
+      ],
+      "description": "Native pipeline adapter lowers CPrelimSearch::Run split branch: chunk-local setup/filtering/preliminary collector, ignore only known all-context ungapped-KA status1 chunks, original stream merge before once fullquery CBS/sort. Aggregate diagnostic executedchunk counters via wrapping addition. No after-final result concatenation, coordinate patching or independent perchunk final caps."
+    }
+  ],
+  "integration_requirements": [
+    "Parent exposes core::blast_query_split and query_split (done).",
+    "Core worker owns SplitQueryBlk/geometry and Blast_HitListMerge/query-overlap source mappings.",
+    "Nucleotide-search worker owns equivalent perchunk preliminary integration; source provenance adaptation can reference this wrapper without duplicate translated functions."
+  ],
+  "validation": {
+    "finite_range_original_cpp_cases": 1764,
+    "wholecrate_compile": "cargo check --lib passes; standalone wholecrate rustc debug compilation also passes after source freeze",
+    "focused_wrapper_checks": "PASS:3 nucleotide chunks,12 contexts,3 protein chunks/four queries with ambiguity,low complexity,inherited masks; direct bounded batch path equals prepared-original-query reference; all forward/reverse sequence spans and offsets verified",
+    "full_search_split_guard": "Default2,000,800nt classic5HSP and40,200aa tblastn4HSP exactly match originalCLI19fields AND originalGDB rawcore includingfloatbits,seeds,scripts/order; existing6realcases1259HSPs exact too."
+  },
+  "integrated": true
+}

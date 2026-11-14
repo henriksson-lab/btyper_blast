@@ -1,0 +1,11 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "executable_archive_sha256": "3888112d8207831aa47371d93583c601f058f88b5db22dc782438b039a3a411b",
+  "records": 377,
+  "fixture": "tests/fixtures/makeblastdb-2.17.0.txt",
+  "generator": "scripts/generate_makeblastdb_reference.py",
+  "origin": "Official pinned makeblastdb default version 5; sequence/ambiguity ranges read from .nsq using .nin offsets; canonical residues from official blastdbcmd.",
+  "fixture_sha256": "c21bae89af89abaf0cc34a09e17c405f7e6dd21444c2546ed5713c7f86879305",
+  "generator_sha256": "ed12efb2c4290d1e9bb77c6cda0760f8c699d9277bdb1bd000c921bc630ca30f"
+}

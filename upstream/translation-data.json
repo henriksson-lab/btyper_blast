@@ -1,0 +1,1567 @@
+[
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_encoding.c",
+    "source_sha256": "b4d06efb4aedb794e25ceb78cae4f9aabf760fb8c6385f5fb19265fcb53b544b",
+    "rust_path": "src/core/blast_encoding.rs",
+    "symbols": {
+      "NCBI4NA_TO_BLASTNA": "NCBI4NA_TO_BLASTNA",
+      "BLASTNA_TO_NCBI4NA": "BLASTNA_TO_NCBI4NA",
+      "BLASTNA_TO_IUPACNA": "BLASTNA_TO_IUPACNA",
+      "NCBI4NA_TO_IUPACNA": "NCBI4NA_TO_IUPACNA",
+      "IUPACNA_TO_BLASTNA": "IUPACNA_TO_BLASTNA",
+      "IUPACNA_TO_NCBI4NA": "IUPACNA_TO_NCBI4NA",
+      "AMINOACID_TO_NCBISTDAA": "AMINOACID_TO_NCBISTDAA",
+      "NCBISTDAA_TO_AMINOACID": "NCBISTDAA_TO_AMINOACID",
+      "kProtSentinel": "K_PROT_SENTINEL",
+      "kNuclSentinel": "K_NUCL_SENTINEL"
+    },
+    "adaptations": "C char arrays become ASCII u8 arrays; numeric values and table order unchanged.",
+    "status": "translated",
+    "validation": "tests/kernel_reference.rs: table and sentinel records from unmodified C reference"
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_encoding.h",
+    "source_sha256": "884e11dbca11e6712d79d06d884d776d0e47c9ecbf8baf2dc1e56c5fe2cc7ec7",
+    "rust_path": "src/core/blast_encoding.rs",
+    "symbols": {
+      "BLAST2NA_SIZE": "BLAST2NA_SIZE",
+      "BLASTNA_SIZE": "BLASTNA_SIZE",
+      "BLASTAA_SIZE": "BLASTAA_SIZE",
+      "BLASTNA_SEQ_CODE": "BLASTNA_SEQ_CODE",
+      "BLASTAA_SEQ_CODE": "BLASTAA_SEQ_CODE",
+      "NCBI4NA_SEQ_CODE": "NCBI4NA_SEQ_CODE",
+      "EBlastEncoding": "EBlastEncoding"
+    },
+    "adaptations": "Explicit Rust repr(u8) enum with original discriminants; sizes are usize constants.",
+    "status": "translated",
+    "validation": "tests/kernel_reference.rs: table and sentinel records from unmodified C reference"
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/objects/seqfeat/gc.prt",
+    "source_sha256": "2aecbdd09ecc5e0d233c105090a593737298ef93d88f6bc0c1bef26df6051a04",
+    "rust_path": "src/core/genetic_code.rs",
+    "symbols": {
+      "Genetic-code-table id 1 ncbieaa": "STANDARD_GENETIC_CODE"
+    },
+    "adaptations": "Retain only standard genetic code 1 data; convert NCBIeaa characters through original AMINOACID_TO_NCBISTDAA table.",
+    "status": "translated",
+    "validation": "tests/kernel_reference.rs: table and sentinel records from unmodified C reference"
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/dustmask/symdust.hpp",
+    "source_sha256": "2763228ee7e056f9aa4f8eddd08b4bab4e9c67cf473816e8a5386ac62316c6a6",
+    "rust_path": "src/dustmask/symdust.rs",
+    "symbols": {
+      "CSymDustMasker::DEFAULT_LEVEL": "DEFAULT_LEVEL",
+      "CSymDustMasker::DEFAULT_WINDOW": "DEFAULT_WINDOW",
+      "CSymDustMasker::DEFAULT_LINKER": "DEFAULT_LINKER",
+      "CSymDustMasker::TRIPLET_MASK": "TRIPLET_MASK"
+    },
+    "adaptations": "Preserve original constant values; nested class constants are explicit Rust module constants.",
+    "status": "translated",
+    "validation": "Symmetric DUST and RNG reference cases; complete default query setup against official BLAST archives."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/util/random_gen.hpp",
+    "source_sha256": "68bda2daef1806b1b82f06b11275f243f06d0580dc07ffe11084227a40fb3fbd",
+    "rust_path": "src/util/random_gen.rs",
+    "symbols": {
+      "CRandom::kStateSize": "K_STATE_SIZE"
+    },
+    "adaptations": "Preserve original constant values; nested class constants are explicit Rust module constants.",
+    "status": "translated",
+    "validation": "Symmetric DUST and RNG reference cases; complete default query setup against official BLAST archives."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/util/random_gen.cpp",
+    "source_sha256": "2c81f971108d793c2ee06dc6c6edda05d5079e24b389f9ea8abe378c01288a43",
+    "rust_path": "src/util/random_gen.rs",
+    "symbols": {
+      "kStateOffset": "K_STATE_OFFSET"
+    },
+    "adaptations": "Preserve original constant values; nested class constants are explicit Rust module constants.",
+    "status": "translated",
+    "validation": "Symmetric DUST and RNG reference cases; complete default query setup against official BLAST archives."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_options.h",
+    "source_sha256": "4d21486f1f5a18f88cefad64d8381fe824e864800cc76a7c1ec39f42311e08df",
+    "rust_path": "src/core/blast_nalookup.rs",
+    "symbols": {
+      "ELookupTableType": "ELookupTableType"
+    },
+    "adaptations": "Rust repr(i32) enum retains all original discriminants, including unsupported modes.",
+    "status": "translated",
+    "validation": "Lookup selection C fixture covers original table return values."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_def.h",
+    "source_sha256": "31b9ccf0132e23b2e53612bf04ffa71c71a967a14d68d5a13484c8a3e3ee6dc0",
+    "rust_path": "src/core/blast_nascan.rs",
+    "symbols": {
+      "ESubjectMaskingType": "ESubjectMaskingType"
+    },
+    "adaptations": "Retain original discriminants with repr(i32). Borrowed subject views contain the two sequence-block fields read by ordinary scanners.",
+    "status": "translated",
+    "validation": "Ordinary lookup table and scanner comparisons against original C."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_nalookup.h",
+    "source_sha256": "29869f82bb8046625ea7572128ba6bf0373188eadda79ef4ee80baa81e61b59c",
+    "rust_path": "src/core/blast_nalookup.rs",
+    "symbols": {
+      "NA_HITS_PER_CELL": "NA_HITS_PER_CELL"
+    },
+    "adaptations": "Same value, Rust usize for array sizing. Original union represented as an identically sized three-word payload; exact bytes compared to original calloc/cursor/entries states.",
+    "status": "translated",
+    "validation": "Ordinary lookup table and scanner comparisons against original C."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/lookup_wrap.h",
+    "source_sha256": "cfa06c8e8c0122e2a2ac47e68e880040b7aa7ffc54549c6b3def9fc6691eab07",
+    "rust_path": "src/seed.rs",
+    "symbols": {
+      "OFFSET_ARRAY_SIZE": "OFFSET_ARRAY_SIZE"
+    },
+    "adaptations": "Original 4096-pair base allowance used in native selected-table ownership/dispatch adapter; native query/subject types do not reproduce the full multi-program wrapper.",
+    "status": "translated",
+    "validation": "Original-C standard-preset factory fixture recommended capacities and exact scan batches."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/objects/seqloc/seqloc.asn",
+    "source_sha256": "8c5e20047857ee4deabe9cabada4ca39a7f3e5703086064f053d9a6786f0e1d6",
+    "rust_path": "src/core/blast_setup.rs",
+    "symbols": {
+      "Na-strand": "ENaStrand"
+    },
+    "adaptations": "Rust repr(i32) retains original discriminants. Reference sentinel enum is extracted unchanged; reference Na-strand enum is generated directly from pinned ASN.1 values, avoiding unrelated object-manager code generation.",
+    "status": "translated",
+    "validation": "Context/strand/buffer fixture values against original C++ helper functions."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/api/blast_setup.hpp",
+    "source_sha256": "3d12f58eb15813f928f7412537479e2bcef47bf52d34fc721fe68455dca0b5af",
+    "rust_path": "src/core/blast_setup.rs",
+    "symbols": {
+      "ESentinelType": "ESentinelType"
+    },
+    "adaptations": "Rust repr(i32) retains original discriminants. Reference sentinel enum is extracted unchanged; reference Na-strand enum is generated directly from pinned ASN.1 values, avoiding unrelated object-manager code generation.",
+    "status": "translated",
+    "validation": "Context/strand/buffer fixture values against original C++ helper functions."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_extend.h",
+    "source_sha256": "2b02741db2bdc9b5fc65cc5a6739014fa3504fe56746683886ab04ae033266a6",
+    "rust_path": "src/core/blast_extend.rs",
+    "symbols": {
+      "DIAGHASH_NUM_BUCKETS": "DIAGHASH_NUM_BUCKETS",
+      "DIAGHASH_CHAIN_LENGTH": "DIAGHASH_CHAIN_LENGTH",
+      "MIN_INIT_HITLIST_SIZE": "MIN_INIT_HITLIST_SIZE"
+    },
+    "adaptations": "Preserve the u32 bucket count; do not replace the upstream hash geometry or chaining scheme.",
+    "status": "translated",
+    "validation": "Original-C diagonal hash insertion/retrieval, collision and state snapshot fixtures."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/na_ungapped.c",
+    "source_sha256": "ebdae70f095e72987e9beee722669db44596ce239fab1625c4db53785dc10dd4",
+    "rust_path": "src/core/na_ungapped.rs",
+    "symbols": {
+      "s_ExactMatchExtendLeft": "S_EXACT_MATCH_EXTEND_LEFT",
+      "s_ExactMatchExtendRight": "S_EXACT_MATCH_EXTEND_RIGHT"
+    },
+    "adaptations": "Exact u8 table entries; the right table retains all 192 implicit trailing C zero values explicitly.",
+    "status": "translated",
+    "validation": "mini_tables record compares every pair of original table entries; mini-extension fixtures exercise rolling compressed byte comparisons."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_stat.h",
+    "source_sha256": "08eb5e614abdd3f50e6f88765607b8bcceeb378e2f55554a87079d2bc4991614",
+    "rust_path": "src/core/blast_stat.rs",
+    "symbols": {
+      "BLAST_SCORE_MIN": "BLAST_SCORE_MIN",
+      "BLAST_SCORE_MAX": "BLAST_SCORE_MAX"
+    },
+    "adaptations": "Retain original default/range/tolerance values; use explicit i32/f64 constants and original score-range expression.",
+    "status": "translated",
+    "validation": "Original-C range constructor, statistical calculations/iteration counts and default option records."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_stat.c",
+    "source_sha256": "618b4eaa6497146145875923c7e2669ffde2b96ce43a712f5e0844ab9a1fe07a",
+    "rust_path": "src/core/blast_stat.rs",
+    "symbols": {
+      "BLAST_SCORE_RANGE_MAX": "BLAST_SCORE_RANGE_MAX",
+      "BLAST_KARLIN_K_SUMLIMIT_DEFAULT": "BLAST_KARLIN_K_SUMLIMIT_DEFAULT",
+      "BLAST_KARLIN_K_ITER_MAX": "BLAST_KARLIN_K_ITER_MAX",
+      "BLAST_KARLIN_LAMBDA_ACCURACY_DEFAULT": "BLAST_KARLIN_LAMBDA_ACCURACY_DEFAULT",
+      "BLAST_KARLIN_LAMBDA_ITER_DEFAULT": "BLAST_KARLIN_LAMBDA_ITER_DEFAULT",
+      "BLAST_KARLIN_LAMBDA0_DEFAULT": "BLAST_KARLIN_LAMBDA0_DEFAULT"
+    },
+    "adaptations": "Retain original default/range/tolerance values; use explicit i32/f64 constants and original score-range expression.",
+    "status": "translated",
+    "validation": "Original-C range constructor, statistical calculations/iteration counts and default option records."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_options.h",
+    "source_sha256": "4d21486f1f5a18f88cefad64d8381fe824e864800cc76a7c1ec39f42311e08df",
+    "rust_path": "src/core/blast_options.rs",
+    "symbols": {
+      "BLAST_WINDOW_SIZE_PROT": "BLAST_WINDOW_SIZE_PROT",
+      "BLAST_WINDOW_SIZE_NUCL": "BLAST_WINDOW_SIZE_NUCL",
+      "BLAST_SCAN_RANGE_NUCL": "BLAST_SCAN_RANGE_NUCL",
+      "BLAST_UNGAPPED_X_DROPOFF_PROT": "BLAST_UNGAPPED_X_DROPOFF_PROT",
+      "BLAST_UNGAPPED_X_DROPOFF_NUCL": "BLAST_UNGAPPED_X_DROPOFF_NUCL",
+      "BLAST_GAP_TRIGGER_PROT": "BLAST_GAP_TRIGGER_PROT",
+      "BLAST_GAP_TRIGGER_NUCL": "BLAST_GAP_TRIGGER_NUCL"
+    },
+    "adaptations": "Retain original default/range/tolerance values; use explicit i32/f64 constants and original score-range expression.",
+    "status": "translated",
+    "validation": "Original-C range constructor, statistical calculations/iteration counts and default option records."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_stat.c",
+    "source_sha256": "618b4eaa6497146145875923c7e2669ffde2b96ce43a712f5e0844ab9a1fe07a",
+    "rust_path": "src/core/blast_stat.rs",
+    "symbols": {
+      "Robinson_prob": "ROBINSON_PROB",
+      "nt_prob": "NT_PROB"
+    },
+    "adaptations": "Exact letter/f64 pairs become immutable Rust tuples. Resolve the original STD_AMINO_ACID_FREQS preprocessor alias directly to ROBINSON_PROB; disabled alternative background tables are not translated.",
+    "status": "translated",
+    "validation": "Original-C background records compare every letter and value, with exact standard-frequency normalized arrays."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_seg.c",
+    "source_sha256": "00aa39295f0beae1301c262f844f59f6f71d5796e122d7cd1acbc0c10db89b75",
+    "rust_path": "src/core/blast_seg.rs",
+    "symbols": {
+      "kSegWindow": "K_SEG_WINDOW",
+      "kSegLocut": "K_SEG_LOCUT",
+      "kSegHicut": "K_SEG_HICUT",
+      "kProtAlphabet": "K_PROT_ALPHABET"
+    },
+    "adaptations": "Retain original SEG defaults and alphabet discriminant exactly.",
+    "status": "translated",
+    "validation": "Default SeqBufferSeg complete-output comparisons."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_seg.c",
+    "source_sha256": "00aa39295f0beae1301c262f844f59f6f71d5796e122d7cd1acbc0c10db89b75",
+    "rust_path": "src/core/seg_tables.rs",
+    "symbols": {
+      "lnfact": "LNFACT",
+      "log_win10": "LOG_WIN10"
+    },
+    "adaptations": "Exact C decimal table entries copied verbatim, including six-decimal lnfact values and the original log_win10 values. Disabled alternatives are not involved.",
+    "status": "translated",
+    "validation": "Direct table extraction count 10,001; complete-output SEG comparisons exercise trim and entropy."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/ncbi_math.h",
+    "source_sha256": "077755d91f4a15b942a22f7639940b96271a5c7ed609be5c2be07726ddbe5b18",
+    "rust_path": "src/core/blast_seg.rs",
+    "symbols": {
+      "NCBIMATH_LN2": "LN_2"
+    },
+    "adaptations": "Exact original decimal f64 constant.",
+    "status": "translated",
+    "validation": "SEG entropy calculations."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_util.h",
+    "source_sha256": "9f04dde98b40d01bc59b4de31ed6ac33d836fbee33f2bb5a7a26e3c7a6cba41e",
+    "rust_path": "src/core/blast_seg.rs",
+    "symbols": {
+      "FENCE_SENTRY": "FENCE_SENTRY"
+    },
+    "adaptations": "Retain original fence byte 201.",
+    "status": "translated",
+    "validation": "Preserved original fence-first shift condition."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_stat.c",
+    "source_sha256": "618b4eaa6497146145875923c7e2669ffde2b96ce43a712f5e0844ab9a1fe07a",
+    "rust_path": "src/core/blast_stat_gapped.rs",
+    "symbols": {
+      "BLAST_NUM_STAT_VALUES": "BLAST_NUM_STAT_VALUES",
+      "blastn_values_1_5": "BLASTN_VALUES_1_5",
+      "blastn_values_1_4": "BLASTN_VALUES_1_4",
+      "blastn_values_2_7": "BLASTN_VALUES_2_7",
+      "blastn_values_1_3": "BLASTN_VALUES_1_3",
+      "blastn_values_2_5": "BLASTN_VALUES_2_5",
+      "blastn_values_1_2": "BLASTN_VALUES_1_2",
+      "blastn_values_2_3": "BLASTN_VALUES_2_3",
+      "blastn_values_3_4": "BLASTN_VALUES_3_4",
+      "blastn_values_4_5": "BLASTN_VALUES_4_5",
+      "blastn_values_1_1": "BLASTN_VALUES_1_1",
+      "blastn_values_3_2": "BLASTN_VALUES_3_2",
+      "blastn_values_5_4": "BLASTN_VALUES_5_4"
+    },
+    "adaptations": "Copy every original nucleotide table row exactly. Historical array_of_8 has BLAST_NUM_STAT_VALUES=11; the final three implicit zero columns are explicit. Protein matrix tables are not translated here.",
+    "status": "translated",
+    "validation": "Tables extracted directly from pinned source; eight original-C gapped/alpha-beta spot checks match bit-for-bit."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/greedy_align.h",
+    "source_sha256": "3cad5ac3318c794f8f69cf24874efed5bea66b75faf2aa41bf964b6c773725c7",
+    "rust_path": "src/core/greedy_align.rs",
+    "symbols": {
+      "GREEDY_MAX_COST_FRACTION": "GREEDY_MAX_COST_FRACTION",
+      "GREEDY_MAX_COST": "GREEDY_MAX_COST"
+    },
+    "adaptations": "Retain original integer values and struct field order. Reuse existing translated FENCE_SENTRY constant rather than duplicate it.",
+    "status": "translated",
+    "validation": "Focused direct original-C alignment/traceback comparisons exercise invalid-offset transitions; constants retain pinned source values."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/greedy_align.c",
+    "source_sha256": "221fc0d2e23a1724395ccbe5e313b76f52e78f6b7d788495111434a4edfd71b5",
+    "rust_path": "src/core/greedy_align.rs",
+    "symbols": {
+      "kInvalidOffset": "K_INVALID_OFFSET"
+    },
+    "adaptations": "Retain original integer values and struct field order. Reuse existing translated FENCE_SENTRY constant rather than duplicate it.",
+    "status": "translated",
+    "validation": "Focused direct original-C alignment/traceback comparisons exercise invalid-offset transitions; constants retain pinned source values."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_options.h",
+    "source_sha256": "4d21486f1f5a18f88cefad64d8381fe824e864800cc76a7c1ec39f42311e08df",
+    "rust_path": "src/core/blast_effective_lengths.rs",
+    "symbols": {
+      "BLAST_REWARD": "BLAST_REWARD",
+      "BLAST_PENALTY": "BLAST_PENALTY"
+    },
+    "adaptations": "Retain original 1/-3 defaults used specifically by the matrix-only-scoring fallback in BLAST_CalcEffLengths; do not substitute the traditional blastn CLI 2/-3 preset.",
+    "status": "translated",
+    "validation": "Constants copied from pinned header; ordinary nucleotide and tblastn effective-length setup compared against original C."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/util/tables/sm_blosum62.c",
+    "source_sha256": "b1fce0c942dec496148e53e85d0230c4130cba48a984842dbde193ddc59c9fa7",
+    "rust_path": "src/core/protein_matrix_tables.rs",
+    "symbols": {
+      "s_Blosum62PSM": "S_BLOSUM62_PSM"
+    },
+    "adaptations": "Copy all 625 literal packed BLOSUM62 scores exactly. This source table ships in the pinned toolkit; no runtime or build-time code generation is needed.",
+    "status": "translated",
+    "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/util/tables/sm_blosum62.c",
+    "source_sha256": "b1fce0c942dec496148e53e85d0230c4130cba48a984842dbde193ddc59c9fa7",
+    "rust_path": "src/core/blast_protein_matrix.rs",
+    "symbols": {
+      "NCBISM_Blosum62": "NCBISM_BLOSUM62"
+    },
+    "adaptations": "Preserve symbols, row-major score pointer and default score -4 as a borrowed Rust constant.",
+    "status": "translated",
+    "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/util/tables/raw_scoremat.c",
+    "source_sha256": "2b06ee38642a6c50faff9509b61bb0f9f2d84fa031f420b5dc58e47564b200e9",
+    "rust_path": "src/core/blast_protein_matrix.rs",
+    "symbols": {
+      "kNCBIstdaa": "K_NCBISTDAA"
+    },
+    "adaptations": "Preserve all 28 NCBIstdaa symbol bytes plus the terminating NUL, because the original conversion compares against sizeof(string).",
+    "status": "translated",
+    "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_stat.c",
+    "source_sha256": "618b4eaa6497146145875923c7e2669ffde2b96ce43a712f5e0844ab9a1fe07a",
+    "rust_path": "src/core/protein_matrix_tables.rs",
+    "symbols": {
+      "blosum62_values": "BLOSUM62_VALUES",
+      "blosum62_prefs": "BLOSUM62_PREFS"
+    },
+    "adaptations": "Copy all twelve eleven-column table rows and preference flags exactly; cast INT2_MAX to its exact f64 value 32767.0.",
+    "status": "translated",
+    "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_stat.h",
+    "source_sha256": "08eb5e614abdd3f50e6f88765607b8bcceeb378e2f55554a87079d2bc4991614",
+    "rust_path": "src/core/blast_protein_matrix.rs",
+    "symbols": {
+      "BLAST_MATRIX_NOMINAL": "BLAST_MATRIX_NOMINAL",
+      "BLAST_MATRIX_BEST": "BLAST_MATRIX_BEST"
+    },
+    "adaptations": "Preserve the preference values used by BLOSUM62.",
+    "status": "translated",
+    "validation": "Focused original-C complete BLOSUM62 matrix/table/default-parameter output comparison."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_message.c",
+    "source_sha256": "39e3411032d296f459d8efa1a30fc7dce387e2273f8a4642ac66a9fbf49d5d4b",
+    "rust_path": "src/core/blast_stat.rs",
+    "symbols": {
+      "kBlastErrMsg_CantCalculateUngappedKAParams": "K_BLAST_ERR_MSG_CANT_CALCULATE_UNGAPPED_KA_PARAMS"
+    },
+    "adaptations": "Retain original constant/enum values and warning string. Enum variants drop source e prefixes but retain explicit original discriminants.",
+    "status": "translated",
+    "validation": "Focused default-parameter setup and compilation; parent source/data hashes are pinned."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_message.h",
+    "source_sha256": "d22c50fc2b1efa5b2ee07f726be5a07160bc6bb3d0abb50437e3df07e6ea88c4",
+    "rust_path": "src/core/blast_parameters.rs",
+    "symbols": {
+      "BLASTERR_NOVALIDKARLINALTSCHUL": "BLASTERR_NOVALIDKARLINALTSCHUL"
+    },
+    "adaptations": "Retain original constant/enum values and warning string. Enum variants drop source e prefixes but retain explicit original discriminants.",
+    "status": "translated",
+    "validation": "Focused default-parameter setup and compilation; parent source/data hashes are pinned."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_parameters.h",
+    "source_sha256": "17878c12967138bb558775eddbf83c8384bdd6126dafe01c1711b117df79921c",
+    "rust_path": "src/core/blast_parameters.rs",
+    "symbols": {
+      "ESeedContainerType": "ESeedContainerType",
+      "CUTOFF_E_BLASTN": "CUTOFF_E_BLASTN",
+      "CUTOFF_E_BLASTP": "CUTOFF_E_BLASTP",
+      "CUTOFF_E_BLASTX": "CUTOFF_E_BLASTX",
+      "CUTOFF_E_TBLASTN": "CUTOFF_E_TBLASTN",
+      "CUTOFF_E_TBLASTX": "CUTOFF_E_TBLASTX"
+    },
+    "adaptations": "Retain original constant/enum values and warning string. Enum variants drop source e prefixes but retain explicit original discriminants.",
+    "status": "translated",
+    "validation": "Focused default-parameter setup and compilation; parent source/data hashes are pinned."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_options.h",
+    "source_sha256": "4d21486f1f5a18f88cefad64d8381fe824e864800cc76a7c1ec39f42311e08df",
+    "rust_path": "src/core/blast_options.rs",
+    "symbols": {
+      "EBlastPrelimGapExt": "EBlastPrelimGapExt",
+      "EBlastTbackExt": "EBlastTbackExt",
+      "BLAST_GAP_X_DROPOFF_PROT": "BLAST_GAP_X_DROPOFF_PROT",
+      "BLAST_GAP_X_DROPOFF_NUCL": "BLAST_GAP_X_DROPOFF_NUCL",
+      "BLAST_GAP_X_DROPOFF_GREEDY": "BLAST_GAP_X_DROPOFF_GREEDY",
+      "BLAST_GAP_X_DROPOFF_FINAL_PROT": "BLAST_GAP_X_DROPOFF_FINAL_PROT",
+      "BLAST_GAP_X_DROPOFF_FINAL_NUCL": "BLAST_GAP_X_DROPOFF_FINAL_NUCL",
+      "BLAST_GAP_OPEN_PROT": "BLAST_GAP_OPEN_PROT",
+      "BLAST_GAP_OPEN_NUCL": "BLAST_GAP_OPEN_NUCL",
+      "BLAST_GAP_EXTN_PROT": "BLAST_GAP_EXTN_PROT",
+      "BLAST_GAP_EXTN_NUCL": "BLAST_GAP_EXTN_NUCL",
+      "BLAST_PENALTY": "BLAST_PENALTY",
+      "BLAST_REWARD": "BLAST_REWARD",
+      "BLAST_DEFAULT_MATRIX": "BLAST_DEFAULT_MATRIX"
+    },
+    "adaptations": "Retain original constant/enum values and warning string. Enum variants drop source e prefixes but retain explicit original discriminants.",
+    "status": "translated",
+    "validation": "Focused default-parameter setup and compilation; parent source/data hashes are pinned."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_options.h",
+    "source_sha256": "4d21486f1f5a18f88cefad64d8381fe824e864800cc76a7c1ec39f42311e08df",
+    "rust_path": "src/core/blast_options.rs",
+    "symbols": {
+      "BLAST_HITLIST_SIZE": "BLAST_HITLIST_SIZE",
+      "BLAST_EXPECT_VALUE": "BLAST_EXPECT_VALUE"
+    },
+    "adaptations": "Original scalar values and units retained.",
+    "status": "translated",
+    "validation": "Default setup compilation and initial-search smoke."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_parameters.h",
+    "source_sha256": "17878c12967138bb558775eddbf83c8384bdd6126dafe01c1711b117df79921c",
+    "rust_path": "src/core/blast_parameters.rs",
+    "symbols": {
+      "BLAST_GAP_PROB": "BLAST_GAP_PROB",
+      "BLAST_GAP_PROB_GAPPED": "BLAST_GAP_PROB_GAPPED",
+      "BLAST_GAP_DECAY_RATE": "BLAST_GAP_DECAY_RATE",
+      "BLAST_GAP_DECAY_RATE_GAPPED": "BLAST_GAP_DECAY_RATE_GAPPED",
+      "BLAST_GAP_SIZE": "BLAST_GAP_SIZE",
+      "BLAST_OVERLAP_SIZE": "BLAST_OVERLAP_SIZE",
+      "RESTRICTED_ALIGNMENT_WORST_EVALUE": "RESTRICTED_ALIGNMENT_WORST_EVALUE"
+    },
+    "adaptations": "Original scalar values and units retained.",
+    "status": "translated",
+    "validation": "Default setup compilation and initial-search smoke."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_def.h",
+    "source_sha256": "31b9ccf0132e23b2e53612bf04ffa71c71a967a14d68d5a13484c8a3e3ee6dc0",
+    "rust_path": "src/core/blast_parameters.rs",
+    "symbols": {
+      "DEFAULT_LONGEST_INTRON": "DEFAULT_LONGEST_INTRON"
+    },
+    "adaptations": "Original scalar values and units retained.",
+    "status": "translated",
+    "validation": "Default setup compilation and initial-search smoke."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_gapalign.c",
+    "source_sha256": "d632aef47bf3d0c9f0561d97f70bef5bf17a75a58af9cb5101d47a27d9f3b159",
+    "rust_path": "src/core/blast_dynamic_align.rs",
+    "symbols": {
+      "MININT": "MININT",
+      "CHUNKSIZE": "CHUNKSIZE",
+      "SCRIPT_SUB": "SCRIPT_SUB",
+      "SCRIPT_GAP_IN_A": "SCRIPT_GAP_IN_A",
+      "SCRIPT_GAP_IN_B": "SCRIPT_GAP_IN_B",
+      "SCRIPT_OP_MASK": "SCRIPT_OP_MASK",
+      "SCRIPT_EXTEND_GAP_A": "SCRIPT_EXTEND_GAP_A",
+      "SCRIPT_EXTEND_GAP_B": "SCRIPT_EXTEND_GAP_B"
+    },
+    "adaptations": "Retain source integer values and use existing gapinfo enum discriminants; state chunks keep original minimum size. FENCE_SENTRY reuses the translated blast_util constant.",
+    "status": "translated",
+    "validation": "Exact original-C scores, all edit operations and traceback fence/pooled-row behavior in focused comparisons."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_aalookup.h",
+    "source_sha256": "ee57a48626ad0a74cc3d516888111841433e1dcc880b400191b6c4917536cb43",
+    "rust_path": "src/core/blast_aalookup.rs",
+    "symbols": {
+      "AA_HITS_PER_CELL": "AA_HITS_PER_CELL",
+      "EBoneType": "EBoneType"
+    },
+    "adaptations": "Retain three inline hits and backbone discriminants 0/1. Preserve original normal/small cell physical sizes via explicit typed payload layouts.",
+    "status": "translated",
+    "validation": "Focused original-C construction/table/scan comparisons."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_options.h",
+    "source_sha256": "4d21486f1f5a18f88cefad64d8381fe824e864800cc76a7c1ec39f42311e08df",
+    "rust_path": "src/core/blast_aalookup.rs",
+    "symbols": {
+      "BLAST_WORDSIZE_PROT": "BLAST_WORDSIZE_PROT",
+      "BLAST_WORD_THRESHOLD_TBLASTN": "BLAST_WORD_THRESHOLD_TBLASTN"
+    },
+    "adaptations": "Default tblastn word size 3 and neighboring threshold 13 retained; the constructor accepts these fields explicitly.",
+    "status": "translated",
+    "validation": "Focused original-C construction/table/scan comparisons."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_gapalign.h",
+    "source_sha256": "2a87d38c0305692187247241153aca4042a5f2ece89f6dc8d4d74d79eade4f9c",
+    "rust_path": "src/core/blast_gapalign.rs",
+    "symbols": {
+      "MAX_DBSEQ_LEN": "MAX_DBSEQ_LEN"
+    },
+    "adaptations": "Retain the original5000000 subject clamp as a u32 matching the constructor input type.",
+    "status": "translated",
+    "validation": "Original constructor snapshots include zero max-subject-length and standard DP/greedy initialization; literal source value retained."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_gapalign.c",
+    "source_sha256": "d632aef47bf3d0c9f0561d97f70bef5bf17a75a58af9cb5101d47a27d9f3b159",
+    "rust_path": "src/core/blast_protein_gapalign.rs",
+    "symbols": {
+      "MAX_SUBJECT_OFFSET": "MAX_SUBJECT_OFFSET",
+      "MAX_TOTAL_GAPS": "MAX_TOTAL_GAPS"
+    },
+    "adaptations": "Retain original90000 residue subject threshold and3000 estimated-gap margin exactly.",
+    "status": "translated",
+    "validation": "Direct original-C subject-range boundary and long-subject preliminary alignment comparisons."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_itree.c",
+    "source_sha256": "01d87d421fbd9f11b7d827e41f6a367fa49a6b6b5315c0b359da2ed0c33684af",
+    "rust_path": "src/core/interval_tree.rs",
+    "symbols": {
+      "EIntervalDirection": "EIntervalDirection"
+    },
+    "adaptations": "Rust repr(i32) enums retain original ordinal values 0/1/2. Native names Left/Right/Neither and QueryOnly/QueryAndSubject/QueryOnlyStrandIndifferent retain their source meanings.",
+    "status": "translated",
+    "validation": "Original-C query/subject insertion and query-only traversal select the same node topology and results."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_itree.h",
+    "source_sha256": "a76c926130844dd128bddb634f54f2ef92850c1c51bd44bf8789cec8bde32925",
+    "rust_path": "src/core/interval_tree.rs",
+    "symbols": {
+      "EITreeIndexMethod": "EITreeIndexMethod"
+    },
+    "adaptations": "Rust repr(i32) enums retain original ordinal values 0/1/2. Native names Left/Right/Neither and QueryOnly/QueryAndSubject/QueryOnlyStrandIndifferent retain their source meanings.",
+    "status": "translated",
+    "validation": "Original-C query/subject insertion and query-only traversal select the same node topology and results."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/matrix_frequency_data.c",
+    "symbol": "BLOSUM62_JOINT_PROBS",
+    "byte_start": 24301,
+    "byte_end": 34424,
+    "line_start": 384,
+    "line_end": 526,
+    "source_sha256": "d231d261f503b4b9d6a291a383c41cbfb03eb82e8c0252ec3b50b39765d8f3a9",
+    "rust_path": "src/core/compo_blosum62_data.rs",
+    "rust_symbol": "BLOSUM62_JOINT_PROBS",
+    "status": "translated",
+    "adaptations": "Exact original decimal literals in original row-major order; nested C arrays flattened contiguously, no regenerated/rounded data."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/matrix_frequency_data.c",
+    "symbol": "BLOSUM62_bg",
+    "byte_start": 34469,
+    "byte_end": 35009,
+    "line_start": 529,
+    "line_end": 537,
+    "source_sha256": "53ce3603fadd93ebbffb1e3829d4c8044cca14428c3c46095acda18ab968ef8e",
+    "rust_path": "src/core/compo_blosum62_data.rs",
+    "rust_symbol": "BLOSUM62_BG",
+    "status": "translated",
+    "adaptations": "Exact original decimal literals in original row-major order; nested C arrays flattened contiguously, no regenerated/rounded data."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/matrix_freq_ratios.c",
+    "symbol": "BLOSUM62_FREQRATIOS",
+    "byte_start": 27681,
+    "byte_end": 40715,
+    "line_start": 438,
+    "line_end": 634,
+    "source_sha256": "e792c568c334f980d79aa689ba04f1a5d3081aea0539b99b04e7a282559649b6",
+    "rust_path": "src/core/compo_blosum62_data.rs",
+    "rust_symbol": "BLOSUM62_FREQRATIOS",
+    "status": "translated",
+    "adaptations": "Exact original decimal literals in original row-major order; nested C arrays flattened contiguously, no regenerated/rounded data."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/composition_adjustment.c",
+    "symbol": "trueCharPositions",
+    "byte_start": 1985,
+    "byte_end": 2089,
+    "line_start": 44,
+    "line_end": 45,
+    "source_sha256": "fdf565c689db1a0cc658fd5a66895b3bd4879408817f828489225e2202359555",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "TRUE_CHAR_POSITIONS",
+    "status": "translated",
+    "adaptations": "Exact original mapping; positive positions use usize for Rust indexes."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/composition_adjustment.c",
+    "symbol": "alphaConvert",
+    "byte_start": 2307,
+    "byte_end": 2482,
+    "line_start": 52,
+    "line_end": 54,
+    "source_sha256": "e8ee1a1cb84c9b3be84bc3ad4bd2be171eb251ba6e0d2a7c0e0cfcc9d3812670",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "ALPHA_CONVERT",
+    "status": "translated",
+    "adaptations": "Exact original mapping; positive positions use usize for Rust indexes."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/composition_adjustment.c",
+    "symbol": "composition_parameters",
+    "byte_start": 2641,
+    "byte_end": 3461,
+    "line_start": 61,
+    "line_end": 80,
+    "source_sha256": "41af09f553029ea6ca4a3778eadef83344e40e3932d9f3f3520fabbcce3a8754",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "K_COMPOSITION_MARGIN/K_COMPO_ADJUST_ERR_TOLERANCE/K_COMPO_ADJUST_ITERATION_LIMIT/K_FIXED_RE_BLOSUM62/K_MAXIMUM_XSCORE",
+    "status": "translated",
+    "adaptations": "Preserve margin20/tolerance1e-8/iterationlimit2000/fixedRE0.44/Xmax-1; source group includes unrelated full-precision-lambda convergence constants that are not translated or required by this default path."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/composition_adjustment.c",
+    "symbol": "LambdaRatioLowerBound",
+    "byte_start": 42061,
+    "byte_end": 42094,
+    "line_start": 1100,
+    "line_end": 1100,
+    "source_sha256": "c3e42df82b454d82350cfe943b6e95d8d91285639da19d4599a32951d35f12ec",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "LAMBDA_RATIO_LOWER_BOUND",
+    "status": "translated",
+    "adaptations": "Exact original bound."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_kappa.c",
+    "symbol": "SCALING_FACTOR",
+    "byte_start": 26111,
+    "byte_end": 26136,
+    "line_start": 676,
+    "line_end": 676,
+    "source_sha256": "21dbfb71649300bcfb709039e490cf5b83181d24a394ca3dd55d9ee5e031407c",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "SCALING_FACTOR",
+    "status": "translated",
+    "adaptations": "Exact original default matrix precision scaling factor."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/redo_alignment.c",
+    "symbol": "kReMatrixAdjustmentPseudocounts",
+    "byte_start": 3379,
+    "byte_end": 3433,
+    "line_start": 83,
+    "line_end": 83,
+    "source_sha256": "69dfc3492353f2de3cead7b9abfc7f3ec37cc24275853d321d420d1e9be301cd",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "K_RE_MATRIX_ADJUSTMENT_PSEUDOCOUNTS",
+    "status": "translated",
+    "adaptations": "Exact default pseudocount."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/composition_constants.h",
+    "symbol": "composition_constants",
+    "byte_start": 1674,
+    "byte_end": 3312,
+    "line_start": 43,
+    "line_end": 83,
+    "source_sha256": "43e16d2fa1708c640fd1cc0cc35a60e8b7ef3eb96fd47643b517e7109de9b756",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "COMPO_SCORE_MIN/COMPO_NUM_TRUE_AA/COMPO_LARGEST_ALPHABET/ECompoAdjustModes/EMatrixAdjustRule",
+    "status": "translated",
+    "adaptations": "Exact constants and enum discriminants; dimensions use usize."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/composition_adjustment.h",
+    "symbol": "residue_codes",
+    "byte_start": 1947,
+    "byte_end": 2183,
+    "line_start": 46,
+    "line_end": 49,
+    "source_sha256": "2263586a9868cacdbd823a8a3d93bd7151c66f6bbda16a8870397a2535115dee",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "E_GAP_CHAR/E_BCHAR/E_CCHAR/E_DCHAR/E_ECHAR/E_ICHAR/E_LCHAR/E_NCHAR/E_QCHAR/E_XCHAR/E_ZCHAR/E_SELENOCYSTEINE/E_STOP_CHAR/E_OCHAR/E_JCHAR",
+    "status": "translated",
+    "adaptations": "Exact NCBIstdaa codes."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/compo_mode_condition.c",
+    "symbol": "condition_thresholds",
+    "byte_start": 1725,
+    "byte_end": 2055,
+    "line_start": 39,
+    "line_end": 47,
+    "source_sha256": "491518e6602fe4af940f495a33e806b147d7a7aba99559fcd2b31265b67cbf3a",
+    "rust_path": "src/core/compo_mode_condition.rs",
+    "rust_symbol": "HALF_CIRCLE_DEGREES/PI/QUERY_MATCH_DISTANCE_THRESHOLD/LENGTH_RATIO_THRESHOLD/ANGLE_DEGREE_THRESHOLD/HIGH_PAIR_THRESHOLD/LENGTH_LOWER_THRESHOLD",
+    "status": "translated",
+    "adaptations": "Exact original decimal constants; preserve source PI approximation and original distance/angle comparisons."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/composition_adjustment.h",
+    "symbol": "Blast_AminoAcidComposition",
+    "byte_start": 2279,
+    "byte_end": 2585,
+    "line_start": 54,
+    "line_end": 59,
+    "source_sha256": "2b9f547f206c33b19bd240951662d6344fe57bce89e469fffdaa5a30b7f02d41",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "BlastAminoAcidComposition",
+    "status": "translated",
+    "adaptations": "Owned contiguous vectors and arrays replace C pointer allocations; field correspondence and dimensions preserved; camelCase fields mapped to systematic snake_case."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/composition_adjustment.h",
+    "symbol": "Blast_MatrixInfo",
+    "byte_start": 3190,
+    "byte_end": 3964,
+    "line_start": 78,
+    "line_end": 90,
+    "source_sha256": "9b273322713bb58642703be11729e4a69384fa634056356f8e6046edbba364e9",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "BlastMatrixInfo",
+    "status": "translated",
+    "adaptations": "Owned contiguous vectors and arrays replace C pointer allocations; field correspondence and dimensions preserved; camelCase fields mapped to systematic snake_case."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/composition_adjustment.h",
+    "symbol": "Blast_CompositionWorkspace",
+    "byte_start": 4701,
+    "byte_end": 5240,
+    "line_start": 112,
+    "line_end": 121,
+    "source_sha256": "b4ac00edb48c066ffd43c05d97d6562bd0a8625effd1c167b3a4476354b3049e",
+    "rust_path": "src/core/blast_composition_adjustment.rs",
+    "rust_symbol": "BlastCompositionWorkspace",
+    "status": "translated",
+    "adaptations": "Owned contiguous vectors and arrays replace C pointer allocations; field correspondence and dimensions preserved; camelCase fields mapped to systematic snake_case."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/matrix_frequency_data.c",
+    "symbol": "Compo_FrequencyData",
+    "byte_start": 88847,
+    "byte_end": 89100,
+    "line_start": 1327,
+    "line_end": 1331,
+    "source_sha256": "5ba06b68e77dc890992849c5fa0a0bbc1ab22bed401a55ca264e81e02da7d7c3",
+    "rust_path": "src/core/compo_frequency_data.rs",
+    "rust_symbol": "CompoFrequencyData",
+    "status": "translated",
+    "adaptations": "Static references to flat exact BLOSUM62 data replace C matrix pointers."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/matrix_frequency_data.c",
+    "symbol": "s_FrequencyData",
+    "byte_start": 89475,
+    "byte_end": 89795,
+    "line_start": 1343,
+    "line_end": 1354,
+    "source_sha256": "3a165f957080ded6019df688bd19b021002a4866326472d887eb590bb23f462f",
+    "rust_path": "src/core/compo_frequency_data.rs",
+    "rust_symbol": "BLOSUM62_FREQUENCY_DATA",
+    "status": "translated",
+    "adaptations": "Keep only BLOSUM62 MATRIX_DATA expansion; exact name, joint probabilities and background association. Other matrices outside standard tblastn scope."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/redo_alignment.h",
+    "symbol": "BlastCompo_Alignment",
+    "byte_start": 2498,
+    "byte_end": 3371,
+    "line_start": 57,
+    "line_end": 71,
+    "source_sha256": "ec6dd384fb043ca7829d643de4542327044318e307f71b8c434d7f839f1ae4b6",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "BlastCompoAlignment<T>",
+    "status": "translated",
+    "adaptations": "Default ordinary BLOSUM62 tblastn per-match redo. Vec lists represent source linked-list head-to-tail order; preserve original recursive mergesort and its right-before-left exact ties, window join direction, pruning and output order. Arc<T> context replaces opaque non-owning/shallow-copied context pointers with shared ownership; this avoids freeing input traceback when temporary windows are dropped. Rust-owned buffers/typed references and RAII replace raw allocation/free; Rust OOM behavior replaces C allocation-error returns. SequenceData owns sentinel-padded storage with explicit data_offset/length and logical data()/data_mut() views; helper from_sequence constructs this representation. Context-specific callback state is held by trait implementation rather than void pointers. Matrix/sequence local_data and gapping opaque state move to explicit fields and callback object; scalar field values retain source correspondence. Smith-Waterman new_xdrop_align callback is outside default path and not exposed."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/redo_alignment.h",
+    "symbol": "BlastCompo_GappingParams",
+    "byte_start": 4441,
+    "byte_end": 5133,
+    "line_start": 102,
+    "line_end": 112,
+    "source_sha256": "8b567a798d482d24a0c69d53f9750240870cfe84bdbd0b28a0b5aabe4bd7a20b",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "BlastCompoGappingParams",
+    "status": "translated",
+    "adaptations": "Default ordinary BLOSUM62 tblastn per-match redo. Vec lists represent source linked-list head-to-tail order; preserve original recursive mergesort and its right-before-left exact ties, window join direction, pruning and output order. Arc<T> context replaces opaque non-owning/shallow-copied context pointers with shared ownership; this avoids freeing input traceback when temporary windows are dropped. Rust-owned buffers/typed references and RAII replace raw allocation/free; Rust OOM behavior replaces C allocation-error returns. SequenceData owns sentinel-padded storage with explicit data_offset/length and logical data()/data_mut() views; helper from_sequence constructs this representation. Context-specific callback state is held by trait implementation rather than void pointers. Matrix/sequence local_data and gapping opaque state move to explicit fields and callback object; scalar field values retain source correspondence. Smith-Waterman new_xdrop_align callback is outside default path and not exposed."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/redo_alignment.h",
+    "symbol": "BlastCompo_SequenceRange",
+    "byte_start": 5242,
+    "byte_end": 5611,
+    "line_start": 118,
+    "line_end": 125,
+    "source_sha256": "a808e19ae508e95db0d1af8fa7099122bcc60f17443df66afdae5490789b1750",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "BlastCompoSequenceRange",
+    "status": "translated",
+    "adaptations": "Default ordinary BLOSUM62 tblastn per-match redo. Vec lists represent source linked-list head-to-tail order; preserve original recursive mergesort and its right-before-left exact ties, window join direction, pruning and output order. Arc<T> context replaces opaque non-owning/shallow-copied context pointers with shared ownership; this avoids freeing input traceback when temporary windows are dropped. Rust-owned buffers/typed references and RAII replace raw allocation/free; Rust OOM behavior replaces C allocation-error returns. SequenceData owns sentinel-padded storage with explicit data_offset/length and logical data()/data_mut() views; helper from_sequence constructs this representation. Context-specific callback state is held by trait implementation rather than void pointers. Matrix/sequence local_data and gapping opaque state move to explicit fields and callback object; scalar field values retain source correspondence. Smith-Waterman new_xdrop_align callback is outside default path and not exposed."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/redo_alignment.h",
+    "symbol": "BlastCompo_SequenceData",
+    "byte_start": 5701,
+    "byte_end": 6258,
+    "line_start": 131,
+    "line_end": 139,
+    "source_sha256": "c15215d32672a50e2d133dedd006cb1dc99e91cc123b08b30ef78e9d03c76f7c",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "BlastCompoSequenceData",
+    "status": "translated",
+    "adaptations": "Default ordinary BLOSUM62 tblastn per-match redo. Vec lists represent source linked-list head-to-tail order; preserve original recursive mergesort and its right-before-left exact ties, window join direction, pruning and output order. Arc<T> context replaces opaque non-owning/shallow-copied context pointers with shared ownership; this avoids freeing input traceback when temporary windows are dropped. Rust-owned buffers/typed references and RAII replace raw allocation/free; Rust OOM behavior replaces C allocation-error returns. SequenceData owns sentinel-padded storage with explicit data_offset/length and logical data()/data_mut() views; helper from_sequence constructs this representation. Context-specific callback state is held by trait implementation rather than void pointers. Matrix/sequence local_data and gapping opaque state move to explicit fields and callback object; scalar field values retain source correspondence. Smith-Waterman new_xdrop_align callback is outside default path and not exposed."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/redo_alignment.h",
+    "symbol": "BlastCompo_MatchingSequence",
+    "byte_start": 7001,
+    "byte_end": 7420,
+    "line_start": 156,
+    "line_end": 162,
+    "source_sha256": "2361c51fcc0afd8fa83f28f158f53c9fb28989dfa7dd2f29980e362cfb541804",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "BlastCompoMatchingSequence",
+    "status": "translated",
+    "adaptations": "Default ordinary BLOSUM62 tblastn per-match redo. Vec lists represent source linked-list head-to-tail order; preserve original recursive mergesort and its right-before-left exact ties, window join direction, pruning and output order. Arc<T> context replaces opaque non-owning/shallow-copied context pointers with shared ownership; this avoids freeing input traceback when temporary windows are dropped. Rust-owned buffers/typed references and RAII replace raw allocation/free; Rust OOM behavior replaces C allocation-error returns. SequenceData owns sentinel-padded storage with explicit data_offset/length and logical data()/data_mut() views; helper from_sequence constructs this representation. Context-specific callback state is held by trait implementation rather than void pointers. Matrix/sequence local_data and gapping opaque state move to explicit fields and callback object; scalar field values retain source correspondence. Smith-Waterman new_xdrop_align callback is outside default path and not exposed."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/redo_alignment.h",
+    "symbol": "BlastCompo_QueryInfo",
+    "byte_start": 7466,
+    "byte_end": 8184,
+    "line_start": 166,
+    "line_end": 178,
+    "source_sha256": "47b5780f7e9143819063f3c79c63db7e68d59678803560a6cf4c7cc2f2ce8c5d",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "BlastCompoQueryInfo",
+    "status": "translated",
+    "adaptations": "Default ordinary BLOSUM62 tblastn per-match redo. Vec lists represent source linked-list head-to-tail order; preserve original recursive mergesort and its right-before-left exact ties, window join direction, pruning and output order. Arc<T> context replaces opaque non-owning/shallow-copied context pointers with shared ownership; this avoids freeing input traceback when temporary windows are dropped. Rust-owned buffers/typed references and RAII replace raw allocation/free; Rust OOM behavior replaces C allocation-error returns. SequenceData owns sentinel-padded storage with explicit data_offset/length and logical data()/data_mut() views; helper from_sequence constructs this representation. Context-specific callback state is held by trait implementation rather than void pointers. Matrix/sequence local_data and gapping opaque state move to explicit fields and callback object; scalar field values retain source correspondence. Smith-Waterman new_xdrop_align callback is outside default path and not exposed."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/redo_alignment.h",
+    "symbol": "Blast_RedoAlignParams",
+    "byte_start": 14890,
+    "byte_end": 16720,
+    "line_start": 328,
+    "line_end": 357,
+    "source_sha256": "a821290c7bc44c70959e27116e8536b2d29e4b5a480e558dfd16bdeea55a6b20",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "BlastRedoAlignParams",
+    "status": "translated",
+    "adaptations": "Default ordinary BLOSUM62 tblastn per-match redo. Vec lists represent source linked-list head-to-tail order; preserve original recursive mergesort and its right-before-left exact ties, window join direction, pruning and output order. Arc<T> context replaces opaque non-owning/shallow-copied context pointers with shared ownership; this avoids freeing input traceback when temporary windows are dropped. Rust-owned buffers/typed references and RAII replace raw allocation/free; Rust OOM behavior replaces C allocation-error returns. SequenceData owns sentinel-padded storage with explicit data_offset/length and logical data()/data_mut() views; helper from_sequence constructs this representation. Context-specific callback state is held by trait implementation rather than void pointers. Matrix/sequence local_data and gapping opaque state move to explicit fields and callback object; scalar field values retain source correspondence. Smith-Waterman new_xdrop_align callback is outside default path and not exposed."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/redo_alignment.h",
+    "symbol": "Blast_RedoAlignCallbacks",
+    "byte_start": 14324,
+    "byte_end": 14787,
+    "line_start": 312,
+    "line_end": 323,
+    "source_sha256": "ca00d0a510eca196cab2f44c3be3a4a912229ccc15672171fb7f8a67d09800de",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "BlastRedoAlignCallbacks<T>",
+    "status": "translated",
+    "adaptations": "Default ordinary BLOSUM62 tblastn per-match redo. Vec lists represent source linked-list head-to-tail order; preserve original recursive mergesort and its right-before-left exact ties, window join direction, pruning and output order. Arc<T> context replaces opaque non-owning/shallow-copied context pointers with shared ownership; this avoids freeing input traceback when temporary windows are dropped. Rust-owned buffers/typed references and RAII replace raw allocation/free; Rust OOM behavior replaces C allocation-error returns. SequenceData owns sentinel-padded storage with explicit data_offset/length and logical data()/data_mut() views; helper from_sequence constructs this representation. Context-specific callback state is held by trait implementation rather than void pointers. Matrix/sequence local_data and gapping opaque state move to explicit fields and callback object; scalar field values retain source correspondence. Smith-Waterman new_xdrop_align callback is outside default path and not exposed."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/redo_alignment.c",
+    "symbol": "s_WindowInfo",
+    "byte_start": 3529,
+    "byte_end": 4121,
+    "line_start": 88,
+    "line_end": 98,
+    "source_sha256": "c30c85a9a4856da0635c409fa74115292272e62b834459968dec415f7efcfba2",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "SWindowInfo<T>",
+    "status": "translated",
+    "adaptations": "Default ordinary BLOSUM62 tblastn per-match redo. Vec lists represent source linked-list head-to-tail order; preserve original recursive mergesort and its right-before-left exact ties, window join direction, pruning and output order. Arc<T> context replaces opaque non-owning/shallow-copied context pointers with shared ownership; this avoids freeing input traceback when temporary windows are dropped. Rust-owned buffers/typed references and RAII replace raw allocation/free; Rust OOM behavior replaces C allocation-error returns. SequenceData owns sentinel-padded storage with explicit data_offset/length and logical data()/data_mut() views; helper from_sequence constructs this representation. Context-specific callback state is held by trait implementation rather than void pointers."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/redo_alignment.c",
+    "symbol": "LOCAL_LN2",
+    "byte_start": 2049,
+    "byte_end": 2101,
+    "line_start": 46,
+    "line_end": 46,
+    "source_sha256": "a1a9f1e8223b7feb79c4c0f95c792d5563bbc5727e7a23b974fcd7e3f76d9e91",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "LOCAL_LN2",
+    "status": "translated",
+    "adaptations": "Exact source numerical constant."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/redo_alignment.c",
+    "symbol": "EVALUE_STRETCH",
+    "byte_start": 2654,
+    "byte_end": 2678,
+    "line_start": 64,
+    "line_end": 64,
+    "source_sha256": "a45e14fa0cb269c1cc7b861a5b0c689476ac94a34ebe59e379a5f3520ec3e264",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "EVALUE_STRETCH",
+    "status": "translated",
+    "adaptations": "Exact source numerical constant."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/redo_alignment.c",
+    "symbol": "kWindowBorder",
+    "byte_start": 3269,
+    "byte_end": 3306,
+    "line_start": 80,
+    "line_end": 80,
+    "source_sha256": "374767d6194db71f7b29c424670efbbf76aeb83683398f82fecc7b1773887bcf",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "K_WINDOW_BORDER",
+    "status": "translated",
+    "adaptations": "Exact source numerical constant."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/redo_alignment.c",
+    "symbol": "kReMatrixAdjustmentPseudocounts",
+    "byte_start": 3379,
+    "byte_end": 3433,
+    "line_start": 83,
+    "line_end": 83,
+    "source_sha256": "69dfc3492353f2de3cead7b9abfc7f3ec37cc24275853d321d420d1e9be301cd",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "K_RE_MATRIX_ADJUSTMENT_PSEUDOCOUNTS",
+    "status": "translated",
+    "adaptations": "Exact source numerical constant."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/redo_alignment.c",
+    "symbol": "KAPPA_BIT_TOL",
+    "byte_start": 35439,
+    "byte_end": 35464,
+    "line_start": 955,
+    "line_end": 955,
+    "source_sha256": "db3e005451ce1d18ee9e31d44fa49fbf36e55a4d7f02bf53e642545d937f2556",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "KAPPA_BIT_TOL",
+    "status": "translated",
+    "adaptations": "Exact source numerical constant."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/redo_alignment.c",
+    "symbol": "MINIMUM_LENGTH_NEAR_IDENTICAL",
+    "byte_start": 39009,
+    "byte_end": 39049,
+    "line_start": 1050,
+    "line_end": 1050,
+    "source_sha256": "7e2f8a8a1e95ce5ee4ff1c70383648ef4d4ca93954f4fbd848422d8f13b14ac2",
+    "rust_path": "src/core/blast_composition_redo.rs",
+    "rust_symbol": "MINIMUM_LENGTH_NEAR_IDENTICAL",
+    "status": "translated",
+    "adaptations": "Exact source numerical constant."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/compo_heap.c",
+    "symbol": "BlastCompo_HeapRecord",
+    "byte_start": 2882,
+    "byte_end": 3478,
+    "line_start": 75,
+    "line_end": 84,
+    "source_sha256": "da876494ca8bb28dcf551b92bb4b734ba6d6dbedc6e9e890a4b9786ffe0e05de",
+    "rust_path": "src/core/compo_heap.rs",
+    "rust_symbol": "BlastCompoHeapRecord<T>",
+    "status": "translated",
+    "adaptations": "Preserve original one-based array/heap geometry, lazy array-to-heap transition, bottom-up conversion, exact comparison/tie order (including C NaN comparisons), growth policy and logical capacities, cutoff retention, insertion/discard and pop order. Generic owned Option<T> replaces void* payload; moves clear inactive slots rather than keeping stale duplicate pointers. Vec capacity+1 keeps original unused slot0. Ownership replaces explicit storage free; release drops still-owned payloads, so frontend should pop desired records before release. Rust allocation follows normal OOM behavior rather than C error return."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/composition_adjustment/compo_heap.h",
+    "symbol": "BlastCompo_Heap",
+    "byte_start": 3609,
+    "byte_end": 4665,
+    "line_start": 82,
+    "line_end": 100,
+    "source_sha256": "d5b1248d849f3a8ebca351a9aa74126c8e1dc8846ad7961df4ce4fa6371bdcd4",
+    "rust_path": "src/core/compo_heap.rs",
+    "rust_symbol": "BlastCompoHeap<T>",
+    "status": "translated",
+    "adaptations": "Preserve original one-based array/heap geometry, lazy array-to-heap transition, bottom-up conversion, exact comparison/tie order (including C NaN comparisons), growth policy and logical capacities, cutoff retention, insertion/discard and pop order. Generic owned Option<T> replaces void* payload; moves clear inactive slots rather than keeping stale duplicate pointers. Vec capacity+1 keeps original unused slot0. Ownership replaces explicit storage free; release drops still-owned payloads, so frontend should pop desired records before release. Rust allocation follows normal OOM behavior rather than C error return."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/composition_adjustment/compo_heap.c",
+    "symbol": "heap_capacity_constants",
+    "byte_start": 2170,
+    "byte_end": 2512,
+    "line_start": 56,
+    "line_end": 63,
+    "source_sha256": "bef6bcb0b3252dce199da823331f31f231c5920e97c83853beb4f9dcd266452d",
+    "rust_path": "src/core/compo_heap.rs",
+    "rust_symbol": "HEAP_INITIAL_CAPACITY/HEAP_RESIZE_FACTOR/HEAP_MIN_RESIZE",
+    "status": "translated",
+    "adaptations": "Exact source constants100/1.5/100. Preserve actual MAX(additive,multiplicative) growth code even though source comment calls it minimum."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/ncbi_math.c",
+    "symbol": "_default_gamma_coef",
+    "byte_start": 3832,
+    "byte_end": 4235,
+    "line_start": 140,
+    "line_end": 152,
+    "source_sha256": "c1bc017b4158f14b35448fcf956373a30d052a495f80505e6195a77910900ea6",
+    "rust_path": "src/core/hsp_sumstat_tables.rs",
+    "rust_symbol": "DEFAULT_GAMMA_COEF",
+    "status": "translated",
+    "adaptations": "Exact original decimal literals/order and array length; no regenerated or shortened constants. Private sibling data module."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/ncbi_math.c",
+    "symbol": "kPrecomputedFactorial",
+    "byte_start": 8363,
+    "byte_end": 9193,
+    "line_start": 297,
+    "line_end": 310,
+    "source_sha256": "420d1772ba4ce1e78c4fbc06649f76158df754e88bd3607ef7db25701b6f2385",
+    "rust_path": "src/core/hsp_sumstat_tables.rs",
+    "rust_symbol": "K_PRECOMPUTED_FACTORIAL",
+    "status": "translated",
+    "adaptations": "Exact original decimal literals/order and array length; no regenerated or shortened constants. Private sibling data module."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_stat.c",
+    "symbol": "kTab2",
+    "byte_start": 145944,
+    "byte_end": 146221,
+    "line_start": 4359,
+    "line_end": 4363,
+    "source_sha256": "fce349fd75e31ce3b5dd68557f6147733d4968de34ed529971d355b480f99569",
+    "rust_path": "src/core/hsp_sumstat_tables.rs",
+    "rust_symbol": "K_TAB2",
+    "status": "translated",
+    "adaptations": "Exact original decimal literals/order and array length; no regenerated or shortened constants. Private sibling data module."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_stat.c",
+    "symbol": "kTab3",
+    "byte_start": 146226,
+    "byte_end": 146711,
+    "line_start": 4364,
+    "line_end": 4370,
+    "source_sha256": "2e1a6b4b8c9e3eefea2a20ed7aba13fda7026af8503856383b58d829a5459020",
+    "rust_path": "src/core/hsp_sumstat_tables.rs",
+    "rust_symbol": "K_TAB3",
+    "status": "translated",
+    "adaptations": "Exact original decimal literals/order and array length; no regenerated or shortened constants. Private sibling data module."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_stat.c",
+    "symbol": "kTab4",
+    "byte_start": 146715,
+    "byte_end": 147389,
+    "line_start": 4371,
+    "line_end": 4379,
+    "source_sha256": "8db5871ddbfac9994dac8b604e56afe20a8de16c72c94d22749da222c2510032",
+    "rust_path": "src/core/hsp_sumstat_tables.rs",
+    "rust_symbol": "K_TAB4",
+    "status": "translated",
+    "adaptations": "Exact original decimal literals/order and array length; no regenerated or shortened constants. Private sibling data module."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_stat.c",
+    "symbol": "SRombergCbackArgs",
+    "byte_start": 141217,
+    "byte_end": 141654,
+    "line_start": 4196,
+    "line_end": 4203,
+    "source_sha256": "6785148e0666f83ba94701b4c6a7739d10253d686e9fdfaaa71c6dd827bee97b",
+    "rust_path": "src/core/hsp_sumstat.rs",
+    "rust_symbol": "SRombergCbackArgs",
+    "status": "translated",
+    "adaptations": "Typed mutable callback state with corresponding scalar fields and initial zero values."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_stat.c",
+    "symbol": "kSumpEpsilon",
+    "byte_start": 143855,
+    "byte_end": 143889,
+    "line_start": 4276,
+    "line_end": 4276,
+    "source_sha256": "2f44a0eeffb45d323ac708a3f3cacf89cee89108297bda168a45ec0ac3a222dc",
+    "rust_path": "src/core/hsp_sumstat.rs",
+    "rust_symbol": "s_blast_sum_p_calc::K_SUMP_EPSILON",
+    "status": "translated",
+    "adaptations": "Exact upstream convergence tolerance."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/ncbi_math.c",
+    "symbol": "MAX_DIAGS",
+    "byte_start": 9931,
+    "byte_end": 9951,
+    "line_start": 344,
+    "line_end": 344,
+    "source_sha256": "613a0e810e600322e11a7f16952866d6a3d97ecd2b773b6e47ea6e70607e4604",
+    "rust_path": "src/core/hsp_sumstat.rs",
+    "rust_symbol": "MAX_DIAGS",
+    "status": "translated",
+    "adaptations": "Exact maximum Romberg diagonals20."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/ncbi_math.h",
+    "symbol": "LOGDERIV_ORDER_MAX",
+    "byte_start": 5236,
+    "byte_end": 5266,
+    "line_start": 152,
+    "line_end": 152,
+    "source_sha256": "1da39aa15bdc10acc3d367937dbbde246c73797851c95857ef10f2fadfd28454",
+    "rust_path": "src/core/hsp_sumstat.rs",
+    "rust_symbol": "LOGDERIV_ORDER_MAX",
+    "status": "translated",
+    "adaptations": "Exact original macro value; dimensions use usize indexes in Rust."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/ncbi_math.h",
+    "symbol": "POLYGAMMA_ORDER_MAX",
+    "byte_start": 5385,
+    "byte_end": 5431,
+    "line_start": 155,
+    "line_end": 155,
+    "source_sha256": "7307803f5ec55230ae89d91a55f521e14ec0acaaa56f4564aaff823284858b1e",
+    "rust_path": "src/core/hsp_sumstat.rs",
+    "rust_symbol": "POLYGAMMA_ORDER_MAX",
+    "status": "translated",
+    "adaptations": "Exact original macro value; dimensions use usize indexes in Rust."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/ncbi_math.h",
+    "symbol": "NCBIMATH_PI",
+    "byte_start": 5495,
+    "byte_end": 5548,
+    "line_start": 158,
+    "line_end": 158,
+    "source_sha256": "cf1d3e23349bddde365e42b883974265c2b0c6dc5290c4ea4dcb05e27f81653e",
+    "rust_path": "src/core/hsp_sumstat.rs",
+    "rust_symbol": "NCBIMATH_PI",
+    "status": "translated",
+    "adaptations": "Exact original macro value; dimensions use usize indexes in Rust."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/ncbi_math.h",
+    "symbol": "NCBIMATH_LN2",
+    "byte_start": 5572,
+    "byte_end": 5627,
+    "line_start": 161,
+    "line_end": 161,
+    "source_sha256": "4ec4652f3fc0f9cf6a761be0d8f0e758f66766392a0289daa2bc974d7d20cddc",
+    "rust_path": "src/core/hsp_sumstat.rs",
+    "rust_symbol": "NCBIMATH_LN2",
+    "status": "translated",
+    "adaptations": "Exact original macro value; dimensions use usize indexes in Rust."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/ncbi_math.h",
+    "symbol": "NCBIMATH_LNPI",
+    "byte_start": 5651,
+    "byte_end": 5706,
+    "line_start": 163,
+    "line_end": 163,
+    "source_sha256": "03e31cf8fdc08238e75a82d56158ea1b4f6e495beda2b25479f9d0a471d67dee",
+    "rust_path": "src/core/hsp_sumstat.rs",
+    "rust_symbol": "NCBIMATH_LNPI",
+    "status": "translated",
+    "adaptations": "Exact original macro value; dimensions use usize indexes in Rust."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_filter.c",
+    "source_sha256": "d5e1656e0c385929592dbd08ca6116a5436b50b7aa5336a1c29b448bbe79d7b6",
+    "rust_path": "src/core/blast_filter.rs",
+    "symbols": {
+      "kNuclMask": "K_NUCL_MASK",
+      "kProtMask": "K_PROT_MASK"
+    },
+    "status": "translated",
+    "adaptations": "Exact original constant values.",
+    "validation": "Compilation and source correspondence."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_gapalign_priv.h",
+    "source_sha256": "84e5b3405703fe26a6a0aaa9dd33bd83ca176ffd98d86727374c4bb51c57ad7b",
+    "rust_path": "src/core/blast_prelim.rs",
+    "symbols": {
+      "HSP_MAX_WINDOW": "HSP_MAX_WINDOW"
+    },
+    "status": "translated",
+    "adaptations": "Exact original constant values.",
+    "validation": "Compilation and source correspondence."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_kappa.c",
+    "line_start": 1414,
+    "line_end": 1414,
+    "source_sha256": "fb1b1e4453c0c37b0fafdf8f835f07cd957197d703d4a12fa8a82bfac996e6fe",
+    "rust_path": "src/core/blast_kappa.rs",
+    "byte_start": 55048,
+    "byte_end": 55078,
+    "kind": "constant",
+    "status": "translated",
+    "adaptations": "Typed Rust constant preserves original macro value; SEG constant instruction is realized by setting original parser-result parameters directly.",
+    "symbols": {
+      "BLASTP_MASK_RESIDUE": "BLASTP_MASK_RESIDUE"
+    },
+    "validation": "Original macro value retained; SEG parameter realization is checked against unchanged C."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_kappa.c",
+    "line_start": 1416,
+    "line_end": 1416,
+    "source_sha256": "b8c9fddd3cfc2c05336aa2efc9e9d23093d6f9b7c420072cd482802b17bced19",
+    "rust_path": "src/core/blast_kappa.rs",
+    "byte_start": 55142,
+    "byte_end": 55189,
+    "kind": "constant",
+    "status": "translated",
+    "adaptations": "Typed Rust constant preserves original macro value; SEG constant instruction is realized by setting original parser-result parameters directly.",
+    "symbols": {
+      "BLASTP_MASK_INSTRUCTIONS": "BLASTP_MASK_INSTRUCTIONS"
+    },
+    "validation": "Original macro value retained; SEG parameter realization is checked against unchanged C."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_kappa.c",
+    "line_start": 2399,
+    "line_end": 2399,
+    "source_sha256": "6abeca7c2ae06b74640d4befb6ec97245459b0d3f5bcefb22537636313fe7fb5",
+    "rust_path": "src/core/blast_kappa.rs",
+    "byte_start": 93898,
+    "byte_end": 93945,
+    "kind": "constant",
+    "status": "translated",
+    "adaptations": "Typed Rust constant preserves original macro value; SEG constant instruction is realized by setting original parser-result parameters directly.",
+    "symbols": {
+      "NEAR_IDENTICAL_BITS_PER_POSITION": "NEAR_IDENTICAL_BITS_PER_POSITION"
+    },
+    "validation": "Original macro value retained; SEG parameter realization is checked against unchanged C."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_options.h",
+    "source_sha256": "d9b59dc8e0bebb319bab6b2b86850791553b701915f17498427607d9e97efdba",
+    "line_start": 163,
+    "line_end": 163,
+    "byte_start": 8066,
+    "byte_end": 8143,
+    "rust_path": "src/protein_search.rs",
+    "symbols": {
+      "PSI_INCLUSION_ETHRESH": "PSI_INCLUSION_ETHRESH"
+    },
+    "status": "translated",
+    "adaptations": "Typed f64 constant retains original macro value0.002 used by ordinary tblastn source redo heap initialization when PSI options are null.",
+    "validation": "Value and use checked against blast_kappa.c default inclusion threshold initialization."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_engine.c",
+    "symbol": "SubjectSplitStruct",
+    "byte_start": 4958,
+    "byte_end": 5913,
+    "line_start": 123,
+    "line_end": 143,
+    "source_sha256": "85210a120163b96c4295670ceb576374652df04e556c5ab00214002331d1c0da",
+    "rust_path": "src/core/blast_subject_chunk.rs",
+    "rust_symbol": "SubjectSplitStruct/SubjectChunk",
+    "status": "translated",
+    "adaptations": "Default unmasked subject sequence splitting and preliminary subject-split HSP merge only. Preserve source5M maximum chunk size,100overlap, packed2na4-alignment/residual geometry, chunk offsets/counters, partition swaps, merging order/context/frame/diagonal checks, score-density bounds, seed choice, list capacity flags and source CombineByScore. Typed descriptors/borrows replace mutable raw sequence pointers; original subject backing remains unchanged and alive. Owned Option/Vec moves/free replace raw HSP pointer ownership. No query-split, subject hard/softmask or mapping shortread path; native APIs expose no such masking options. Native SubjectChunk is a typed view of source BLAST_SequenceBlk length/sequence pointer displacement/range/chunk, not a new upstream type translation."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_hits.h",
+    "symbol": "DBSEQ_CHUNK_OVERLAP",
+    "byte_start": 8429,
+    "byte_end": 8460,
+    "line_start": 192,
+    "line_end": 192,
+    "source_sha256": "4eceaf45b2b8d8d178651e63fb82a31987620b8034968fd3aa5f310509a207cc",
+    "rust_path": "src/core/blast_subject_chunk.rs",
+    "rust_symbol": "DBSEQ_CHUNK_OVERLAP",
+    "status": "translated",
+    "adaptations": "Exact default overlap100."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_hits.c",
+    "symbol": "OVERLAP_DIAG_CLOSE",
+    "byte_start": 52311,
+    "byte_end": 52340,
+    "line_start": 1537,
+    "line_end": 1537,
+    "source_sha256": "6158741a6ecda2a4fb8550376adf92b13e417bebdebdde8f505300539aee1d4f",
+    "rust_path": "src/core/blast_subject_chunk.rs",
+    "rust_symbol": "OVERLAP_DIAG_CLOSE",
+    "status": "translated",
+    "adaptations": "Exact strict diagonal-distance bound10."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_engine.c",
+    "symbol": "SUBJECT_SPLIT_DONE",
+    "byte_start": 8132,
+    "byte_end": 8219,
+    "line_start": 217,
+    "line_end": 217,
+    "source_sha256": "e9eedc981235ea304e7293cd2091a8504b5d074b88109dffe8e04ccc6b963792",
+    "rust_path": "src/core/blast_subject_chunk.rs",
+    "rust_symbol": "SUBJECT_SPLIT_DONE",
+    "status": "translated",
+    "adaptations": "Exact source split status. NO_RANGE is only masked-subject branch and not required by native no-mask path."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/blast_engine.c",
+    "symbol": "SUBJECT_SPLIT_OK",
+    "byte_start": 8220,
+    "byte_end": 8294,
+    "line_start": 218,
+    "line_end": 218,
+    "source_sha256": "d9473635be80f05d89aa75c63e57dabf6d9d1a798727f607d56f38ad5312fb8c",
+    "rust_path": "src/core/blast_subject_chunk.rs",
+    "rust_symbol": "SUBJECT_SPLIT_OK",
+    "status": "translated",
+    "adaptations": "Exact source split status. NO_RANGE is only masked-subject branch and not required by native no-mask path."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_seqsrc.h",
+    "source_sha256": "402cf0f8b2e209e0ba2b70b2d47b8fe1ba537e51592fb0dd2eb14095a92de37a",
+    "rust_path": "src/protein_setup.rs",
+    "symbols": {
+      "BLAST_SEQSRC_MINLENGTH": "BLAST_SEQSRC_MINLENGTH"
+    },
+    "line_start": 205,
+    "line_end": 205,
+    "byte_start": 8226,
+    "byte_end": 8303,
+    "status": "translated",
+    "adaptations": "Typed i32 retains source10nt metadata fallback. Native standard-database tblastn setup divides by3 exactly as BLAST_GapAlignSetUp; using actual shortest FASTA input changes source preliminary thresholds and loses weak CBS hits.",
+    "validation": "Real staph_st14 whole-search differential: beforefix50nativevs52reference, afterfix52/52exact ordered19fields with original CLI float formatting. Original source C wordfinder on exact native query/frame data independently matched all seed records beforefix, identifying metadata binding rather than kernel defect."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "include/algo/blast/core/blast_def.h",
+    "line_start": 311,
+    "line_end": 319,
+    "source_sha256": "82a2ab8ceb4dc9dda3541c7678d9979dbfc1902bc97e333508b7b582a8a6b354",
+    "byte_start": 12772,
+    "byte_end": 13367,
+    "rust_path": "src/core/blast_target_translation.rs",
+    "symbols": {
+      "SBlastTargetTranslation": "BlastTargetTranslation"
+    },
+    "status": "translated",
+    "validation": "126 focused unchanged-C cache transitions across all six frames and subject lengths1200/301/100 compare exact range starts/global-exclusive ends, every logical residue and both sentinel/FENCE bytes. Includes initial windows, contained/distant requests,99nt flanks,21nt tail extension, negative-offset whole translation and subsequent full-cache reuse. Actual identity counts are also guarded by existing parent end-to-end and raw-HSP checks; no speed or full-scope parity follows from these isolated checks.",
+    "adaptations": "Scoped typed owner: six optional owned buffers and twelve range integers; borrowed subject nucleotide/genetic-code slices replace external toolkit pointers. The additional BlastTargetTranslationView is a Rust-only pointer-origin binding, not another translated source datatype."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/split_query.c",
+    "symbol": "kBadParameter",
+    "byte_start": 1524,
+    "byte_end": 1554,
+    "line_start": 37,
+    "line_end": 37,
+    "source_sha256": "a55dcbf2f077cee7148ccc87038169a9284f7543560c36cf6376b99385836e81",
+    "rust_path": "src/core/blast_query_split.rs",
+    "rust_symbol": "K_BAD_PARAMETER",
+    "status": "translated",
+    "adaptations": "Original signed integer constant."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/split_query.c",
+    "symbol": "kOutOfMemory",
+    "byte_start": 1555,
+    "byte_end": 1584,
+    "line_start": 38,
+    "line_end": 38,
+    "source_sha256": "c9b4b0e08232f5c8a3bf08e259bf088cc67db4fdf4eb26fb9d67a5fba3c2cfa9",
+    "rust_path": "src/core/blast_query_split.rs",
+    "rust_symbol": "K_OUT_OF_MEMORY",
+    "status": "translated",
+    "adaptations": "Original signed integer constant."
+  },
+  {
+    "version": "2.17.0+",
+    "source": "src/algo/blast/core/split_query.c",
+    "symbol": "kInvalidContext",
+    "byte_start": 1585,
+    "byte_end": 1617,
+    "line_start": 39,
+    "line_end": 39,
+    "source_sha256": "2d8e84b435595f4aa8345d419c912361c73c3b5662d70080d1e3ad3875b67467",
+    "rust_path": "src/core/blast_query_split.rs",
+    "rust_symbol": "K_INVALID_CONTEXT",
+    "status": "translated",
+    "adaptations": "Original signed integer constant."
+  },
+  {
+    "source": "include/algo/blast/core/split_query.h",
+    "symbol": "SSplitQueryBlk",
+    "byte_start": 2048,
+    "byte_end": 3046,
+    "line_start": 54,
+    "line_end": 69,
+    "source_sha256": "c1cd6f760475fe4e57969cad2cb9f646d47b569bea3526a3e2b45cfac4580548",
+    "rust_path": "src/core/blast_query_split.rs",
+    "rust_symbol": "SSplitQueryBlk",
+    "adaptations": "Vec-owned chunk/query/context/offset arrays; exact counts,overlap,gapped flag. SQueryChunkBoundary retains original SSeqRange alias and signedi32fields; input bounds u32 cast as source.",
+    "version": "2.17.0+",
+    "status": "translated"
+  },
+  {
+    "source": "src/app/blast/blast_app_util.hpp",
+    "symbol": "CBatchSizeMixer",
+    "byte_start": 2435,
+    "byte_end": 3595,
+    "line_start": 57,
+    "line_end": 95,
+    "source_sha256": "dc5c7e328ca27863785709ff487b1ca7900769a5dd89ad7416a77b3759798e80",
+    "rust_path": "src/query_batch_size.rs",
+    "rust_symbol": "CBatchSizeMixer",
+    "adaptations": "Private typed fields and inherent snake_case methods preserve source constants,int/f64 operation order,EMA and if/else clamp/reset history. Constructor maps to CBatchSizeMixer::c_batch_size_mixer; default C++ hits argument represented explicitly as-1. Define out-of-range/nonfinite quotient conversion as INT_MIN, matching actual pinned x86 cvttsd2si oracle before original lower clamp. Source C++ cast is undefined outside i32 range; this explicit safe portable policy does not claim matching every upstream compiler/architecture. Rust saturating cast would otherwise select maximum rather than minimum batch for hits0. No unsafe,new dependency,allocator,source algorithm replacement or CLI edit.",
+    "version": "2.17.0+",
+    "status": "translated"
+  }
+]

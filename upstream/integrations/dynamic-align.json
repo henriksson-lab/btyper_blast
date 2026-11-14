@@ -1,0 +1,130 @@
+{
+  "translations": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "symbol": "s_GapGetState",
+      "line_start": 70,
+      "line_end": 124,
+      "source_sha256": "23813fe76a57e1aef771124ec6ad1d23dfdfcecbad4a378dd2a6e300f830e1ce",
+      "rust_path": "src/core/blast_dynamic_align.rs",
+      "rust_symbol": "s_gap_get_state",
+      "reason": "Standard traditional-blastn DP preliminary gapped extension and shared final traceback kernel",
+      "status": "translated",
+      "validation": "Temporary focused original-C/Rust comparisons: 162 short and 24 longer cases cover score-only and traceback, forward/reverse, nucleotide profiles2/-3 gaps5/2 and1/-2 gaps0/2 plus zero-gap-extension case, insertions/deletions/mismatches/ambiguities/fences, packed seed phases0..3 and X-drop capped by initial score. Exact scores, offsets, assembled preliminary coordinates and every edit operation match. Longer cases exercise DP-memory and 100-row traceback growth. Debug and optimized Rust checks pass; generic PSSM branch is retained but not separately differential-tested. No tracked broad fixture corpus.",
+      "adaptations": "Stable arena indexes replace pointers into the original linked list; Vec node traversal preserves list order and selection. Keep CHUNKSIZE=2097152, requested length plus one-third spare, strict spare-space comparison, replacement of an unused undersized block and append behavior. Buffers are zero-initialized; used rows preserve original contents across purge.",
+      "byte_start": 2917,
+      "byte_end": 4469
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "symbol": "s_GapPurgeState",
+      "line_start": 127,
+      "line_end": 140,
+      "source_sha256": "d5c5b5a670ba7d5383a9d85973e8d32fb9dd2db67b0d21d0bd6735c811caeffb",
+      "rust_path": "src/core/blast_dynamic_align.rs",
+      "rust_symbol": "s_gap_purge_state",
+      "reason": "Standard traditional-blastn DP preliminary gapped extension and shared final traceback kernel",
+      "status": "translated",
+      "validation": "Temporary focused original-C/Rust comparisons: 162 short and 24 longer cases cover score-only and traceback, forward/reverse, nucleotide profiles2/-3 gaps5/2 and1/-2 gaps0/2 plus zero-gap-extension case, insertions/deletions/mismatches/ambiguities/fences, packed seed phases0..3 and X-drop capped by initial score. Exact scores, offsets, assembled preliminary coordinates and every edit operation match. Longer cases exercise DP-memory and 100-row traceback growth. Debug and optimized Rust checks pass; generic PSSM branch is retained but not separately differential-tested. No tracked broad fixture corpus.",
+      "adaptations": "Mutable node slice replaces linked-list traversal; preserve reset of used counters without clearing buffers and unconditional true return.",
+      "byte_start": 4516,
+      "byte_end": 4784
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "symbol": "ALIGN_EX",
+      "line_start": 373,
+      "line_end": 733,
+      "source_sha256": "a5ef7dd33605180e761b209a8f6445d981fb11489140c62a881b5af70cc12aca",
+      "rust_path": "src/core/blast_dynamic_align.rs",
+      "rust_symbol": "align_ex",
+      "reason": "Standard traditional-blastn DP preliminary gapped extension and shared final traceback kernel",
+      "status": "translated",
+      "validation": "Temporary focused original-C/Rust comparisons: 162 short and 24 longer cases cover score-only and traceback, forward/reverse, nucleotide profiles2/-3 gaps5/2 and1/-2 gaps0/2 plus zero-gap-extension case, insertions/deletions/mismatches/ambiguities/fences, packed seed phases0..3 and X-drop capped by initial score. Exact scores, offsets, assembled preliminary coordinates and every edit operation match. Longer cases exercise DP-memory and 100-row traceback growth. Debug and optimized Rust checks pass; generic PSSM branch is retained but not separately differential-tested. No tracked broad fixture corpus.",
+      "adaptations": "Preserve original X-drop criteria, DP recurrence, comparison/tie order, gap costs, sliding active window, score updates, allocation growth thresholds and output mutations. BlastDynamicAlign contains only consumed scratch/matrix/output fields; existing BlastScoringParameters and BlastInitHSP are reused. Vec storage replaces malloc/realloc/free with ordinary Rust allocation failure behavior. Newly allocated uninitialized C buffers are zeroed for defined Rust storage; only initialized/read state is compared. DynamicSequence supplies signed pointer origins and bounds-checked relative reads, preserving original prefix/end-sentinel access without forming out-of-allocation pointers or copying input. Optional PSSM selection retains source branches. ALIGN_EX keeps original script flags and traceback predecessor selection, exact 100-row doubling, pooled row placement/used accounting, and fence handling. Score-only Blast_SemiGappedAlign intentionally retains the original absence of fence checks; supported score-only inputs must contain initialized matrix-coded residues.",
+      "byte_start": 12572,
+      "byte_end": 24473
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "symbol": "Blast_SemiGappedAlign",
+      "line_start": 735,
+      "line_end": 962,
+      "source_sha256": "8bf5e9beb30df9bfe53592c012d86943fddfc794f134196361b12a7359027436",
+      "rust_path": "src/core/blast_dynamic_align.rs",
+      "rust_symbol": "blast_semi_gapped_align",
+      "reason": "Standard traditional-blastn DP preliminary gapped extension and shared final traceback kernel",
+      "status": "translated",
+      "validation": "Temporary focused original-C/Rust comparisons: 162 short and 24 longer cases cover score-only and traceback, forward/reverse, nucleotide profiles2/-3 gaps5/2 and1/-2 gaps0/2 plus zero-gap-extension case, insertions/deletions/mismatches/ambiguities/fences, packed seed phases0..3 and X-drop capped by initial score. Exact scores, offsets, assembled preliminary coordinates and every edit operation match. Longer cases exercise DP-memory and 100-row traceback growth. Debug and optimized Rust checks pass; generic PSSM branch is retained but not separately differential-tested. No tracked broad fixture corpus.",
+      "adaptations": "Preserve original X-drop criteria, DP recurrence, comparison/tie order, gap costs, sliding active window, score updates, allocation growth thresholds and output mutations. BlastDynamicAlign contains only consumed scratch/matrix/output fields; existing BlastScoringParameters and BlastInitHSP are reused. Vec storage replaces malloc/realloc/free with ordinary Rust allocation failure behavior. Newly allocated uninitialized C buffers are zeroed for defined Rust storage; only initialized/read state is compared. DynamicSequence supplies signed pointer origins and bounds-checked relative reads, preserving original prefix/end-sentinel access without forming out-of-allocation pointers or copying input. Optional PSSM selection retains source branches. ALIGN_EX keeps original script flags and traceback predecessor selection, exact 100-row doubling, pooled row placement/used accounting, and fence handling. Score-only Blast_SemiGappedAlign intentionally retains the original absence of fence checks; supported score-only inputs must contain initialized matrix-coded residues.",
+      "byte_start": 24475,
+      "byte_end": 32186
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "symbol": "s_BlastAlignPackedNucl",
+      "line_start": 3033,
+      "line_end": 3245,
+      "source_sha256": "33786064ec378ea9375a2fb69f0c66f75de124fd0eff995fc7c3c95dc7cebfbf",
+      "rust_path": "src/core/blast_dynamic_align.rs",
+      "rust_symbol": "s_blast_align_packed_nucl",
+      "reason": "Standard traditional-blastn DP preliminary gapped extension and shared final traceback kernel",
+      "status": "translated",
+      "validation": "Temporary focused original-C/Rust comparisons: 162 short and 24 longer cases cover score-only and traceback, forward/reverse, nucleotide profiles2/-3 gaps5/2 and1/-2 gaps0/2 plus zero-gap-extension case, insertions/deletions/mismatches/ambiguities/fences, packed seed phases0..3 and X-drop capped by initial score. Exact scores, offsets, assembled preliminary coordinates and every edit operation match. Longer cases exercise DP-memory and 100-row traceback growth. Debug and optimized Rust checks pass; generic PSSM branch is retained but not separately differential-tested. No tracked broad fixture corpus.",
+      "adaptations": "Preserve original X-drop criteria, DP recurrence, comparison/tie order, gap costs, sliding active window, score updates, allocation growth thresholds and output mutations. BlastDynamicAlign contains only consumed scratch/matrix/output fields; existing BlastScoringParameters and BlastInitHSP are reused. Vec storage replaces malloc/realloc/free with ordinary Rust allocation failure behavior. Newly allocated uninitialized C buffers are zeroed for defined Rust storage; only initialized/read state is compared. Keep packed forward/reverse byte/base selection exactly, including the original forward byte anchor and reverse aligned-prefix convention. Explicit signed sequence origins preserve query sentinel and subject-byte anchor reads. Packed preliminary scoring does not produce traceback.",
+      "byte_start": 107614,
+      "byte_end": 114785
+    },
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "symbol": "s_BlastDynProgNtGappedAlignment",
+      "line_start": 2948,
+      "line_end": 3017,
+      "source_sha256": "1315db97a1d3900f5a6e8009089545ca90e9177d41ded420b1216b1c8bda2c63",
+      "rust_path": "src/core/blast_dynamic_align.rs",
+      "rust_symbol": "s_blast_dyn_prog_nt_gapped_alignment",
+      "reason": "Standard traditional-blastn DP preliminary gapped extension and shared final traceback kernel",
+      "status": "translated",
+      "validation": "Temporary focused original-C/Rust comparisons: 162 short and 24 longer cases cover score-only and traceback, forward/reverse, nucleotide profiles2/-3 gaps5/2 and1/-2 gaps0/2 plus zero-gap-extension case, insertions/deletions/mismatches/ambiguities/fences, packed seed phases0..3 and X-drop capped by initial score. Exact scores, offsets, assembled preliminary coordinates and every edit operation match. Longer cases exercise DP-memory and 100-row traceback growth. Debug and optimized Rust checks pass; generic PSSM branch is retained but not separately differential-tested. No tracked broad fixture corpus.",
+      "adaptations": "Preserve original X-drop criteria, DP recurrence, comparison/tie order, gap costs, sliding active window, score updates, allocation growth thresholds and output mutations. BlastDynamicAlign contains only consumed scratch/matrix/output fields; existing BlastScoringParameters and BlastInitHSP are reused. Vec storage replaces malloc/realloc/free with ordinary Rust allocation failure behavior. Newly allocated uninitialized C buffers are zeroed for defined Rust storage; only initialized/read state is compared. Pass explicit sequence views and logical lengths in place of BLAST_SequenceBlk fields. Preserve cap of X-drop by ungapped score, nonzero modulo-4 seed shift, end adjustment, left/right pointer-anchor offsets and final coordinate/score assembly. Temporary output variables replace simultaneous mutable field/struct aliases; mutations are committed at the same source checkpoints.",
+      "byte_start": 104194,
+      "byte_end": 106893
+    }
+  ],
+  "data": [
+    {
+      "version": "2.17.0+",
+      "source": "src/algo/blast/core/blast_gapalign.c",
+      "source_sha256": "d632aef47bf3d0c9f0561d97f70bef5bf17a75a58af9cb5101d47a27d9f3b159",
+      "rust_path": "src/core/blast_dynamic_align.rs",
+      "symbols": {
+        "MININT": "MININT",
+        "CHUNKSIZE": "CHUNKSIZE",
+        "SCRIPT_SUB": "SCRIPT_SUB",
+        "SCRIPT_GAP_IN_A": "SCRIPT_GAP_IN_A",
+        "SCRIPT_GAP_IN_B": "SCRIPT_GAP_IN_B",
+        "SCRIPT_OP_MASK": "SCRIPT_OP_MASK",
+        "SCRIPT_EXTEND_GAP_A": "SCRIPT_EXTEND_GAP_A",
+        "SCRIPT_EXTEND_GAP_B": "SCRIPT_EXTEND_GAP_B"
+      },
+      "adaptations": "Retain source integer values and use existing gapinfo enum discriminants; state chunks keep original minimum size. FENCE_SENTRY reuses the translated blast_util constant.",
+      "status": "translated",
+      "validation": "Exact original-C scores, all edit operations and traceback fence/pooled-row behavior in focused comparisons."
+    }
+  ],
+  "integration_notes": [
+    "Add pub mod blast_dynamic_align to src/core/mod.rs. Worker changed no shared files.",
+    "BlastDynamicAlign borrows ordinary matrix rows and optional PSSM rows; it owns dynamic DP cells and pooled traceback states plus source output fields. It can be initialized with matrix/gap_x_dropoff and ..Default::default(); preexisting DP storage/count may also be supplied consistently.",
+    "DynamicSequence {data,offset} is an explicit signed pointer-origin binding. For a normal query buffer with a leading sentinel use offset1; packed subject base storage normally uses offset0. Original positive/negative relative anchor reads must be within data. Kernels deliberately do not copy/repack the source slices.",
+    "s_blast_dyn_prog_nt_gapped_alignment uses existing BlastInitHSP (required ungapped_data) and BlastScoringParameters gap_open/gap_extend. Its output fields are the preliminary gapped score and query/subject start/stop.",
+    "Generic Blast_SemiGappedAlign/ALIGN_EX retain optional position-based/PSSM selection but default nucleotide/protein ordinary-matrix paths were the focus. Full left/right final-traceback orchestration, script composition, HSP pruning and result statistics are still parent integration work.",
+    "Temporary focused artifacts: /tmp/btyper-dynamic-oracle.c, /tmp/btyper-dynamic-reference.txt, /tmp/btyper-dynamic-check.rs; long variants use -long- in their names. 186 original-C cases compare exact results."
+  ],
+  "integrated": true
+}

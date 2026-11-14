@@ -1,0 +1,16 @@
+{
+  "version": "2.17.0+",
+  "archive_sha256": "502057a88e9990e34e62758be21ea474cc0ad68d6a63a2e37b2372af1e5ea147",
+  "records": 248581,
+  "compiler": "GCC 11.4.0; identical Clang and ASan/UBSan output",
+  "origin": "Unchanged complete original C files, including file-local na_ungapped.c functions. Fixed-width typedef shim only; unused toolkit sections discarded. Original nucleotide matrix creator and all selected extension/membership/word/hash bodies execute directly. The test driver supplies score-table inputs following the block in BlastInitialWordParametersNew; this does not claim that full parameter construction or complete word-finder orchestration is translated.",
+  "command": "python scripts/generate_ungapped_reference.py --output tests/fixtures/ungapped-2.17.0.txt",
+  "fixture": "tests/fixtures/ungapped-2.17.0.txt",
+  "fixture_sha256": "b6cfb9620323aa9721c986f596550f789ab59ea5502153ed8bb390775c62ec87",
+  "harness": "tests/reference/ungapped.c",
+  "harness_sha256": "00f1c0848d116d57be138898b0b92b0ca420d63285f2fcd2bb94bd3d490be223",
+  "generator": "scripts/generate_ungapped_reference.py",
+  "generator_sha256": "84fc7635a833a769805a421f1ff322c625c133c286b5171b48e944debd9adae2",
+  "shim": "tests/reference/include/corelib/ncbitype.h",
+  "shim_sha256": "9d3e1fc2301697ffbd57eae53f557b10e4737ad6f1d672f11a03749405feb29c"
+}

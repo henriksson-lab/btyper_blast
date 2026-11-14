@@ -1,0 +1,15 @@
+/vendor/downloads/
+/vendor/ncbi-blast-2.17.0+-src/
+/target/
+__pycache__/
+/reference-kernels.txt
+/reference-database.txt
+/reference-symdust.txt
+/reference-lookup.txt
+/reference-ordinary-lookup.txt
+/reference-mb-lookup.txt
+/reference-seed-lookup.txt
+/reference-context.txt
+/reference-ungapped.txt
+/vendor/reference-tools/
+/vendor/benchmark-inputs/
